@@ -268,58 +268,36 @@
     opacity: 0.88;
     letter-spacing: 0.04em;
   }
-  .hero {
-    margin: 0.35rem 0 0.5rem;
-    padding: 0.55rem 0.9rem 0.6rem;
-    border-radius: 0.85rem;
-    background: linear-gradient(135deg, rgba(180,122,40,0.14), rgba(180,122,40,0.05));
-    border: 1px solid rgba(180,122,40,0.32);
-    min-height: 6.4rem;
+  .nowline {
+    margin: 0.15rem 0 0.35rem;
+    font-size: 1.05rem;
+    color: var(--ink-dim);
+    min-height: 1.3rem;
   }
-  .hero .tag {
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    color: var(--gold);
-    font-weight: 700;
-  }
-  .hero .sub {
-    font-size: 2.45rem;
-    font-weight: 750;
-    line-height: 1.08;
-    margin-top: 0.15rem;
-    letter-spacing: 0.02em;
-  }
-  .hero .zh { font-size: 1.05rem; color: var(--ink-dim); margin-top: 0.1rem; }
-  .hero .meta {
-    margin-top: 0.35rem;
-    font-size: 0.95rem;
-    color: var(--ink-mute);
-    display: flex;
-    gap: 0.85rem;
-    flex-wrap: wrap;
-    font-variant-numeric: tabular-nums;
-  }
+  .nowline b { color: var(--ink); font-weight: 750; }
+  .nowline .tag { color: var(--gold); font-weight: 700; letter-spacing: 0.12em; margin-right: 0.45rem; }
+
   .timeline {
     flex: 1;
     min-height: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.48rem;
+    gap: 0.4rem;
   }
   .period {
     display: grid;
-    grid-template-columns: 8rem minmax(0, 1fr) auto;
+    grid-template-columns: 9.2rem minmax(0, 1fr) auto;
     gap: 0.7rem;
     align-items: center;
-    padding: 0.62rem 0.95rem 0.62rem 0.85rem;
+    padding: 0.48rem 0.95rem 0.48rem 0.85rem;
     border-radius: 0.62rem;
     background: rgba(42,36,29,0.05);
     border-left: 0.38rem solid var(--c, var(--ink-mute));
-    flex: 1;
+    flex: 1 1 0;
     min-height: 0;
   }
-  .period.is-past { opacity: 0.42; }
+  .period.is-past { opacity: 0.62; }
   .period.is-now {
     background: rgba(180,122,40,0.12);
     box-shadow: 0 0 0 1px rgba(180,122,40,0.32);
@@ -329,9 +307,15 @@
   .period.is-lunch, .period.is-break {
     border-left-color: transparent;
     background: transparent;
-    opacity: 0.72;
-    flex: 0.42;
+    opacity: 0.6;
+    flex: 0.3;
+    padding-top: 0.18rem;
+    padding-bottom: 0.18rem;
   }
+  .period.is-lunch .fr, .period.is-break .fr { font-size: 0.98rem; font-weight: 600; }
+  .period.is-lunch .zh, .period.is-break .zh { display: none; }
+  .period.is-lunch .when .end i, .period.is-break .when .end i { display: none; }
+  .period.is-lunch .when .end, .period.is-break .when .end { font-size: 1rem; font-weight: 600; color: var(--ink-mute); }
   .period .when {
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
@@ -341,11 +325,12 @@
     gap: 0.12rem;
   }
   .period .when .start {
-    font-size: 1.02rem;
+    font-size: 1.14rem;
     color: var(--ink-dim);
   }
+  .period .when .sep { color: var(--ink-mute); font-weight: 500; }
   .period .when .end {
-    font-size: 1.28rem;
+    font-size: 1.36rem;
     font-weight: 750;
     color: var(--gold);
     line-height: 1;
@@ -360,13 +345,13 @@
     margin-bottom: 0.08rem;
   }
   .period .fr {
-    font-size: 1.42rem;
+    font-size: 1.66rem;
     font-weight: 700;
     letter-spacing: 0.03em;
     line-height: 1.12;
   }
   .period .zh {
-    font-size: 0.92rem;
+    font-size: 1rem;
     color: var(--ink-mute);
     margin-top: 0.08rem;
   }
@@ -398,7 +383,7 @@
     grid-auto-rows: minmax(0, 1fr);
     gap: 0.18rem 0.32rem;
     padding: 0.4rem 0.5rem 0.45rem;
-    min-height: 22vh;
+    min-height: 17vh;
   }
   .week .wg-corner { }
   .week .wd-h {
@@ -501,10 +486,10 @@
 
   <section class="today" aria-label="今天课表">
     <div class="today-head">
-      <div class="today-kicker">今天 · 课表</div>
+      <div class="today-kicker" id="today-kicker">今天 · 课表</div>
       <div class="dismiss" id="dismiss"></div>
     </div>
-    <div class="hero" id="hero"></div>
+    <div class="nowline" id="hero"></div>
     <div class="timeline" id="timeline"></div>
   </section>
 
@@ -833,59 +818,59 @@
       (hint && hint !== end ? '<div class="hint">' + esc(hint) + '</div>' : '');
   }
 
+  function rawDay(dayNum) {
+    const slots = slotMap();
+    const raw = (schedule.days && schedule.days[String(dayNum)]) || [];
+    const out = [];
+    raw.forEach(function (L) {
+      const sl = slots[L.slot];
+      if (!sl) return;
+      out.push({
+        type: "class",
+        start: sl.start,
+        end: sl.end,
+        subject: L.subject,
+        room: L.room || ""
+      });
+    });
+    return out;
+  }
+
   function renderHero(p, nowHm, dow) {
     const el = document.getElementById("hero");
+    if (!el) return;
     if (dow === 0 || dow === 6) {
-      const mon = dayLessons(1)[0];
-      const t = mon ? blockTitle(mon) : null;
-      el.innerHTML =
-        '<div class="tag">周末休息</div>' +
-        '<div class="sub">' + esc(t ? t.fr : "—") + '</div>' +
-        '<div class="zh">' + (t ? esc(t.zh) + " · 下周一 " + esc(mon.start) : "") + '</div>';
+      el.innerHTML = '<span class="tag">周末</span>休息';
       return;
     }
-    const classes = dayLessons(dow);
-    if (!classes.length) {
-      el.innerHTML = '<div class="tag">今天</div><div class="sub">无课</div>';
-      return;
-    }
+    const classes = rawDay(dow);
+    if (!classes.length) { el.textContent = ""; return; }
     const last = classes[classes.length - 1];
     if (toMin(nowHm) >= toMin(last.end)) {
-      if (dow === 5) {
-        el.innerHTML = '<div class="tag">放学</div><div class="sub">周末见</div><div class="zh">Bon weekend</div>';
-        return;
-      }
-      const tom = dow === 4 ? 5 : dow + 1;
-      const n = dayLessons(tom)[0];
-      const t = n ? blockTitle(n) : null;
-      el.innerHTML =
-        '<div class="tag">放学</div>' +
-        '<div class="sub">' + esc(t ? t.fr : "—") + '</div>' +
-        '<div class="zh">明天 · ' + esc(t ? t.zh : "") + " · " + esc(n ? n.start : "") + "</div>";
+      el.innerHTML = '<span class="tag">已放学</span>';
       return;
     }
-    if (p.current) {
+    if (p.current && p.current.type === "class") {
       const t = blockTitle(p.current);
-      const isLunch = p.current.type === "lunch";
-      el.innerHTML =
-        '<div class="tag">' + (isLunch ? "现在 · 午休" : "现在") + "</div>" +
-        '<div class="sub">' + esc(t.fr) + "</div>" +
-        '<div class="zh">' + esc(t.zh) + (t.room ? " · " + esc(t.room) : "") + "</div>" +
-        '<div class="meta"><span>' + esc(p.current.start) + " – " + esc(p.current.end) + "</span><span>" +
-        esc(remainLabel(p.current, nowHm, "now")) + "</span></div>";
+      el.innerHTML = '<span class="tag">现在</span><b>' + esc(t.fr) + '</b> · ' +
+        esc(remainLabel(p.current, nowHm, "now"));
       return;
     }
     if (p.next) {
       const t = blockTitle(p.next);
-      el.innerHTML =
-        '<div class="tag">下一节</div>' +
-        '<div class="sub">' + esc(t.fr) + "</div>" +
-        '<div class="zh">' + esc(t.zh) + (t.room ? " · " + esc(t.room) : "") + "</div>" +
-        '<div class="meta"><span>' + esc(p.next.start) + " – " + esc(p.next.end) + "</span><span>" +
-        esc(remainLabel(p.next, nowHm, "next")) + "</span></div>";
+      el.innerHTML = '<span class="tag">下一节</span><b>' + esc(t.fr) + '</b> · ' +
+        esc(remainLabel(p.next, nowHm, "next"));
       return;
     }
-    el.innerHTML = '<div class="tag">今天</div><div class="sub">课表</div>';
+    el.textContent = "";
+  }
+
+  function renderKicker(dow) {
+    const el = document.getElementById("today-kicker");
+    if (!el) return;
+    if (dow === 0 || dow === 6) { el.textContent = "周末 · 无课"; return; }
+    const n = rawDay(dow).length;
+    el.textContent = "今天 · " + n + " 节课";
   }
 
   function renderTimeline(p, nowHm, dow) {
@@ -895,22 +880,21 @@
       return;
     }
     const t = toMin(nowHm);
-    el.innerHTML = p.items.map(function (it) {
+    const items = rawDay(dow);
+    el.innerHTML = items.map(function (it) {
       const title = blockTitle(it);
       const a = toMin(it.start), b = toMin(it.end);
       let cls = "period";
-      if (it.type === "lunch") cls += " is-lunch";
-      if (it.type === "break") cls += " is-break";
       if (t >= b) cls += " is-past";
-      else if (p.current && it.start === p.current.start && it.end === p.current.end && it.type === p.current.type) cls += " is-now";
-      else if (p.next && it.start === p.next.start && it.end === p.next.end && it.type === p.next.type) cls += " is-next";
+      else if (t >= a && t < b) cls += " is-now";
+      else if (p.next && it.start === p.next.start) cls += " is-next";
       const badge = (cls.indexOf("is-now") >= 0)
         ? '<span class="badge">现在</span>'
         : (cls.indexOf("is-next") >= 0 ? '<span class="badge">下一节</span>' : "");
       const room = title.room ? '<div class="room">' + esc(title.room) + "</div>" : badge;
       const zhLine = title.zh ? '<div class="zh">' + esc(title.zh) + (it.type === "class" && gapMin(it.start, it.end) >= 90 ? " · 双节" : "") + "</div>" : "";
       return '<div class="' + cls + '" style="--c:' + esc(title.color) + '">' +
-        ('<div class="when"><div class="start">' + esc(it.start) + '</div><div class="end"><i>' + (it.type === "class" ? "下课" : "至") + "</i>" + esc(it.end) + "</div></div>") +
+        '<div class="when"><span class="start">' + esc(it.start) + '</span><span class="sep">–</span><span class="end">' + esc(it.end) + "</span></div>" +
         '<div><div class="fr">' + esc(title.fr) + "</div>" + zhLine + "</div>" +
         (title.room || badge ? room : "<div></div>") +
         "</div>";
@@ -957,6 +941,7 @@
     const p = parisParts();
     const ph = (p.dow >= 1 && p.dow <= 5) ? phase(p.hhmm, p.dow) : { current: null, next: null, items: [] };
     renderDismiss(p.hhmm, p.dow);
+    renderKicker(p.dow);
     renderHero(ph, p.hhmm, p.dow);
     renderTimeline(ph, p.hhmm, p.dow);
     renderWeek(p.hhmm, p.dow);
