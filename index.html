@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14110e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>凯驿 · 6B · 晨间看板</title>
+<style>
+  :root {
+    --bg: #14110e;
+    --bg-2: #1c1713;
+    --panel: #231c16;
+    --panel-2: #2c241c;
+    --ink: #f6eee4;
+    --ink-dim: #c4b3a2;
+    --ink-mute: #8a7868;
+    --gold: #e4b56a;
+    --gold-2: #c99448;
+    --line: rgba(246, 238, 228, 0.09);
+    --now: #f0c27a;
+    --danger: #d9896c;
+    --ok: #8fba7a;
+    --rain: #7eb8c9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC",
+      "PingFang SC", "Microsoft YaHei", "Roboto", "Noto Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    cursor: default;
+  }
+  html { font-size: calc(100vmin / 50); }
+  body {
+    background:
+      radial-gradient(ellipse 80% 55% at 12% -8%, rgba(196, 118, 52, 0.20), transparent 52%),
+      radial-gradient(ellipse 50% 40% at 100% 110%, rgba(70, 36, 16, 0.35), transparent 55%),
+      var(--bg);
+  }
+  .board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "header header"
+      "weather today"
+      "week week";
+    padding: 1.8vh 2.2vw 1.4vh;
+    gap: 1.35vh 1.8vw;
+  }
+  header {
+    grid-area: header;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    min-height: 7.2vh;
+  }
+  .brand .name {
+    font-size: 2.05rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.05;
+  }
+  .brand .school {
+    margin-top: 0.25rem;
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+  }
+  .head-status {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.86rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+  }
+  .dot {
+    width: 0.55rem; height: 0.55rem; border-radius: 50%;
+    background: var(--ink-mute);
+    box-shadow: 0 0 0 0.22rem rgba(143,186,122,0.08);
+  }
+  .dot.live { background: var(--ok); }
+  .dot.cache { background: var(--gold); }
+  .dot.off { background: var(--danger); }
+
+  .weather, .today, .week {
+    background: linear-gradient(180deg, rgba(44,36,28,0.88), rgba(28,22,18,0.92));
+    border: 1px solid var(--line);
+    border-radius: 1.1rem;
+  }
+  .weather {
+    grid-area: weather;
+    padding: 1.35rem 1.5rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .clock-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    line-height: 0.85;
+  }
+  #clock-hm {
+    font-size: 6.4rem;
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+    font-family: "Roboto", "Noto Sans", system-ui, sans-serif;
+  }
+  #clock-sec {
+    font-size: 2.1rem;
+    font-weight: 400;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.9;
+  }
+  .date-main {
+    margin-top: 0.55rem;
+    font-size: 1.28rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.06em;
+  }
+  .date-sub {
+    margin-top: 0.15rem;
+    font-size: 0.92rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+  }
+  .temp-row {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    margin-top: 1.05rem;
+  }
+  #temp {
+    font-size: 5.4rem;
+    font-weight: 300;
+    line-height: 0.85;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+  }
+  #temp span { font-size: 0.42em; color: var(--ink-dim); margin-left: 0.05em; }
+  .cond { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+  #w-icon { width: 3.4rem; height: 3.4rem; color: var(--gold); }
+  #w-icon svg { width: 100%; height: 100%; display: block; }
+  #w-label { font-size: 1.45rem; font-weight: 600; letter-spacing: 0.08em; }
+  #w-feels { font-size: 0.9rem; color: var(--ink-mute); }
+  .stats {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 0.95rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1;
+    min-width: 4.8rem;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    padding: 0.45rem 0.6rem 0.5rem;
+  }
+  .stat b {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat i {
+    font-style: normal;
+    font-size: 0.68rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.12em;
+  }
+  .hourly {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.9rem;
+  }
+  .hour {
+    text-align: center;
+    padding: 0.4rem 0.15rem 0.45rem;
+    border-radius: 0.55rem;
+    background: rgba(0,0,0,0.16);
+  }
+  .hour.is-now { background: rgba(228,181,106,0.14); outline: 1px solid rgba(228,181,106,0.35); }
+  .hour .h { font-size: 0.72rem; color: var(--ink-mute); letter-spacing: 0.04em; }
+  .hour .t { font-size: 1.12rem; font-weight: 600; margin: 0.12rem 0; font-variant-numeric: tabular-nums; }
+  .hour .p { font-size: 0.68rem; color: var(--rain); }
+  .daily {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.55rem;
+  }
+  .daywx {
+    padding: 0.5rem 0.65rem 0.55rem;
+    border-radius: 0.65rem;
+    background: rgba(0,0,0,0.16);
+    border: 1px solid transparent;
+  }
+  .daywx.is-today { border-color: rgba(228,181,106,0.4); background: rgba(228,181,106,0.08); }
+  .daywx .d { font-size: 0.78rem; color: var(--ink-dim); }
+  .daywx .r { font-size: 1.05rem; font-weight: 650; margin-top: 0.12rem; font-variant-numeric: tabular-nums; }
+  .daywx .c { font-size: 0.72rem; color: var(--ink-mute); margin-top: 0.08rem; }
+
+  .today {
+    grid-area: today;
+    padding: 1.1rem 1.2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    box-shadow: inset 0 0 0 1px rgba(228,181,106,0.05);
+  }
+  .today-kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .hero {
+    margin: 0.45rem 0 0.75rem;
+    padding: 0.75rem 0.9rem 0.8rem;
+    border-radius: 0.85rem;
+    background: linear-gradient(135deg, rgba(228,181,106,0.16), rgba(228,181,106,0.04));
+    border: 1px solid rgba(228,181,106,0.28);
+    min-height: 7.4rem;
+  }
+  .hero .tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .hero .sub {
+    font-size: 2.05rem;
+    font-weight: 750;
+    line-height: 1.08;
+    margin-top: 0.15rem;
+    letter-spacing: 0.02em;
+  }
+  .hero .zh { font-size: 1.05rem; color: var(--ink-dim); margin-top: 0.1rem; }
+  .hero .meta {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--ink-mute);
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .timeline {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.32rem;
+  }
+  .period {
+    display: grid;
+    grid-template-columns: 6.6rem minmax(0, 1fr) auto;
+    gap: 0.7rem;
+    align-items: center;
+    padding: 0.38rem 0.7rem 0.38rem 0.65rem;
+    border-radius: 0.62rem;
+    background: rgba(0,0,0,0.16);
+    border-left: 0.38rem solid var(--c, var(--ink-mute));
+    flex: 1;
+    min-height: 0;
+  }
+  .period.is-past { opacity: 0.42; }
+  .period.is-now {
+    background: rgba(228,181,106,0.14);
+    box-shadow: 0 0 0 1px rgba(228,181,106,0.28);
+    animation: glow 2.6s ease-in-out infinite;
+  }
+  .period.is-next { box-shadow: inset 0 0 0 1px rgba(228,181,106,0.22); }
+  .period.is-lunch, .period.is-break {
+    border-left-color: transparent;
+    background: transparent;
+    opacity: 0.72;
+    flex: 0.55;
+  }
+  .period .when {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .period .fr {
+    font-size: 1.12rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.12;
+  }
+  .period .zh {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    margin-top: 0.08rem;
+  }
+  .period .room {
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-align: right;
+    max-width: 9.5rem;
+  }
+  .badge {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    border: 1px solid rgba(228,181,106,0.4);
+    border-radius: 999px;
+    padding: 0.12rem 0.45rem;
+    white-space: nowrap;
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(228,181,106,0.28); }
+    50% { box-shadow: 0 0 1.1rem 0 rgba(228,181,106,0.18); }
+  }
+
+  .week {
+    grid-area: week;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding: 0.55rem;
+    min-height: 16.5vh;
+  }
+  .wd {
+    padding: 0.45rem 0.55rem 0.5rem;
+    border-radius: 0.7rem;
+    background: rgba(0,0,0,0.16);
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .wd.is-today {
+    border-color: var(--gold);
+    background: rgba(228,181,106,0.10);
+    box-shadow: 0 0.4rem 1.4rem rgba(228,181,106,0.08);
+  }
+  .wd .wd-h {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.28rem;
+  }
+  .wd .wd-zh { font-size: 1.02rem; font-weight: 700; }
+  .wd .wd-fr { font-size: 0.72rem; color: var(--ink-mute); letter-spacing: 0.08em; }
+  .chip {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.35rem;
+    align-items: center;
+    font-size: 0.72rem;
+    padding: 0.12rem 0;
+    min-width: 0;
+  }
+  .chip i {
+    width: 0.32rem; height: 0.32rem; border-radius: 50%;
+    background: var(--c, var(--ink-mute));
+    display: block;
+  }
+  .chip b {
+    font-weight: 650;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .chip.is-now b { color: var(--gold); }
+  .chip.is-past { opacity: 0.4; }
+  .chip .t { color: var(--ink-mute); font-variant-numeric: tabular-nums; margin-right: 0.25rem; }
+
+  .empty { color: var(--ink-mute); font-size: 1.1rem; padding: 0.4rem 0; }
+</style>
+</head>
+<body>
+<div class="board">
+  <header>
+    <div class="brand">
+      <div class="name">凯驿 · 6B</div>
+      <div class="school">Collège Saint-François · Juvénat · Ville-la-Grand</div>
+    </div>
+    <div class="head-status">
+      <span class="dot" id="wx-dot"></span>
+      <span id="wx-status">天气</span>
+    </div>
+  </header>
+
+  <section class="weather" aria-label="天气">
+    <div class="clock-row">
+      <div id="clock-hm">--:--</div>
+      <div id="clock-sec">--</div>
+    </div>
+    <div class="date-main" id="date-main">日期</div>
+    <div class="date-sub" id="date-sub"></div>
+    <div class="temp-row">
+      <div id="temp">–<span>°</span></div>
+      <div class="cond">
+        <div id="w-icon"></div>
+        <div id="w-label">天气</div>
+        <div id="w-feels"></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><i>今天高</i><b id="hi">–°</b></div>
+      <div class="stat"><i>今天低</i><b id="lo">–°</b></div>
+      <div class="stat"><i>降水</i><b id="precip">–</b></div>
+      <div class="stat"><i>体感</i><b id="feels">–°</b></div>
+    </div>
+    <div class="hourly" id="hourly"></div>
+    <div class="daily" id="daily"></div>
+  </section>
+
+  <section class="today" aria-label="今天课表">
+    <div class="today-kicker">今天 · 课表</div>
+    <div class="hero" id="hero"></div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <section class="week" id="week" aria-label="本周课表"></section>
+</div>
+<script>
+(function () {
+  const TZ = "Europe/Paris";
+  const WEATHER_URL =
+    "https://api.open-meteo.com/v1/forecast" +
+    "?latitude=46.2048&longitude=6.2495" +
+    "&timezone=Europe%2FParis" +
+    "&current=temperature_2m,apparent_temperature,weather_code,precipitation,relative_humidity_2m,wind_speed_10m,is_day" +
+    "&hourly=temperature_2m,precipitation_probability,weather_code" +
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum" +
+    "&forecast_days=4";
+  const WEATHER_MS = 15 * 60 * 1000;
+  const CACHE_KEY = "tvDashWeather.v1";
+  const ZH_WD = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+  const FR_WD = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+  const FR_WD_SHORT = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
+  const FR_MO = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+
+  const FALLBACK_SCHEDULE = {
+  "meta": {
+    "child": "凯驿",
+    "childLatin": "Kaiyi FENG",
+    "className": "6B",
+    "school": "Collège Saint-François",
+    "campus": "Juvénat",
+    "city": "Ville-la-Grand",
+    "postcode": "74100",
+    "year": "2026-2027",
+    "sourceWeek": "2026-08-31/2026-09-04",
+    "note": "EDT of week 31 Aug–4 Sep 2026 used as the repeating Monday–Friday pattern. Consecutive same-subject slots are merged in the UI (including the 09:52–10:07 récré inside a double)."
+  },
+  "mergeMaxGapMinutes": 20,
+  "slots": [
+    { "id": "p1", "start": "07:59", "end": "08:53" },
+    { "id": "p2", "start": "08:58", "end": "09:52" },
+    { "id": "p3", "start": "10:07", "end": "11:01" },
+    { "id": "p4", "start": "11:05", "end": "11:59" },
+    { "id": "lunch", "start": "12:00", "end": "12:57", "type": "lunch", "fr": "PAUSE DÉJEUNER", "zh": "午休" },
+    { "id": "p5", "start": "12:57", "end": "13:51" },
+    { "id": "p6", "start": "13:56", "end": "14:50" },
+    { "id": "p7", "start": "15:00", "end": "15:54" },
+    { "id": "p8", "start": "15:58", "end": "16:50" }
+  ],
+  "subjects": {
+    "ARTS_PLASTIQUES": {
+      "fr": "ARTS PLASTIQUES",
+      "zh": "美术",
+      "abbr": "ARTS",
+      "color": "#c9a0d8"
+    },
+    "FRANCAIS": {
+      "fr": "FRANÇAIS",
+      "zh": "法语",
+      "abbr": "FR",
+      "color": "#7eb6e8"
+    },
+    "ANGLAIS_LV1": {
+      "fr": "ANGLAIS LV1",
+      "zh": "英语",
+      "abbr": "ENG",
+      "color": "#e6c56a"
+    },
+    "MATHEMATIQUES": {
+      "fr": "MATHÉMATIQUES",
+      "zh": "数学",
+      "abbr": "MATHS",
+      "color": "#e0906c"
+    },
+    "HISTOIRE_GEO": {
+      "fr": "HISTOIRE-GÉOGRAPHIE",
+      "zh": "史地",
+      "abbr": "HG",
+      "color": "#5fb8ab"
+    },
+    "EDUCATION_MUSICALE": {
+      "fr": "ÉDUCATION MUSICALE",
+      "zh": "音乐",
+      "abbr": "MUS",
+      "color": "#b89be4"
+    },
+    "EPS": {
+      "fr": "ED. PHYSIQUE & SPORT",
+      "zh": "体育",
+      "abbr": "EPS",
+      "color": "#9b7ed0"
+    },
+    "SNT": {
+      "fr": "SCIENCES & TECHNO",
+      "official": "ENS.INTEG.SC.&TECHNO",
+      "zh": "科技",
+      "abbr": "S&T",
+      "color": "#4eacb8"
+    },
+    "VIE_DE_CLASSE": {
+      "fr": "VIE DE CLASSE",
+      "zh": "班会",
+      "abbr": "VDC",
+      "color": "#b5a494"
+    },
+    "PAROLE_ET_VIE": {
+      "fr": "PAROLE ET VIE",
+      "zh": "言语与生活",
+      "abbr": "P&V",
+      "color": "#7eb48c"
+    }
+  },
+  "days": {
+    "1": [
+      { "slot": "p1", "subject": "ARTS_PLASTIQUES" },
+      { "slot": "p2", "subject": "FRANCAIS" },
+      { "slot": "p3", "subject": "FRANCAIS" },
+      { "slot": "p5", "subject": "HISTOIRE_GEO" },
+      { "slot": "p6", "subject": "EDUCATION_MUSICALE" },
+      { "slot": "p7", "subject": "MATHEMATIQUES" }
+    ],
+    "2": [
+      { "slot": "p1", "subject": "FRANCAIS" },
+      { "slot": "p2", "subject": "ANGLAIS_LV1" },
+      { "slot": "p3", "subject": "MATHEMATIQUES" },
+      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p7", "subject": "HISTOIRE_GEO" }
+    ],
+    "3": [
+      { "slot": "p1", "subject": "HISTOIRE_GEO" },
+      { "slot": "p2", "subject": "FRANCAIS" },
+      { "slot": "p3", "subject": "ANGLAIS_LV1" },
+      { "slot": "p4", "subject": "MATHEMATIQUES" }
+    ],
+    "4": [
+      { "slot": "p1", "subject": "ANGLAIS_LV1" },
+      { "slot": "p2", "subject": "MATHEMATIQUES" },
+      { "slot": "p3", "subject": "MATHEMATIQUES" },
+      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p7", "subject": "VIE_DE_CLASSE" },
+      { "slot": "p8", "subject": "SNT" }
+    ],
+    "5": [
+      { "slot": "p1", "subject": "SNT" },
+      { "slot": "p2", "subject": "SNT" },
+      { "slot": "p3", "subject": "ANGLAIS_LV1" },
+      { "slot": "p5", "subject": "FRANCAIS" },
+      { "slot": "p6", "subject": "PAROLE_ET_VIE" }
+    ]
+  }
+}
+;
+
+  let schedule = FALLBACK_SCHEDULE;
+  let lastPhase = "";
+
+  function parisParts(d) {
+    const f = new Intl.DateTimeFormat("en-GB", {
+      timeZone: TZ,
+      weekday: "short",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    });
+    const o = {};
+    for (const { type, value } of f.formatToParts(d || new Date())) {
+      if (type !== "literal") o[type] = value;
+    }
+    o.dow = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[o.weekday];
+    o.hhmm = o.hour + ":" + o.minute;
+    return o;
+  }
+
+  function toMin(hhmm) {
+    const p = String(hhmm).split(":");
+    return Number(p[0]) * 60 + Number(p[1]);
+  }
+  function gapMin(a, b) { return toMin(b) - toMin(a); }
+  function pad2(n) { return String(n).padStart(2, "0"); }
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function slotMap() {
+    const m = {};
+    (schedule.slots || []).forEach(function (s) { m[s.id] = s; });
+    return m;
+  }
+  function subj(id) {
+    return (schedule.subjects && schedule.subjects[id]) || { fr: id, zh: "", abbr: id, color: "#8a7868" };
+  }
+
+  function dayLessons(dayNum) {
+    const slots = slotMap();
+    const raw = (schedule.days && schedule.days[String(dayNum)]) || [];
+    const maxGap = schedule.mergeMaxGapMinutes || 20;
+    const items = [];
+    raw.forEach(function (L) {
+      const sl = slots[L.slot];
+      if (!sl) return;
+      items.push({
+        type: "class",
+        start: sl.start,
+        end: sl.end,
+        subject: L.subject,
+        room: L.room || ""
+      });
+    });
+    const merged = [];
+    items.forEach(function (L) {
+      const p = merged[merged.length - 1];
+      if (p && p.subject === L.subject && (p.room || "") === (L.room || "") && gapMin(p.end, L.start) <= maxGap) {
+        p.end = L.end;
+      } else {
+        merged.push(Object.assign({}, L));
+      }
+    });
+    return merged;
+  }
+
+  function dayTimeline(dayNum) {
+    const merged = dayLessons(dayNum);
+    const lunch = (schedule.slots || []).find(function (s) { return s.type === "lunch"; });
+    const hasAfternoon = merged.some(function (L) { return L.start >= "12:00"; });
+    let items = merged.slice();
+    if (hasAfternoon && lunch) {
+      const before = merged.filter(function (L) { return L.start < lunch.start; });
+      const after = merged.filter(function (L) { return L.start >= lunch.start; });
+      items = before.concat([{
+        type: "lunch",
+        start: lunch.start,
+        end: lunch.end,
+        fr: lunch.fr,
+        zh: lunch.zh
+      }]).concat(after);
+    }
+    const out = [];
+    items.forEach(function (it) {
+      if (out.length) {
+        const prev = out[out.length - 1];
+        const g = gapMin(prev.end, it.start);
+        if (g >= 8 && g <= 25 && prev.type === "class" && it.type === "class") {
+          out.push({ type: "break", start: prev.end, end: it.start, fr: "RÉCRÉATION", zh: "课间" });
+        }
+      }
+      out.push(it);
+    });
+    return out;
+  }
+
+  function phase(nowHm, dayNum) {
+    const items = dayTimeline(dayNum);
+    let current = null, next = null;
+    const t = toMin(nowHm);
+    items.forEach(function (it) {
+      if (it.type === "break") return;
+      const a = toMin(it.start), b = toMin(it.end);
+      if (t >= a && t < b) current = it;
+      if (it.type === "class" && t < a && !next) next = it;
+    });
+    if (next && current && next.start === current.start) next = null;
+    return { current: current, next: next, items: items };
+  }
+
+  function remainLabel(it, nowHm, kind) {
+    const t = toMin(nowHm);
+    if (!it) return "";
+    if (kind === "now") {
+      const m = Math.max(0, toMin(it.end) - t);
+      return "还剩 " + m + " 分钟";
+    }
+    const m = Math.max(0, toMin(it.start) - t);
+    if (m >= 60) return "还有 " + Math.floor(m / 60) + " 小时 " + (m % 60) + " 分钟";
+    return "还有 " + m + " 分钟";
+  }
+
+  function renderClock() {
+    const p = parisParts();
+    document.getElementById("clock-hm").textContent = p.hour + ":" + p.minute;
+    document.getElementById("clock-sec").textContent = p.second;
+    const y = p.year, m = Number(p.month), d = Number(p.day);
+    document.getElementById("date-main").textContent =
+      y + "年" + m + "月" + d + "日  ·  " + ZH_WD[p.dow];
+    document.getElementById("date-sub").textContent =
+      FR_WD[p.dow] + "  " + d + " " + FR_MO[m - 1] + "  " + y;
+  }
+
+  function blockTitle(it) {
+    if (it.type === "lunch") return { fr: it.fr || "PAUSE DÉJEUNER", zh: it.zh || "午休", color: "#6a6058", room: "" };
+    if (it.type === "break") return { fr: it.fr || "RÉCRÉATION", zh: it.zh || "课间", color: "#6a6058", room: "" };
+    const s = subj(it.subject);
+    return { fr: s.fr, zh: s.zh, color: s.color, room: it.room || "", official: s.official || "" };
+  }
+
+  function renderHero(p, nowHm, dow) {
+    const el = document.getElementById("hero");
+    if (dow === 0 || dow === 6) {
+      const mon = dayLessons(1)[0];
+      const t = mon ? blockTitle(mon) : null;
+      el.innerHTML =
+        '<div class="tag">周末休息</div>' +
+        '<div class="sub">' + esc(t ? t.fr : "—") + '</div>' +
+        '<div class="zh">' + (t ? esc(t.zh) + " · 下周一 " + esc(mon.start) : "") + '</div>';
+      return;
+    }
+    const classes = dayLessons(dow);
+    if (!classes.length) {
+      el.innerHTML = '<div class="tag">今天</div><div class="sub">无课</div>';
+      return;
+    }
+    const last = classes[classes.length - 1];
+    if (toMin(nowHm) >= toMin(last.end)) {
+      if (dow === 5) {
+        el.innerHTML = '<div class="tag">放学</div><div class="sub">周末见</div><div class="zh">Bon weekend</div>';
+        return;
+      }
+      const tom = dow === 4 ? 5 : dow + 1;
+      const n = dayLessons(tom)[0];
+      const t = n ? blockTitle(n) : null;
+      el.innerHTML =
+        '<div class="tag">放学</div>' +
+        '<div class="sub">' + esc(t ? t.fr : "—") + '</div>' +
+        '<div class="zh">明天 · ' + esc(t ? t.zh : "") + " · " + esc(n ? n.start : "") + "</div>";
+      return;
+    }
+    if (p.current) {
+      const t = blockTitle(p.current);
+      const isLunch = p.current.type === "lunch";
+      el.innerHTML =
+        '<div class="tag">' + (isLunch ? "现在 · 午休" : "现在") + "</div>" +
+        '<div class="sub">' + esc(t.fr) + "</div>" +
+        '<div class="zh">' + esc(t.zh) + (t.room ? " · " + esc(t.room) : "") + "</div>" +
+        '<div class="meta"><span>' + esc(p.current.start) + " – " + esc(p.current.end) + "</span><span>" +
+        esc(remainLabel(p.current, nowHm, "now")) + "</span></div>";
+      return;
+    }
+    if (p.next) {
+      const t = blockTitle(p.next);
+      el.innerHTML =
+        '<div class="tag">下一节</div>' +
+        '<div class="sub">' + esc(t.fr) + "</div>" +
+        '<div class="zh">' + esc(t.zh) + (t.room ? " · " + esc(t.room) : "") + "</div>" +
+        '<div class="meta"><span>' + esc(p.next.start) + " – " + esc(p.next.end) + "</span><span>" +
+        esc(remainLabel(p.next, nowHm, "next")) + "</span></div>";
+      return;
+    }
+    el.innerHTML = '<div class="tag">今天</div><div class="sub">课表</div>';
+  }
+
+  function renderTimeline(p, nowHm, dow) {
+    const el = document.getElementById("timeline");
+    if (dow === 0 || dow === 6) {
+      el.innerHTML = '<div class="empty">周一到周五显示今天的课</div>';
+      return;
+    }
+    const t = toMin(nowHm);
+    el.innerHTML = p.items.map(function (it) {
+      const title = blockTitle(it);
+      const a = toMin(it.start), b = toMin(it.end);
+      let cls = "period";
+      if (it.type === "lunch") cls += " is-lunch";
+      if (it.type === "break") cls += " is-break";
+      if (t >= b) cls += " is-past";
+      else if (p.current && it.start === p.current.start && it.end === p.current.end && it.type === p.current.type) cls += " is-now";
+      else if (p.next && it.start === p.next.start && it.end === p.next.end && it.type === p.next.type) cls += " is-next";
+      const badge = (cls.indexOf("is-now") >= 0)
+        ? '<span class="badge">现在</span>'
+        : (cls.indexOf("is-next") >= 0 ? '<span class="badge">下一节</span>' : "");
+      const room = title.room ? '<div class="room">' + esc(title.room) + "</div>" : badge;
+      const zhLine = title.zh ? '<div class="zh">' + esc(title.zh) + (it.type === "class" && gapMin(it.start, it.end) >= 90 ? " · 双节" : "") + "</div>" : "";
+      return '<div class="' + cls + '" style="--c:' + esc(title.color) + '">' +
+        '<div class="when">' + esc(it.start) + "–" + esc(it.end) + "</div>" +
+        '<div><div class="fr">' + esc(title.fr) + "</div>" + zhLine + "</div>" +
+        (title.room || badge ? room : "<div></div>") +
+        "</div>";
+    }).join("");
+  }
+
+  function renderWeek(nowHm, dow) {
+    const el = document.getElementById("week");
+    const html = [1, 2, 3, 4, 5].map(function (d) {
+      const lessons = dayLessons(d);
+      const t = toMin(nowHm);
+      const chips = lessons.map(function (it) {
+        const s = subj(it.subject);
+        let extra = "";
+        if (dow === d) {
+          if (t >= toMin(it.end)) extra = " is-past";
+          else if (t >= toMin(it.start) && t < toMin(it.end)) extra = " is-now";
+        }
+        return '<div class="chip' + extra + '" style="--c:' + esc(s.color) + '"><i></i><b><span class="t">' +
+          esc(it.start) + "</span>" + esc(s.abbr) + (it.room ? " · 体育馆" : "") + "</b></div>";
+      }).join("");
+      return '<div class="wd' + (dow === d ? " is-today" : "") + '">' +
+        '<div class="wd-h"><span class="wd-zh">' + ZH_WD[d] + '</span><span class="wd-fr">' + FR_WD_SHORT[d] + "</span></div>" +
+        chips + "</div>";
+    }).join("");
+    el.innerHTML = html;
+  }
+
+  function phaseKey() {
+    const p = parisParts();
+    const ph = (p.dow >= 1 && p.dow <= 5) ? phase(p.hhmm, p.dow) : { current: null, next: null };
+    return p.dow + "|" + p.hhmm + "|" + (ph.current ? ph.current.type + ph.current.start : "x") + "|" + (ph.next ? ph.next.start : "y");
+  }
+
+  function renderSchedule() {
+    const p = parisParts();
+    const ph = (p.dow >= 1 && p.dow <= 5) ? phase(p.hhmm, p.dow) : { current: null, next: null, items: [] };
+    renderHero(ph, p.hhmm, p.dow);
+    renderTimeline(ph, p.hhmm, p.dow);
+    renderWeek(p.hhmm, p.dow);
+    lastPhase = phaseKey();
+  }
+
+  function weatherZh(code) {
+    if (code === 0) return "晴";
+    if (code === 1) return "大部晴朗";
+    if (code === 2) return "多云";
+    if (code === 3) return "阴";
+    if (code === 45 || code === 48) return "雾";
+    if (code >= 51 && code <= 57) return "毛毛雨";
+    if (code === 61 || code === 80) return "小雨";
+    if (code === 63 || code === 81) return "中雨";
+    if (code === 65 || code === 82) return "大雨";
+    if (code === 66 || code === 67) return "冻雨";
+    if ((code >= 71 && code <= 77) || code === 85 || code === 86) return "雪";
+    if (code === 95) return "雷雨";
+    if (code === 96 || code === 99) return "雷阵雨";
+    return "天气";
+  }
+
+  function weatherIcon(code, isDay) {
+    const stroke = 'stroke="currentColor" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+    if (code === 0) {
+      return isDay
+        ? '<svg viewBox="0 0 64 64" ' + stroke + '><circle cx="32" cy="32" r="12"/><path d="M32 8v6M32 50v6M8 32h6M50 32h6M14 14l4 4M46 46l4 4M14 50l4-4M46 18l4-4"/></svg>'
+        : '<svg viewBox="0 0 64 64" ' + stroke + '><path d="M44 40a14 14 0 1 1-12-22 18 18 0 1 0 12 22z"/></svg>';
+    }
+    if (code === 1 || code === 2) {
+      return '<svg viewBox="0 0 64 64" ' + stroke + '><circle cx="24" cy="24" r="9"/><path d="M44 44h-22a10 10 0 1 1 2.4-19.7A13 13 0 0 1 50 38a8 8 0 0 1-6 6z"/></svg>';
+    }
+    if (code === 3) {
+      return '<svg viewBox="0 0 64 64" ' + stroke + '><path d="M46 46H22a12 12 0 1 1 3-23.6A15 15 0 0 1 54 38a9 9 0 0 1-8 8z"/></svg>';
+    }
+    if (code === 45 || code === 48) {
+      return '<svg viewBox="0 0 64 64" ' + stroke + '><path d="M12 28h40M16 36h32M20 44h24"/></svg>';
+    }
+    if (code >= 71 && code <= 86) {
+      return '<svg viewBox="0 0 64 64" ' + stroke + '><path d="M46 34H22a12 12 0 1 1 3-23.6A15 15 0 0 1 54 26a9 9 0 0 1-8 8z"/><path d="M24 44l2 6M32 44l2 6M40 44l2 6"/></svg>';
+    }
+    if (code >= 95) {
+      return '<svg viewBox="0 0 64 64" ' + stroke + '><path d="M46 32H22a12 12 0 1 1 3-23.6A15 15 0 0 1 54 24a9 9 0 0 1-8 8z"/><path d="M30 34l-6 12h8l-4 12 14-16h-8l6-8z"/></svg>';
+    }
+    return '<svg viewBox="0 0 64 64" ' + stroke + '><path d="M46 32H22a12 12 0 1 1 3-23.6A15 15 0 0 1 54 24a9 9 0 0 1-8 8z"/><path d="M24 42v8M32 42v8M40 42v8"/></svg>';
+  }
+
+  function setWxStatus(mode, text) {
+    const dot = document.getElementById("wx-dot");
+    dot.className = "dot " + (mode || "");
+    document.getElementById("wx-status").textContent = text;
+  }
+
+  function applyWeather(data, mode) {
+    if (!data || !data.current) return;
+    const cur = data.current;
+    const daily = data.daily || {};
+    const hourly = data.hourly || {};
+    const code = cur.weather_code;
+    document.getElementById("temp").innerHTML = Math.round(cur.temperature_2m) + "<span>°</span>";
+    document.getElementById("w-label").textContent = weatherZh(code);
+    document.getElementById("w-icon").innerHTML = weatherIcon(code, cur.is_day === 1);
+    const feels = cur.apparent_temperature;
+    document.getElementById("w-feels").textContent =
+      "Annemasse · Ville-la-Grand" + (feels != null ? "  ·  风 " + Math.round(cur.wind_speed_10m) + " km/h" : "");
+    document.getElementById("feels").textContent = feels == null ? "–°" : Math.round(feels) + "°";
+    document.getElementById("hi").textContent = daily.temperature_2m_max ? Math.round(daily.temperature_2m_max[0]) + "°" : "–°";
+    document.getElementById("lo").textContent = daily.temperature_2m_min ? Math.round(daily.temperature_2m_min[0]) + "°" : "–°";
+    const pop = daily.precipitation_probability_max ? daily.precipitation_probability_max[0] : null;
+    document.getElementById("precip").textContent = pop == null ? "–" : Math.round(pop) + "%";
+
+    const p = parisParts();
+    const nowMin = toMin(p.hhmm);
+    const hours = [];
+    const times = hourly.time || [];
+    for (let i = 0; i < times.length && hours.length < 6; i++) {
+      const hm = times[i].slice(11, 16);
+      if (toMin(hm) < nowMin - 30) continue;
+      hours.push({
+        hm: hm,
+        temp: hourly.temperature_2m[i],
+        pop: hourly.precipitation_probability ? hourly.precipitation_probability[i] : null,
+        now: Math.abs(toMin(hm) - nowMin) < 30
+      });
+    }
+    document.getElementById("hourly").innerHTML = hours.map(function (h) {
+      return '<div class="hour' + (h.now ? " is-now" : "") + '"><div class="h">' + esc(h.hm) +
+        '</div><div class="t">' + Math.round(h.temp) + '°</div><div class="p">' +
+        (h.pop == null ? "" : Math.round(h.pop) + "%") + "</div></div>";
+    }).join("");
+
+    const dtimes = daily.time || [];
+    const cards = [];
+    for (let i = 0; i < Math.min(3, dtimes.length); i++) {
+      const dt = dtimes[i];
+      const dd = new Date(dt + "T12:00:00");
+      const parts = parisParts(dd);
+      const label = i === 0 ? "今天" : ZH_WD[parts.dow];
+      cards.push({
+        label: label,
+        hi: daily.temperature_2m_max[i],
+        lo: daily.temperature_2m_min[i],
+        code: daily.weather_code[i],
+        pop: daily.precipitation_probability_max ? daily.precipitation_probability_max[i] : null,
+        today: i === 0
+      });
+    }
+    document.getElementById("daily").innerHTML = cards.map(function (c) {
+      return '<div class="daywx' + (c.today ? " is-today" : "") + '"><div class="d">' + esc(c.label) +
+        " · " + weatherZh(c.code) + '</div><div class="r">' + Math.round(c.hi) + "° / " + Math.round(c.lo) +
+        '°</div><div class="c">降水 ' + (c.pop == null ? "–" : Math.round(c.pop) + "%") + "</div></div>";
+    }).join("");
+
+    const hh = p.hour + ":" + p.minute;
+    if (mode === "live") setWxStatus("live", "天气已更新  " + hh);
+    else if (mode === "cache") setWxStatus("cache", "天气缓存  " + hh);
+  }
+
+  async function fetchWeather() {
+    try {
+      const r = await fetch(WEATHER_URL, { cache: "no-store" });
+      if (!r.ok) throw new Error("http " + r.status);
+      const data = await r.json();
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data: data })); } catch (e) {}
+      applyWeather(data, "live");
+    } catch (err) {
+      let cached = null;
+      try { cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null"); } catch (e) {}
+      if (cached && cached.data) {
+        applyWeather(cached.data, "cache");
+        setWxStatus("cache", "天气离线 · 显示上次");
+      } else {
+        setWxStatus("off", "天气暂不可用");
+        document.getElementById("w-label").textContent = "暂无天气";
+        document.getElementById("temp").innerHTML = "–<span>°</span>";
+      }
+    }
+  }
+
+  async function loadSchedule() {
+    try {
+      const r = await fetch("schedule.json", { cache: "no-store" });
+      if (r.ok) {
+        const data = await r.json();
+        if (data && data.days) return data;
+      }
+    } catch (e) {}
+    return FALLBACK_SCHEDULE;
+  }
+
+  function tick() {
+    renderClock();
+    if (phaseKey() !== lastPhase) renderSchedule();
+  }
+
+  async function boot() {
+    renderClock();
+    setWxStatus("", "正在获取天气…");
+    schedule = await loadSchedule();
+    renderSchedule();
+    try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+      if (cached && cached.data) applyWeather(cached.data, "cache");
+    } catch (e) {}
+    fetchWeather();
+    setInterval(tick, 1000);
+    setInterval(fetchWeather, WEATHER_MS);
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>

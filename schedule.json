@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "child": "凯驿",
+    "childLatin": "Kaiyi FENG",
+    "className": "6B",
+    "school": "Collège Saint-François",
+    "campus": "Juvénat",
+    "city": "Ville-la-Grand",
+    "postcode": "74100",
+    "year": "2026-2027",
+    "sourceWeek": "2026-08-31/2026-09-04",
+    "note": "EDT of week 31 Aug–4 Sep 2026 used as the repeating Monday–Friday pattern. Consecutive same-subject slots are merged in the UI (including the 09:52–10:07 récré inside a double)."
+  },
+  "mergeMaxGapMinutes": 20,
+  "slots": [
+    { "id": "p1", "start": "07:59", "end": "08:53" },
+    { "id": "p2", "start": "08:58", "end": "09:52" },
+    { "id": "p3", "start": "10:07", "end": "11:01" },
+    { "id": "p4", "start": "11:05", "end": "11:59" },
+    { "id": "lunch", "start": "12:00", "end": "12:57", "type": "lunch", "fr": "PAUSE DÉJEUNER", "zh": "午休" },
+    { "id": "p5", "start": "12:57", "end": "13:51" },
+    { "id": "p6", "start": "13:56", "end": "14:50" },
+    { "id": "p7", "start": "15:00", "end": "15:54" },
+    { "id": "p8", "start": "15:58", "end": "16:50" }
+  ],
+  "subjects": {
+    "ARTS_PLASTIQUES": {
+      "fr": "ARTS PLASTIQUES",
+      "zh": "美术",
+      "abbr": "ARTS",
+      "color": "#c9a0d8"
+    },
+    "FRANCAIS": {
+      "fr": "FRANÇAIS",
+      "zh": "法语",
+      "abbr": "FR",
+      "color": "#7eb6e8"
+    },
+    "ANGLAIS_LV1": {
+      "fr": "ANGLAIS LV1",
+      "zh": "英语",
+      "abbr": "ENG",
+      "color": "#e6c56a"
+    },
+    "MATHEMATIQUES": {
+      "fr": "MATHÉMATIQUES",
+      "zh": "数学",
+      "abbr": "MATHS",
+      "color": "#e0906c"
+    },
+    "HISTOIRE_GEO": {
+      "fr": "HISTOIRE-GÉOGRAPHIE",
+      "zh": "史地",
+      "abbr": "HG",
+      "color": "#5fb8ab"
+    },
+    "EDUCATION_MUSICALE": {
+      "fr": "ÉDUCATION MUSICALE",
+      "zh": "音乐",
+      "abbr": "MUS",
+      "color": "#b89be4"
+    },
+    "EPS": {
+      "fr": "ED. PHYSIQUE & SPORT",
+      "zh": "体育",
+      "abbr": "EPS",
+      "color": "#9b7ed0"
+    },
+    "SNT": {
+      "fr": "SCIENCES & TECHNO",
+      "official": "ENS.INTEG.SC.&TECHNO",
+      "zh": "科技",
+      "abbr": "S&T",
+      "color": "#4eacb8"
+    },
+    "VIE_DE_CLASSE": {
+      "fr": "VIE DE CLASSE",
+      "zh": "班会",
+      "abbr": "VDC",
+      "color": "#b5a494"
+    },
+    "PAROLE_ET_VIE": {
+      "fr": "PAROLE ET VIE",
+      "zh": "言语与生活",
+      "abbr": "P&V",
+      "color": "#7eb48c"
+    }
+  },
+  "days": {
+    "1": [
+      { "slot": "p1", "subject": "ARTS_PLASTIQUES" },
+      { "slot": "p2", "subject": "FRANCAIS" },
+      { "slot": "p3", "subject": "FRANCAIS" },
+      { "slot": "p5", "subject": "HISTOIRE_GEO" },
+      { "slot": "p6", "subject": "EDUCATION_MUSICALE" },
+      { "slot": "p7", "subject": "MATHEMATIQUES" }
+    ],
+    "2": [
+      { "slot": "p1", "subject": "FRANCAIS" },
+      { "slot": "p2", "subject": "ANGLAIS_LV1" },
+      { "slot": "p3", "subject": "MATHEMATIQUES" },
+      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p7", "subject": "HISTOIRE_GEO" }
+    ],
+    "3": [
+      { "slot": "p1", "subject": "HISTOIRE_GEO" },
+      { "slot": "p2", "subject": "FRANCAIS" },
+      { "slot": "p3", "subject": "ANGLAIS_LV1" },
+      { "slot": "p4", "subject": "MATHEMATIQUES" }
+    ],
+    "4": [
+      { "slot": "p1", "subject": "ANGLAIS_LV1" },
+      { "slot": "p2", "subject": "MATHEMATIQUES" },
+      { "slot": "p3", "subject": "MATHEMATIQUES" },
+      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
+      { "slot": "p7", "subject": "VIE_DE_CLASSE" },
+      { "slot": "p8", "subject": "SNT" }
+    ],
+    "5": [
+      { "slot": "p1", "subject": "SNT" },
+      { "slot": "p2", "subject": "SNT" },
+      { "slot": "p3", "subject": "ANGLAIS_LV1" },
+      { "slot": "p5", "subject": "FRANCAIS" },
+      { "slot": "p6", "subject": "PAROLE_ET_VIE" }
+    ]
+  }
+}
