@@ -8,8 +8,8 @@
     "city": "Ville-la-Grand",
     "postcode": "74100",
     "year": "2026-2027",
-    "sourceWeek": "2026-08-31/2026-09-04",
-    "note": "EDT of week 31 Aug–4 Sep 2026 used as the repeating Monday–Friday pattern. Consecutive same-subject slots are merged in the UI (including the 09:52–10:07 récré inside a double)."
+    "sourceWeek": "2026-09-07/2026-09-11",
+    "note": "EDT of week 7–11 Sep 2026. Thu afternoon is SNT double (no Vie de classe). Fri afternoon is Français double (no Parole et vie)."
   },
   "mergeMaxGapMinutes": 20,
   "slots": [
@@ -115,7 +115,7 @@
       { "slot": "p3", "subject": "MATHEMATIQUES" },
       { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
       { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p7", "subject": "VIE_DE_CLASSE" },
+      { "slot": "p7", "subject": "SNT" },
       { "slot": "p8", "subject": "SNT" }
     ],
     "5": [
@@ -123,7 +123,7 @@
       { "slot": "p2", "subject": "SNT" },
       { "slot": "p3", "subject": "ANGLAIS_LV1" },
       { "slot": "p5", "subject": "FRANCAIS" },
-      { "slot": "p6", "subject": "PAROLE_ET_VIE" }
+      { "slot": "p6", "subject": "FRANCAIS" }
     ]
   }
 }
