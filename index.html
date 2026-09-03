@@ -101,6 +101,7 @@
   .weather {
     grid-area: weather;
     padding: 1rem 1.15rem 0.9rem;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -138,84 +139,43 @@
     letter-spacing: 0.12em;
     text-transform: lowercase;
   }
-  .temp-row {
+  .wx {
+    margin-top: 1.1rem;
     display: flex;
-    align-items: center;
-    gap: 1.1rem;
-    margin-top: 1.05rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
+  #w-icon { width: 4.1rem; height: 4.1rem; color: var(--gold); }
+  #w-icon svg { width: 100%; height: 100%; display: block; }
   #temp {
-    font-size: 3.6rem;
+    font-size: 4.6rem;
     font-weight: 300;
-    line-height: 0.85;
+    line-height: 0.9;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.04em;
   }
-  #temp span { font-size: 0.42em; color: var(--ink-dim); margin-left: 0.05em; }
-  .cond { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
-  #w-icon { width: 3.4rem; height: 3.4rem; color: var(--gold); }
-  #w-icon svg { width: 100%; height: 100%; display: block; }
-  #w-label { font-size: 1.45rem; font-weight: 600; letter-spacing: 0.08em; }
-  #w-feels { font-size: 0.9rem; color: var(--ink-mute); }
-  .stats {
-    display: flex;
-    gap: 0.7rem;
-    margin-top: 0.95rem;
-    flex-wrap: wrap;
+  #temp span { font-size: 0.4em; color: var(--ink-dim); margin-left: 0.05em; }
+  #w-label {
+    font-size: 1.85rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
   }
-  .stat {
-    flex: 1;
-    min-width: 4.8rem;
-    background: rgba(42,36,29,0.05);
-    border: 1px solid var(--line);
+  .wx .rain {
+    margin-top: 0.3rem;
+    font-size: 1.18rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.9rem 0.34rem;
     border-radius: 0.7rem;
-    padding: 0.45rem 0.6rem 0.5rem;
+    background: rgba(42,36,29,0.06);
+    color: var(--ink-dim);
   }
-  .stat b {
-    display: block;
-    font-size: 1.15rem;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
+  .wx .rain.is-wet {
+    background: rgba(61,138,160,0.16);
+    color: var(--rain);
+    box-shadow: inset 0 0 0 1px rgba(61,138,160,0.35);
   }
-  .stat i {
-    font-style: normal;
-    font-size: 0.68rem;
-    color: var(--ink-mute);
-    letter-spacing: 0.12em;
-  }
-  .hourly {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 0.4rem;
-    margin-top: auto;
-    padding-top: 0.9rem;
-  }
-  .hour {
-    text-align: center;
-    padding: 0.4rem 0.15rem 0.45rem;
-    border-radius: 0.55rem;
-    background: rgba(42,36,29,0.05);
-  }
-  .hour.is-now { background: rgba(180,122,40,0.12); outline: 1px solid rgba(180,122,40,0.45); }
-  .hour .h { font-size: 0.72rem; color: var(--ink-mute); letter-spacing: 0.04em; }
-  .hour .t { font-size: 1.12rem; font-weight: 600; margin: 0.12rem 0; font-variant-numeric: tabular-nums; }
-  .hour .p { font-size: 0.68rem; color: var(--rain); }
-  .daily {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.5rem;
-    margin-top: 0.55rem;
-  }
-  .daywx {
-    padding: 0.5rem 0.65rem 0.55rem;
-    border-radius: 0.65rem;
-    background: rgba(42,36,29,0.05);
-    border: 1px solid transparent;
-  }
-  .daywx.is-today { border-color: rgba(180,122,40,0.45); background: rgba(180,122,40,0.08); }
-  .daywx .d { font-size: 0.78rem; color: var(--ink-dim); }
-  .daywx .r { font-size: 1.05rem; font-weight: 650; margin-top: 0.12rem; font-variant-numeric: tabular-nums; }
-  .daywx .c { font-size: 0.72rem; color: var(--ink-mute); margin-top: 0.08rem; }
 
   .today {
     grid-area: today;
@@ -283,14 +243,15 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.32rem;
   }
   .period {
     display: grid;
-    grid-template-columns: 9.2rem minmax(0, 1fr) auto;
+    grid-template-columns: 10.2rem minmax(0, 1fr) auto;
     gap: 0.7rem;
     align-items: center;
-    padding: 0.48rem 0.95rem 0.48rem 0.85rem;
+    overflow: hidden;
+    padding: 0.3rem 0.95rem 0.3rem 0.85rem;
     border-radius: 0.62rem;
     background: rgba(42,36,29,0.05);
     border-left: 0.38rem solid var(--c, var(--ink-mute));
@@ -321,22 +282,23 @@
     letter-spacing: -0.02em;
     white-space: nowrap;
     display: flex;
-    flex-direction: column;
-    gap: 0.12rem;
+    align-items: baseline;
+    gap: 0.26rem;
   }
   .period .when .start {
-    font-size: 1.14rem;
+    font-size: 1.12rem;
     color: var(--ink-dim);
+    font-weight: 600;
   }
   .period .when .sep { color: var(--ink-mute); font-weight: 500; }
   .period .when .end {
-    font-size: 1.36rem;
+    font-size: 1.12rem;
     font-weight: 750;
     color: var(--gold);
     line-height: 1;
   }
   .period .when .end i {
-    display: block;
+    display: none;
     font-style: normal;
     font-size: 0.58rem;
     letter-spacing: 0.14em;
@@ -345,15 +307,20 @@
     margin-bottom: 0.08rem;
   }
   .period .fr {
-    font-size: 1.66rem;
+    font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.03em;
-    line-height: 1.12;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .period .zh {
-    font-size: 1rem;
+  .period .fr .zh {
+    font-size: 0.92rem;
+    font-weight: 600;
     color: var(--ink-mute);
-    margin-top: 0.08rem;
+    margin-left: 0.5rem;
+    letter-spacing: 0.02em;
   }
   .period .room {
     font-size: 0.78rem;
@@ -466,22 +433,12 @@
     </div>
     <div class="date-main" id="date-main">日期</div>
     <div class="date-sub" id="date-sub"></div>
-    <div class="temp-row">
+    <div class="wx">
+      <div id="w-icon"></div>
       <div id="temp">–<span>°</span></div>
-      <div class="cond">
-        <div id="w-icon"></div>
-        <div id="w-label">天气</div>
-        <div id="w-feels"></div>
-      </div>
+      <div id="w-label">天气</div>
+      <div class="rain" id="rain">–</div>
     </div>
-    <div class="stats">
-      <div class="stat"><i>今天高</i><b id="hi">–°</b></div>
-      <div class="stat"><i>今天低</i><b id="lo">–°</b></div>
-      <div class="stat"><i>降水</i><b id="precip">–</b></div>
-      <div class="stat"><i>体感</i><b id="feels">–°</b></div>
-    </div>
-    <div class="hourly" id="hourly"></div>
-    <div class="daily" id="daily"></div>
   </section>
 
   <section class="today" aria-label="今天课表">
@@ -892,10 +849,10 @@
         ? '<span class="badge">现在</span>'
         : (cls.indexOf("is-next") >= 0 ? '<span class="badge">下一节</span>' : "");
       const room = title.room ? '<div class="room">' + esc(title.room) + "</div>" : badge;
-      const zhLine = title.zh ? '<div class="zh">' + esc(title.zh) + (it.type === "class" && gapMin(it.start, it.end) >= 90 ? " · 双节" : "") + "</div>" : "";
+      const zhInline = title.zh ? '<span class="zh">' + esc(title.zh) + "</span>" : "";
       return '<div class="' + cls + '" style="--c:' + esc(title.color) + '">' +
         '<div class="when"><span class="start">' + esc(it.start) + '</span><span class="sep">–</span><span class="end">' + esc(it.end) + "</span></div>" +
-        '<div><div class="fr">' + esc(title.fr) + "</div>" + zhLine + "</div>" +
+        '<div class="fr">' + esc(title.fr) + zhInline + "</div>" +
         (title.room || badge ? room : "<div></div>") +
         "</div>";
     }).join("");
@@ -1000,62 +957,27 @@
     if (!data || !data.current) return;
     const cur = data.current;
     const daily = data.daily || {};
-    const hourly = data.hourly || {};
     const code = cur.weather_code;
     document.getElementById("temp").innerHTML = Math.round(cur.temperature_2m) + "<span>°</span>";
     document.getElementById("w-label").textContent = weatherZh(code);
     document.getElementById("w-icon").innerHTML = weatherIcon(code, cur.is_day === 1);
-    const feels = cur.apparent_temperature;
-    document.getElementById("w-feels").textContent =
-      "Annemasse · Ville-la-Grand" + (feels != null ? "  ·  风 " + Math.round(cur.wind_speed_10m) + " km/h" : "");
-    document.getElementById("feels").textContent = feels == null ? "–°" : Math.round(feels) + "°";
-    document.getElementById("hi").textContent = daily.temperature_2m_max ? Math.round(daily.temperature_2m_max[0]) + "°" : "–°";
-    document.getElementById("lo").textContent = daily.temperature_2m_min ? Math.round(daily.temperature_2m_min[0]) + "°" : "–°";
-    const pop = daily.precipitation_probability_max ? daily.precipitation_probability_max[0] : null;
-    document.getElementById("precip").textContent = pop == null ? "–" : Math.round(pop) + "%";
+
+    const rainEl = document.getElementById("rain");
+    const pop = (daily.precipitation_probability_max && daily.precipitation_probability_max[0] != null)
+      ? Math.round(daily.precipitation_probability_max[0]) : null;
+    const mm = (daily.precipitation_sum && daily.precipitation_sum[0] != null)
+      ? daily.precipitation_sum[0] : null;
+    const rainingNow = cur.precipitation != null && cur.precipitation > 0;
+    const wet = rainingNow || (pop != null && pop >= 40) || (mm != null && mm >= 1);
+    let text;
+    if (rainingNow) text = "正在下雨";
+    else if (pop == null) text = "降雨 –";
+    else if (wet) text = "今天有雨 " + pop + "%";
+    else text = "今天无雨";
+    rainEl.textContent = text;
+    rainEl.className = "rain" + (wet ? " is-wet" : "");
 
     const p = parisParts();
-    const nowMin = toMin(p.hhmm);
-    const hours = [];
-    const times = hourly.time || [];
-    for (let i = 0; i < times.length && hours.length < 6; i++) {
-      const hm = times[i].slice(11, 16);
-      if (toMin(hm) < nowMin - 30) continue;
-      hours.push({
-        hm: hm,
-        temp: hourly.temperature_2m[i],
-        pop: hourly.precipitation_probability ? hourly.precipitation_probability[i] : null,
-        now: Math.abs(toMin(hm) - nowMin) < 30
-      });
-    }
-    document.getElementById("hourly").innerHTML = hours.map(function (h) {
-      return '<div class="hour' + (h.now ? " is-now" : "") + '"><div class="h">' + esc(h.hm) +
-        '</div><div class="t">' + Math.round(h.temp) + '°</div><div class="p">' +
-        (h.pop == null ? "" : Math.round(h.pop) + "%") + "</div></div>";
-    }).join("");
-
-    const dtimes = daily.time || [];
-    const cards = [];
-    for (let i = 0; i < Math.min(3, dtimes.length); i++) {
-      const dt = dtimes[i];
-      const dd = new Date(dt + "T12:00:00");
-      const parts = parisParts(dd);
-      const label = i === 0 ? "今天" : ZH_WD[parts.dow];
-      cards.push({
-        label: label,
-        hi: daily.temperature_2m_max[i],
-        lo: daily.temperature_2m_min[i],
-        code: daily.weather_code[i],
-        pop: daily.precipitation_probability_max ? daily.precipitation_probability_max[i] : null,
-        today: i === 0
-      });
-    }
-    document.getElementById("daily").innerHTML = cards.map(function (c) {
-      return '<div class="daywx' + (c.today ? " is-today" : "") + '"><div class="d">' + esc(c.label) +
-        " · " + weatherZh(c.code) + '</div><div class="r">' + Math.round(c.hi) + "° / " + Math.round(c.lo) +
-        '°</div><div class="c">降水 ' + (c.pop == null ? "–" : Math.round(c.pop) + "%") + "</div></div>";
-    }).join("");
-
     const hh = p.hour + ":" + p.minute;
     if (mode === "live") setWxStatus("live", "天气已更新  " + hh);
     else if (mode === "cache") setWxStatus("cache", "天气缓存  " + hh);
