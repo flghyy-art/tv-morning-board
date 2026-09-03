@@ -394,57 +394,69 @@
   .week {
     grid-area: week;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0.55rem;
-    padding: 0.55rem;
-    min-height: 14.5vh;
+    grid-template-columns: 4.4rem repeat(5, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
+    gap: 0.18rem 0.32rem;
+    padding: 0.4rem 0.5rem 0.45rem;
+    min-height: 22vh;
   }
-  .wd {
-    padding: 0.45rem 0.55rem 0.5rem;
-    border-radius: 0.7rem;
-    background: rgba(42,36,29,0.05);
-    border: 1px solid transparent;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-  .wd.is-today {
-    border-color: var(--gold);
-    background: rgba(180,122,40,0.10);
-    box-shadow: 0 0.4rem 1.4rem rgba(180,122,40,0.08);
-  }
-  .wd .wd-h {
+  .week .wg-corner { }
+  .week .wd-h {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.28rem;
+    padding: 0.12rem 0.4rem 0.2rem;
+    border-radius: 0.45rem;
   }
-  .wd .wd-zh { font-size: 1.02rem; font-weight: 700; }
-  .wd .wd-fr { font-size: 0.72rem; color: var(--ink-mute); letter-spacing: 0.08em; }
-  .wd .bell { font-size: 1.05rem; font-weight: 750; color: var(--gold); font-variant-numeric: tabular-nums; }
-  .chip {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.35rem;
+  .week .wd-h.is-today {
+    background: rgba(180,122,40,0.12);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+  .week .wd-zh { font-size: 0.98rem; font-weight: 700; }
+  .week .bell { font-size: 0.98rem; font-weight: 750; color: var(--gold); font-variant-numeric: tabular-nums; }
+  .week .wg-time {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.76rem;
+    color: var(--ink-mute);
+    display: flex;
     align-items: center;
-    font-size: 0.72rem;
-    padding: 0.2rem 0;
+    justify-content: flex-end;
+    padding-right: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+  .week .wg-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.28rem;
     min-width: 0;
+    padding: 0.06rem 0.38rem;
+    border-radius: 0.38rem;
+    background: rgba(42,36,29,0.05);
   }
-  .chip i {
+  .week .wg-cell.is-empty {
+    background: transparent;
+  }
+  .week .wg-cell i {
     width: 0.32rem; height: 0.32rem; border-radius: 50%;
-    background: var(--c, var(--ink-mute));
-    display: block;
+    background: var(--c, transparent);
+    flex: none;
   }
-  .chip b {
+  .week .wg-cell b {
+    font-size: 0.8rem;
     font-weight: 650;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .chip.is-now b { color: var(--gold); }
-  .chip.is-past { opacity: 0.4; }
-  .chip .t { color: var(--ink-mute); font-variant-numeric: tabular-nums; margin-right: 0.25rem; }
+  .week .wg-cell.is-now {
+    background: rgba(180,122,40,0.18);
+    box-shadow: inset 0 0 0 1px rgba(180,122,40,0.4);
+  }
+  .week .wg-cell.is-now b { color: var(--gold); }
+  .week .wg-cell.is-past { opacity: 0.38; }
+  .week .wg-cell.is-today:not(.is-empty) {
+    background: rgba(180,122,40,0.08);
+  }
 
   .empty { color: var(--ink-mute); font-size: 1.1rem; padding: 0.4rem 0; }
 </style>
@@ -907,25 +919,32 @@
 
   function renderWeek(nowHm, dow) {
     const el = document.getElementById("week");
-    const html = [1, 2, 3, 4, 5].map(function (d) {
-      const lessons = dayLessons(d);
-      const t = toMin(nowHm);
-      const chips = lessons.map(function (it) {
-        const s = subj(it.subject);
+    const slots = (schedule.slots || []).filter(function (s) { return s.type !== "lunch"; });
+    const days = [1, 2, 3, 4, 5];
+    const t = toMin(nowHm);
+    const header = '<div class="wg-corner"></div>' + days.map(function (d) {
+      const bell = lastBell(d);
+      return '<div class="wd-h' + (dow === d ? " is-today" : "") + '"><span class="wd-zh">' + ZH_WD[d] +
+        '</span><span class="bell">' + esc(bell || "") + "</span></div>";
+    }).join("");
+    const rows = slots.map(function (sl) {
+      const cells = days.map(function (d) {
+        const raw = (schedule.days && schedule.days[String(d)]) || [];
+        const L = raw.find(function (x) { return x.slot === sl.id; });
+        if (!L) return '<div class="wg-cell is-empty"></div>';
+        const s = subj(L.subject);
         let extra = "";
         if (dow === d) {
-          if (t >= toMin(it.end)) extra = " is-past";
-          else if (t >= toMin(it.start) && t < toMin(it.end)) extra = " is-now";
+          if (t >= toMin(sl.end)) extra = " is-past";
+          else if (t >= toMin(sl.start) && t < toMin(sl.end)) extra = " is-now";
         }
-        return '<div class="chip' + extra + '" style="--c:' + esc(s.color) + '"><i></i><b><span class="t">' +
-          esc(it.start) + "</span>" + esc(s.abbr) + (it.room ? " · 体育馆" : "") + "</b></div>";
+        if (dow === d) extra += " is-today";
+        return '<div class="wg-cell' + extra + '" style="--c:' + esc(s.color) + '"><i></i><b>' +
+          esc(s.abbr) + "</b></div>";
       }).join("");
-      const bell = lastBell(d);
-      return '<div class="wd' + (dow === d ? " is-today" : "") + '">' +
-        '<div class="wd-h"><span class="wd-zh">' + ZH_WD[d] + '</span><span class="bell">' + esc(bell || "") + "</span></div>" +
-        chips + "</div>";
+      return '<div class="wg-time">' + esc(sl.start) + "</div>" + cells;
     }).join("");
-    el.innerHTML = html;
+    el.innerHTML = header + rows;
   }
 
   function phaseKey() {
