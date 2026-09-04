@@ -266,7 +266,7 @@
   .today-head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 1rem;
     margin-bottom: 0.25rem;
   }
@@ -279,13 +279,16 @@
   .dismiss {
     display: flex;
     align-items: baseline;
-    gap: 0.65rem;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.55rem;
+    flex: none;
+    width: 100%;
     background: linear-gradient(135deg, #c45c3e 0%, #b47a28 100%);
     color: #fffaf4;
-    padding: 0.28rem 0.95rem 0.32rem;
+    padding: 0.45rem 1.1rem 0.5rem;
     border-radius: 0.9rem;
     box-shadow: 0 0.45rem 1.4rem rgba(196, 92, 62, 0.28);
-    min-width: 11rem;
   }
   .dismiss .lbl {
     font-size: 0.82rem;
@@ -542,10 +545,10 @@
   <section class="today" aria-label="今天课表">
     <div class="today-head">
       <div class="today-kicker" id="today-kicker">今天 · 课表</div>
-      <div class="dismiss" id="dismiss"></div>
     </div>
     <div class="nowline" id="hero"></div>
     <div class="timeline" id="timeline"></div>
+    <div class="dismiss" id="dismiss"></div>
   </section>
 
   <section class="tomorrow" aria-label="明天课表">
@@ -558,7 +561,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904m";
+  const BUILD = "20260904n";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1485,7 +1488,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904m", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904n", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
