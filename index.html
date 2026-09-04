@@ -435,7 +435,6 @@
     <div class="head-status">
       <span class="dot" id="wx-dot"></span>
       <span id="wx-status">天气</span>
-      <span id="build-stamp" style="opacity:0.55;margin-left:0.4rem">v20260904d</span>
     </div>
   </header>
 
@@ -473,7 +472,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904d";
+  const BUILD = "20260904e";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1032,7 +1031,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904d", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904e", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
