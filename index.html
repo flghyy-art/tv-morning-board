@@ -62,9 +62,10 @@
   header {
     grid-area: header;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     min-height: 5.6vh;
+    gap: 0.8rem;
   }
   .brand .name {
     font-size: 1.7rem;
@@ -78,6 +79,39 @@
     color: var(--ink-dim);
     letter-spacing: 0.04em;
   }
+  .bus {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    margin-left: auto;
+    margin-right: 1.2rem;
+    padding: 0.28rem 0.85rem 0.32rem;
+    border-radius: 0.7rem;
+    background: rgba(42, 36, 29, 0.08);
+    border: 1px solid var(--line);
+  }
+  .bus .bus-label {
+    font-size: 1.05rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .bus .bus-times {
+    display: flex;
+    gap: 0.45rem;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.2rem;
+    font-weight: 650;
+    color: var(--ink-dim);
+  }
+  .bus .bus-times b {
+    color: var(--gold);
+    font-weight: 800;
+  }
+  .bus .bus-times .gone {
+    opacity: 0.38;
+  }
   .head-status {
     display: flex;
     align-items: center;
@@ -85,6 +119,7 @@
     font-size: 0.86rem;
     color: var(--ink-mute);
     letter-spacing: 0.08em;
+    flex: none;
   }
   .dot {
     width: 0.55rem; height: 0.55rem; border-radius: 50%;
@@ -432,6 +467,10 @@
       <div class="name">凯驿 · 6B</div>
       <div class="school">Collège Saint-François · Juvénat · Ville-la-Grand</div>
     </div>
+    <div class="bus" id="bus" aria-label="公交 T1 时刻">
+      <span class="bus-label">公交 T1 · 7点</span>
+      <span class="bus-times" id="bus-times"></span>
+    </div>
     <div class="head-status">
       <span class="dot" id="wx-dot"></span>
       <span id="wx-status">天气</span>
@@ -472,7 +511,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904e";
+  const BUILD = "20260904f";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -488,6 +527,7 @@
   const FR_WD = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   const FR_WD_SHORT = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
   const FR_MO = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+  const BUS_T1_7 = ["00", "15", "27", "38", "49"];
 
   const FALLBACK_SCHEDULE = {
   "meta": {
@@ -746,6 +786,24 @@
     const m = Math.max(0, toMin(it.start) - t);
     if (m >= 60) return "还有 " + Math.floor(m / 60) + " 小时 " + (m % 60) + " 分钟";
     return "还有 " + m + " 分钟";
+  }
+
+  function renderBus(nowHm) {
+    const el = document.getElementById("bus-times");
+    if (!el) return;
+    const now = toMin(nowHm);
+    let next = null;
+    BUS_T1_7.forEach(function (mm) {
+      const t = toMin("07:" + mm);
+      if (next == null && now < t) next = mm;
+    });
+    el.innerHTML = BUS_T1_7.map(function (mm) {
+      const t = toMin("07:" + mm);
+      const gone = now >= t;
+      const isNext = mm === next;
+      return '<span class="' + (gone ? "gone" : "") + '">' +
+        (isNext ? "<b>07:" + mm + "</b>" : mm) + "</span>";
+    }).join("");
   }
 
   function renderClock() {
@@ -1031,7 +1089,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904e", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904f", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
@@ -1042,11 +1100,13 @@
 
   function tick() {
     renderClock();
+    renderBus(parisParts().hhmm);
     if (phaseKey() !== lastPhase) renderSchedule();
   }
 
   async function boot() {
     renderClock();
+    renderBus(parisParts().hhmm);
     setWxStatus("", "正在获取天气…");
     schedule = await loadSchedule();
     renderSchedule();
