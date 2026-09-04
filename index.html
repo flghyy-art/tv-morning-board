@@ -112,9 +112,9 @@
   .bus .bus-times {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.32rem;
     font-variant-numeric: tabular-nums;
-    font-size: 1.18rem;
+    font-size: 1.05rem;
     font-weight: 800;
     color: var(--ink);
   }
@@ -135,7 +135,7 @@
     font-weight: 800;
   }
   .bus .bus-times .t.ret {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
   }
   .head-status {
     display: flex;
@@ -558,7 +558,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904i";
+  const BUILD = "20260904j";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -575,8 +575,12 @@
   const FR_WD_SHORT = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
   const FR_MO = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
   const BUS_T1_7 = ["00", "15", "27", "38", "49"];
-  // Return T1 afternoon (from photo). Minutes per hour.
+  // Return T1 (fuller photo: 10h–17h). Minutes per hour.
   const BUS_T1_RET = {
+    10: ["11", "26", "41", "56"],
+    11: ["11", "26", "41", "56"],
+    12: ["11", "26", "41", "56"],
+    13: ["11", "26", "41", "56"],
     14: ["11", "26", "41", "56"],
     15: ["11", "26", "41", "56"],
     16: ["09", "21", "32", "43", "53"],
@@ -891,8 +895,7 @@
       let cls = "t";
       if (gone) cls += " gone";
       if (isNext) cls += " next";
-      const label = isNext ? ("07:" + mm) : mm;
-      return '<span class="' + cls + '">' + label + "</span>";
+      return '<span class="' + cls + '">07:' + mm + "</span>";
     }).join("");
 
     if (!retEl) return;
@@ -915,8 +918,7 @@
       let cls = "t ret";
       if (now >= tr.min) cls += " gone";
       if (tr.hm === nextRet) cls += " next";
-      const label = (tr.hm === nextRet) ? tr.hm : tr.mm;
-      return '<span class="' + cls + '">' + label + "</span>";
+      return '<span class="' + cls + '">' + tr.hm + "</span>";
     }).join("");
   }
 
@@ -1216,7 +1218,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904i", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904j", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
