@@ -99,18 +99,28 @@
   }
   .bus .bus-times {
     display: flex;
-    gap: 0.45rem;
+    align-items: center;
+    gap: 0.4rem;
     font-variant-numeric: tabular-nums;
-    font-size: 1.2rem;
-    font-weight: 650;
-    color: var(--ink-dim);
-  }
-  .bus .bus-times b {
-    color: var(--gold);
+    font-size: 1.28rem;
     font-weight: 800;
+    color: var(--ink);
   }
-  .bus .bus-times .gone {
-    opacity: 0.38;
+  .bus .bus-times .t {
+    font-weight: 800;
+    padding: 0.08rem 0.22rem;
+  }
+  .bus .bus-times .t.gone {
+    opacity: 0.34;
+    font-weight: 700;
+  }
+  .bus .bus-times .t.next {
+    background: linear-gradient(135deg, #c45c3e 0%, #b47a28 100%);
+    color: #fffaf4;
+    border-radius: 0.55rem;
+    padding: 0.12rem 0.55rem 0.14rem;
+    box-shadow: 0 0.28rem 0.9rem rgba(196, 92, 62, 0.28);
+    font-weight: 800;
   }
   .head-status {
     display: flex;
@@ -511,7 +521,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904f";
+  const BUILD = "20260904g";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -801,8 +811,11 @@
       const t = toMin("07:" + mm);
       const gone = now >= t;
       const isNext = mm === next;
-      return '<span class="' + (gone ? "gone" : "") + '">' +
-        (isNext ? "<b>07:" + mm + "</b>" : mm) + "</span>";
+      let cls = "t";
+      if (gone) cls += " gone";
+      if (isNext) cls += " next";
+      const label = isNext ? ("07:" + mm) : mm;
+      return '<span class="' + cls + '">' + label + "</span>";
     }).join("");
   }
 
@@ -1089,7 +1102,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904f", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904g", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
