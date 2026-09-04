@@ -509,7 +509,7 @@
     </div>
     <div class="bus" id="bus" aria-label="公交 T1 时刻">
       <div class="bus-leg">
-        <span class="bus-label">去 · T1 · 7点</span>
+        <span class="bus-label">去 · T1</span>
         <span class="bus-times" id="bus-times"></span>
       </div>
       <div class="bus-sep"></div>
@@ -558,7 +558,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904j";
+  const BUILD = "20260904k";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -574,7 +574,7 @@
   const FR_WD = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   const FR_WD_SHORT = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
   const FR_MO = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
-  const BUS_T1_7 = ["00", "15", "27", "38", "49"];
+  const BUS_T1_7 = ["15", "27", "38"]; // school morning: three useful departures
   // Return T1 (fuller photo: 10h–17h). Minutes per hour.
   const BUS_T1_RET = {
     10: ["11", "26", "41", "56"],
@@ -866,19 +866,15 @@
     return out;
   }
 
-  // After today's last bell, show the next clock-hour's departures (up to 4).
-  // e.g. dismiss 14:50 → 15h: 15:11 15:26 15:41 15:56
+  // After today's last bell: next 3 return trips, first at least +20 minutes.
+  // e.g. dismiss 14:50 → earliest 15:10 → 15:11 15:26 15:41
   function returnTripsAfterDismiss(dow) {
     const end = lastBell(dow);
     if (!end) return { hour: null, trips: [] };
-    const endMin = toMin(end);
-    const nextHour = Math.floor(endMin / 60) + 1;
-    const mins = BUS_T1_RET[nextHour];
-    if (!mins || !mins.length) return { hour: nextHour, trips: [] };
-    const trips = mins.slice(0, 4).map(function (mm) {
-      return { h: nextHour, mm: mm, hm: pad2(nextHour) + ":" + mm, min: nextHour * 60 + Number(mm) };
-    });
-    return { hour: nextHour, trips: trips, dismiss: end };
+    const earliest = toMin(end) + 20;
+    const trips = allReturnTrips().filter(function (tr) { return tr.min >= earliest; }).slice(0, 3);
+    const hour = trips.length ? trips[0].h : null;
+    return { hour: hour, trips: trips, dismiss: end };
   }
 
   function renderBus(nowHm, dow) {
@@ -902,9 +898,7 @@
     const d = (dow >= 1 && dow <= 5) ? dow : 1;
     const pack = returnTripsAfterDismiss(d);
     if (retLabel) {
-      retLabel.textContent = pack.hour != null
-        ? ("返 · T1 · " + pack.hour + "点")
-        : "返 · T1";
+      retLabel.textContent = "返 · T1";
     }
     if (!pack.trips.length) {
       retEl.innerHTML = '<span class="t gone">—</span>';
@@ -1218,7 +1212,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904j", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904k", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
