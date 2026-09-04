@@ -558,7 +558,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904l";
+  const BUILD = "20260904m";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -588,135 +588,331 @@
   };
 
   const FALLBACK_SCHEDULE = {
-  "meta": {
-    "child": "凯驿",
-    "childLatin": "Kaiyi FENG",
-    "className": "6B",
-    "school": "Collège Saint-François",
-    "campus": "Juvénat",
-    "city": "Ville-la-Grand",
-    "postcode": "74100",
-    "year": "2026-2027",
-    "sourceWeek": "2026-09-07/2026-09-11",
-    "note": "EDT of week 7–11 Sep 2026. Thu afternoon is SNT double (no Vie de classe). Fri afternoon is Français double (no Parole et vie)."
-  },
-  "mergeMaxGapMinutes": 20,
-  "slots": [
-    { "id": "p1", "start": "07:59", "end": "08:53" },
-    { "id": "p2", "start": "08:58", "end": "09:52" },
-    { "id": "p3", "start": "10:07", "end": "11:01" },
-    { "id": "p4", "start": "11:05", "end": "11:59" },
-    { "id": "lunch", "start": "12:00", "end": "12:57", "type": "lunch", "fr": "PAUSE DÉJEUNER", "zh": "午休" },
-    { "id": "p5", "start": "12:57", "end": "13:51" },
-    { "id": "p6", "start": "13:56", "end": "14:50" },
-    { "id": "p7", "start": "15:00", "end": "15:54" },
-    { "id": "p8", "start": "15:58", "end": "16:50" }
-  ],
-  "subjects": {
-    "ARTS_PLASTIQUES": {
-      "fr": "ARTS PLASTIQUES",
-      "zh": "美术",
-      "abbr": "ARTS",
-      "color": "#c9a0d8"
+    "meta": {
+      "child": "凯驿",
+      "childLatin": "Kaiyi FENG",
+      "className": "6B",
+      "school": "Collège Saint-François",
+      "campus": "Juvénat",
+      "city": "Ville-la-Grand",
+      "postcode": "74100",
+      "year": "2026-2027",
+      "sourceMonth": "2026-09",
+      "note": "Monthly EDT Sep 2026. Mon–Wed fixed. Thu/Fri alternate by ISO week parity: even=蓝/双周 (Vie de classe + Parole et vie), odd=红/单周 (SNT double + Français double)."
     },
-    "FRANCAIS": {
-      "fr": "FRANÇAIS",
-      "zh": "法语",
-      "abbr": "FR",
-      "color": "#7eb6e8"
+    "weekParity": {
+      "even": {
+        "zh": "双周",
+        "colorZh": "蓝周",
+        "fr": "semaine paire"
+      },
+      "odd": {
+        "zh": "单周",
+        "colorZh": "红周",
+        "fr": "semaine impaire"
+      }
     },
-    "ANGLAIS_LV1": {
-      "fr": "ANGLAIS LV1",
-      "zh": "英语",
-      "abbr": "ENG",
-      "color": "#e6c56a"
+    "mergeMaxGapMinutes": 20,
+    "slots": [
+      {
+        "id": "p1",
+        "start": "07:59",
+        "end": "08:53"
+      },
+      {
+        "id": "p2",
+        "start": "08:58",
+        "end": "09:52"
+      },
+      {
+        "id": "p3",
+        "start": "10:07",
+        "end": "11:01"
+      },
+      {
+        "id": "p4",
+        "start": "11:05",
+        "end": "11:59"
+      },
+      {
+        "id": "lunch",
+        "start": "12:00",
+        "end": "12:57",
+        "type": "lunch",
+        "fr": "PAUSE DÉJEUNER",
+        "zh": "午休"
+      },
+      {
+        "id": "p5",
+        "start": "12:57",
+        "end": "13:51"
+      },
+      {
+        "id": "p6",
+        "start": "13:56",
+        "end": "14:50"
+      },
+      {
+        "id": "p7",
+        "start": "15:00",
+        "end": "15:54"
+      },
+      {
+        "id": "p8",
+        "start": "15:58",
+        "end": "16:50"
+      }
+    ],
+    "subjects": {
+      "ARTS_PLASTIQUES": {
+        "fr": "ARTS PLASTIQUES",
+        "zh": "美术",
+        "abbr": "ARTS",
+        "color": "#c9a0d8"
+      },
+      "FRANCAIS": {
+        "fr": "FRANÇAIS",
+        "zh": "法语",
+        "abbr": "FR",
+        "color": "#7eb6e8"
+      },
+      "ANGLAIS_LV1": {
+        "fr": "ANGLAIS LV1",
+        "zh": "英语",
+        "abbr": "ENG",
+        "color": "#e6c56a"
+      },
+      "MATHEMATIQUES": {
+        "fr": "MATHÉMATIQUES",
+        "zh": "数学",
+        "abbr": "MATHS",
+        "color": "#e0906c"
+      },
+      "HISTOIRE_GEO": {
+        "fr": "HISTOIRE-GÉOGRAPHIE",
+        "zh": "史地",
+        "abbr": "HG",
+        "color": "#5fb8ab"
+      },
+      "EDUCATION_MUSICALE": {
+        "fr": "ÉDUCATION MUSICALE",
+        "zh": "音乐",
+        "abbr": "MUS",
+        "color": "#b89be4"
+      },
+      "EPS": {
+        "fr": "ED. PHYSIQUE & SPORT",
+        "zh": "体育",
+        "abbr": "EPS",
+        "color": "#9b7ed0"
+      },
+      "SNT": {
+        "fr": "SCIENCES & TECHNO",
+        "official": "ENS.INTEG.SC.&TECHNO",
+        "zh": "科技",
+        "abbr": "S&T",
+        "color": "#4eacb8"
+      },
+      "VIE_DE_CLASSE": {
+        "fr": "VIE DE CLASSE",
+        "zh": "班会",
+        "abbr": "VDC",
+        "color": "#b5a494"
+      },
+      "PAROLE_ET_VIE": {
+        "fr": "PAROLE ET VIE",
+        "zh": "言语与生活",
+        "abbr": "P&V",
+        "color": "#7eb48c"
+      }
     },
-    "MATHEMATIQUES": {
-      "fr": "MATHÉMATIQUES",
-      "zh": "数学",
-      "abbr": "MATHS",
-      "color": "#e0906c"
+    "days": {
+      "1": [
+        {
+          "slot": "p1",
+          "subject": "ARTS_PLASTIQUES"
+        },
+        {
+          "slot": "p2",
+          "subject": "FRANCAIS"
+        },
+        {
+          "slot": "p3",
+          "subject": "FRANCAIS"
+        },
+        {
+          "slot": "p5",
+          "subject": "HISTOIRE_GEO"
+        },
+        {
+          "slot": "p6",
+          "subject": "EDUCATION_MUSICALE"
+        },
+        {
+          "slot": "p7",
+          "subject": "MATHEMATIQUES"
+        }
+      ],
+      "2": [
+        {
+          "slot": "p1",
+          "subject": "FRANCAIS"
+        },
+        {
+          "slot": "p2",
+          "subject": "ANGLAIS_LV1"
+        },
+        {
+          "slot": "p3",
+          "subject": "MATHEMATIQUES"
+        },
+        {
+          "slot": "p5",
+          "subject": "EPS",
+          "room": "GYMN FEIREISEN I."
+        },
+        {
+          "slot": "p6",
+          "subject": "EPS",
+          "room": "GYMN FEIREISEN I."
+        },
+        {
+          "slot": "p7",
+          "subject": "HISTOIRE_GEO"
+        }
+      ],
+      "3": [
+        {
+          "slot": "p1",
+          "subject": "HISTOIRE_GEO"
+        },
+        {
+          "slot": "p2",
+          "subject": "FRANCAIS"
+        },
+        {
+          "slot": "p3",
+          "subject": "ANGLAIS_LV1"
+        },
+        {
+          "slot": "p4",
+          "subject": "MATHEMATIQUES"
+        }
+      ]
     },
-    "HISTOIRE_GEO": {
-      "fr": "HISTOIRE-GÉOGRAPHIE",
-      "zh": "史地",
-      "abbr": "HG",
-      "color": "#5fb8ab"
+    "daysEven": {
+      "4": [
+        {
+          "slot": "p1",
+          "subject": "ANGLAIS_LV1"
+        },
+        {
+          "slot": "p2",
+          "subject": "MATHEMATIQUES"
+        },
+        {
+          "slot": "p3",
+          "subject": "MATHEMATIQUES"
+        },
+        {
+          "slot": "p5",
+          "subject": "EPS",
+          "room": "GYMN FEIREISEN I."
+        },
+        {
+          "slot": "p6",
+          "subject": "EPS",
+          "room": "GYMN FEIREISEN I."
+        },
+        {
+          "slot": "p7",
+          "subject": "VIE_DE_CLASSE"
+        },
+        {
+          "slot": "p8",
+          "subject": "SNT"
+        }
+      ],
+      "5": [
+        {
+          "slot": "p1",
+          "subject": "SNT"
+        },
+        {
+          "slot": "p2",
+          "subject": "SNT"
+        },
+        {
+          "slot": "p3",
+          "subject": "ANGLAIS_LV1"
+        },
+        {
+          "slot": "p5",
+          "subject": "FRANCAIS"
+        },
+        {
+          "slot": "p6",
+          "subject": "PAROLE_ET_VIE"
+        }
+      ]
     },
-    "EDUCATION_MUSICALE": {
-      "fr": "ÉDUCATION MUSICALE",
-      "zh": "音乐",
-      "abbr": "MUS",
-      "color": "#b89be4"
-    },
-    "EPS": {
-      "fr": "ED. PHYSIQUE & SPORT",
-      "zh": "体育",
-      "abbr": "EPS",
-      "color": "#9b7ed0"
-    },
-    "SNT": {
-      "fr": "SCIENCES & TECHNO",
-      "official": "ENS.INTEG.SC.&TECHNO",
-      "zh": "科技",
-      "abbr": "S&T",
-      "color": "#4eacb8"
-    },
-    "VIE_DE_CLASSE": {
-      "fr": "VIE DE CLASSE",
-      "zh": "班会",
-      "abbr": "VDC",
-      "color": "#b5a494"
-    },
-    "PAROLE_ET_VIE": {
-      "fr": "PAROLE ET VIE",
-      "zh": "言语与生活",
-      "abbr": "P&V",
-      "color": "#7eb48c"
+    "daysOdd": {
+      "4": [
+        {
+          "slot": "p1",
+          "subject": "ANGLAIS_LV1"
+        },
+        {
+          "slot": "p2",
+          "subject": "MATHEMATIQUES"
+        },
+        {
+          "slot": "p3",
+          "subject": "MATHEMATIQUES"
+        },
+        {
+          "slot": "p5",
+          "subject": "EPS",
+          "room": "GYMN FEIREISEN I."
+        },
+        {
+          "slot": "p6",
+          "subject": "EPS",
+          "room": "GYMN FEIREISEN I."
+        },
+        {
+          "slot": "p7",
+          "subject": "SNT"
+        },
+        {
+          "slot": "p8",
+          "subject": "SNT"
+        }
+      ],
+      "5": [
+        {
+          "slot": "p1",
+          "subject": "SNT"
+        },
+        {
+          "slot": "p2",
+          "subject": "SNT"
+        },
+        {
+          "slot": "p3",
+          "subject": "ANGLAIS_LV1"
+        },
+        {
+          "slot": "p5",
+          "subject": "FRANCAIS"
+        },
+        {
+          "slot": "p6",
+          "subject": "FRANCAIS"
+        }
+      ]
     }
-  },
-  "days": {
-    "1": [
-      { "slot": "p1", "subject": "ARTS_PLASTIQUES" },
-      { "slot": "p2", "subject": "FRANCAIS" },
-      { "slot": "p3", "subject": "FRANCAIS" },
-      { "slot": "p5", "subject": "HISTOIRE_GEO" },
-      { "slot": "p6", "subject": "EDUCATION_MUSICALE" },
-      { "slot": "p7", "subject": "MATHEMATIQUES" }
-    ],
-    "2": [
-      { "slot": "p1", "subject": "FRANCAIS" },
-      { "slot": "p2", "subject": "ANGLAIS_LV1" },
-      { "slot": "p3", "subject": "MATHEMATIQUES" },
-      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p7", "subject": "HISTOIRE_GEO" }
-    ],
-    "3": [
-      { "slot": "p1", "subject": "HISTOIRE_GEO" },
-      { "slot": "p2", "subject": "FRANCAIS" },
-      { "slot": "p3", "subject": "ANGLAIS_LV1" },
-      { "slot": "p4", "subject": "MATHEMATIQUES" }
-    ],
-    "4": [
-      { "slot": "p1", "subject": "ANGLAIS_LV1" },
-      { "slot": "p2", "subject": "MATHEMATIQUES" },
-      { "slot": "p3", "subject": "MATHEMATIQUES" },
-      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p7", "subject": "SNT" },
-      { "slot": "p8", "subject": "SNT" }
-    ],
-    "5": [
-      { "slot": "p1", "subject": "SNT" },
-      { "slot": "p2", "subject": "SNT" },
-      { "slot": "p3", "subject": "ANGLAIS_LV1" },
-      { "slot": "p5", "subject": "FRANCAIS" },
-      { "slot": "p6", "subject": "FRANCAIS" }
-    ]
-  }
-}
-;
+  };
 
   let schedule = FALLBACK_SCHEDULE;
   let lastPhase = "";
@@ -762,9 +958,49 @@
     return (schedule.subjects && schedule.subjects[id]) || { fr: id, zh: "", abbr: id, color: "#8a7868" };
   }
 
-  function dayLessons(dayNum) {
+  function isoWeekParityFromParts(p) {
+    // ISO week number for the Paris Y-M-D in p.
+    const date = new Date(Date.UTC(Number(p.year), Number(p.month) - 1, Number(p.day)));
+    const day = date.getUTCDay() || 7;
+    date.setUTCDate(date.getUTCDate() + 4 - day);
+    const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    const week = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+    return (week % 2 === 0) ? "even" : "odd";
+  }
+
+  function parityLabel(parity) {
+    const meta = (schedule.weekParity && schedule.weekParity[parity]) || {};
+    return (meta.zh || parity) + " · " + (meta.colorZh || "");
+  }
+
+  function partsForDow(base, targetDow) {
+    // Shift base Paris date to the given weekday (0=Sun..6=Sat) within the same Mon–Sun week,
+    // or to next Monday when target is next school day across weekend.
+    const baseDate = new Date(Date.UTC(Number(base.year), Number(base.month) - 1, Number(base.day)));
+    let delta = targetDow - base.dow;
+    const d = new Date(baseDate);
+    d.setUTCDate(d.getUTCDate() + delta);
+    return {
+      year: String(d.getUTCFullYear()),
+      month: pad2(d.getUTCMonth() + 1),
+      day: pad2(d.getUTCDate()),
+      dow: targetDow
+    };
+  }
+
+  function dayRaw(dayNum, parity) {
+    const key = String(dayNum);
+    if (dayNum === 4 || dayNum === 5) {
+      const pack = parity === "even" ? schedule.daysEven : schedule.daysOdd;
+      if (pack && pack[key]) return pack[key];
+    }
+    return (schedule.days && schedule.days[key]) || [];
+  }
+
+  function dayLessons(dayNum, parity) {
+    if (!parity) parity = currentParity || isoWeekParityFromParts(parisParts());
     const slots = slotMap();
-    const raw = (schedule.days && schedule.days[String(dayNum)]) || [];
+    const raw = dayRaw(dayNum, parity);
     const maxGap = schedule.mergeMaxGapMinutes || 20;
     const items = [];
     raw.forEach(function (L) {
@@ -869,7 +1105,7 @@
   // After today's last bell: next 3 return trips, first at least +20 minutes.
   // e.g. dismiss 14:50 → earliest 15:10 → 15:11 15:26 15:41
   function returnTripsAfterDismiss(dow) {
-    const end = lastBell(dow);
+    const end = lastBell(dow, currentParity);
     if (!end) return { hour: null, trips: [] };
     const earliest = toMin(end) + 20;
     const trips = allReturnTrips().filter(function (tr) { return tr.min >= earliest; }).slice(0, 3);
@@ -947,20 +1183,32 @@
     return { fr: s.fr, zh: s.zh, color: s.color, room: it.room || "", official: s.official || "" };
   }
 
-  function lastBell(dow) {
-    const lessons = dayLessons(dow);
+  function lastBell(dow, parity) {
+    const lessons = dayLessons(dow, parity);
     if (!lessons.length) return null;
     return lessons[lessons.length - 1].end;
   }
 
-  function renderDismiss(nowHm, dow) {
+  function renderDismiss(nowHm, dow, parity) {
     const el = document.getElementById("dismiss");
     if (!el) return;
     let d = dow, label = "今天下课", hint = "";
+    let par = parity;
     if (dow === 0 || dow === 6) {
       d = 1; label = "周一放学"; hint = "周末";
+      const mon = partsForDow(parisParts(), 1);
+      // if today Sat/Sun, Monday is next week → shift +1 or +2 days from Sun/Sat
+      const base = parisParts();
+      const baseDate = new Date(Date.UTC(Number(base.year), Number(base.month) - 1, Number(base.day)));
+      const add = dow === 6 ? 2 : 1;
+      baseDate.setUTCDate(baseDate.getUTCDate() + add);
+      par = isoWeekParityFromParts({
+        year: String(baseDate.getUTCFullYear()),
+        month: pad2(baseDate.getUTCMonth() + 1),
+        day: pad2(baseDate.getUTCDate())
+      });
     }
-    const end = lastBell(d);
+    const end = lastBell(d, par);
     if (!end) {
       el.innerHTML = '<div class="lbl">下课</div><div class="t">—</div>';
       return;
@@ -975,9 +1223,10 @@
       (hint && hint !== end ? '<div class="hint">' + esc(hint) + '</div>' : '');
   }
 
-  function rawDay(dayNum) {
+  function rawDay(dayNum, parity) {
+    if (!parity) parity = currentParity || isoWeekParityFromParts(parisParts());
     const slots = slotMap();
-    const raw = (schedule.days && schedule.days[String(dayNum)]) || [];
+    const raw = dayRaw(dayNum, parity);
     const out = [];
     raw.forEach(function (L) {
       const sl = slots[L.slot];
@@ -1022,12 +1271,13 @@
     el.textContent = "";
   }
 
-  function renderKicker(dow) {
+  function renderKicker(dow, parity) {
     const el = document.getElementById("today-kicker");
     if (!el) return;
     if (dow === 0 || dow === 6) { el.textContent = "周末 · 无课"; return; }
-    const n = rawDay(dow).length;
-    el.textContent = "今天 · " + n + " 节课";
+    const n = rawDay(dow, parity).length;
+    const pl = parityLabel(parity).replace(" · ", "·");
+    el.textContent = "今天 · " + n + " 节课 · " + pl;
   }
 
   function renderTimeline(p, nowHm, dow) {
@@ -1065,10 +1315,29 @@
     return dow + 1;
   }
 
+  function parityForNextSchoolDay(dow) {
+    const base = parisParts();
+    const n = nextSchoolDay(dow);
+    let add = 0;
+    if (dow === 5) add = 3; // Fri -> Mon
+    else if (dow === 6) add = 2; // Sat -> Mon
+    else if (dow === 0) add = 1; // Sun -> Mon
+    else add = 1; // tomorrow
+    const d = new Date(Date.UTC(Number(base.year), Number(base.month) - 1, Number(base.day)));
+    d.setUTCDate(d.getUTCDate() + add);
+    return isoWeekParityFromParts({
+      year: String(d.getUTCFullYear()),
+      month: pad2(d.getUTCMonth() + 1),
+      day: pad2(d.getUTCDate())
+    });
+  }
+
   function tomorrowLabel(dow) {
     const n = nextSchoolDay(dow);
-    if (dow === 5 || dow === 6 || dow === 0) return "周一 · " + rawDay(n).length + " 节课";
-    return "明天 · " + rawDay(n).length + " 节课";
+    const par = parityForNextSchoolDay(dow);
+    const pl = parityLabel(par).replace(" · ", "·");
+    if (dow === 5 || dow === 6 || dow === 0) return "周一 · " + rawDay(n, par).length + " 节课 · " + pl;
+    return "明天 · " + rawDay(n, par).length + " 节课 · " + pl;
   }
 
   function renderWeek(nowHm, dow) {
@@ -1076,10 +1345,11 @@
     const kick = document.getElementById("tm-kicker");
     const bellEl = document.getElementById("tm-bell");
     const n = nextSchoolDay(dow);
+    const par = parityForNextSchoolDay(dow);
     if (kick) kick.textContent = tomorrowLabel(dow);
-    const end = lastBell(n);
+    const end = lastBell(n, par);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
-    const items = rawDay(n);
+    const items = rawDay(n, par);
     if (!items.length) {
       el.innerHTML = '<div class="tm-empty">无课</div>';
       return;
@@ -1100,11 +1370,14 @@
     return p.dow + "|" + p.hhmm + "|" + (ph.current ? ph.current.type + ph.current.start : "x") + "|" + (ph.next ? ph.next.start : "y");
   }
 
+  let currentParity = "even";
+
   function renderSchedule() {
     const p = parisParts();
+    currentParity = isoWeekParityFromParts(p);
     const ph = (p.dow >= 1 && p.dow <= 5) ? phase(p.hhmm, p.dow) : { current: null, next: null, items: [] };
-    renderDismiss(p.hhmm, p.dow);
-    renderKicker(p.dow);
+    renderDismiss(p.hhmm, p.dow, currentParity);
+    renderKicker(p.dow, currentParity);
     renderHero(ph, p.hhmm, p.dow);
     renderTimeline(ph, p.hhmm, p.dow);
     renderWeek(p.hhmm, p.dow);
@@ -1212,7 +1485,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904l", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904m", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;

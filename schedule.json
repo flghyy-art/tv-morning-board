@@ -8,20 +8,71 @@
     "city": "Ville-la-Grand",
     "postcode": "74100",
     "year": "2026-2027",
-    "sourceWeek": "2026-09-07/2026-09-11",
-    "note": "EDT of week 7–11 Sep 2026. Thu afternoon is SNT double (no Vie de classe). Fri afternoon is Français double (no Parole et vie)."
+    "sourceMonth": "2026-09",
+    "note": "Monthly EDT Sep 2026. Mon–Wed fixed. Thu/Fri alternate by ISO week parity: even=蓝/双周 (Vie de classe + Parole et vie), odd=红/单周 (SNT double + Français double)."
+  },
+  "weekParity": {
+    "even": {
+      "zh": "双周",
+      "colorZh": "蓝周",
+      "fr": "semaine paire"
+    },
+    "odd": {
+      "zh": "单周",
+      "colorZh": "红周",
+      "fr": "semaine impaire"
+    }
   },
   "mergeMaxGapMinutes": 20,
   "slots": [
-    { "id": "p1", "start": "07:59", "end": "08:53" },
-    { "id": "p2", "start": "08:58", "end": "09:52" },
-    { "id": "p3", "start": "10:07", "end": "11:01" },
-    { "id": "p4", "start": "11:05", "end": "11:59" },
-    { "id": "lunch", "start": "12:00", "end": "12:57", "type": "lunch", "fr": "PAUSE DÉJEUNER", "zh": "午休" },
-    { "id": "p5", "start": "12:57", "end": "13:51" },
-    { "id": "p6", "start": "13:56", "end": "14:50" },
-    { "id": "p7", "start": "15:00", "end": "15:54" },
-    { "id": "p8", "start": "15:58", "end": "16:50" }
+    {
+      "id": "p1",
+      "start": "07:59",
+      "end": "08:53"
+    },
+    {
+      "id": "p2",
+      "start": "08:58",
+      "end": "09:52"
+    },
+    {
+      "id": "p3",
+      "start": "10:07",
+      "end": "11:01"
+    },
+    {
+      "id": "p4",
+      "start": "11:05",
+      "end": "11:59"
+    },
+    {
+      "id": "lunch",
+      "start": "12:00",
+      "end": "12:57",
+      "type": "lunch",
+      "fr": "PAUSE DÉJEUNER",
+      "zh": "午休"
+    },
+    {
+      "id": "p5",
+      "start": "12:57",
+      "end": "13:51"
+    },
+    {
+      "id": "p6",
+      "start": "13:56",
+      "end": "14:50"
+    },
+    {
+      "id": "p7",
+      "start": "15:00",
+      "end": "15:54"
+    },
+    {
+      "id": "p8",
+      "start": "15:58",
+      "end": "16:50"
+    }
   ],
   "subjects": {
     "ARTS_PLASTIQUES": {
@@ -88,42 +139,188 @@
   },
   "days": {
     "1": [
-      { "slot": "p1", "subject": "ARTS_PLASTIQUES" },
-      { "slot": "p2", "subject": "FRANCAIS" },
-      { "slot": "p3", "subject": "FRANCAIS" },
-      { "slot": "p5", "subject": "HISTOIRE_GEO" },
-      { "slot": "p6", "subject": "EDUCATION_MUSICALE" },
-      { "slot": "p7", "subject": "MATHEMATIQUES" }
+      {
+        "slot": "p1",
+        "subject": "ARTS_PLASTIQUES"
+      },
+      {
+        "slot": "p2",
+        "subject": "FRANCAIS"
+      },
+      {
+        "slot": "p3",
+        "subject": "FRANCAIS"
+      },
+      {
+        "slot": "p5",
+        "subject": "HISTOIRE_GEO"
+      },
+      {
+        "slot": "p6",
+        "subject": "EDUCATION_MUSICALE"
+      },
+      {
+        "slot": "p7",
+        "subject": "MATHEMATIQUES"
+      }
     ],
     "2": [
-      { "slot": "p1", "subject": "FRANCAIS" },
-      { "slot": "p2", "subject": "ANGLAIS_LV1" },
-      { "slot": "p3", "subject": "MATHEMATIQUES" },
-      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p7", "subject": "HISTOIRE_GEO" }
+      {
+        "slot": "p1",
+        "subject": "FRANCAIS"
+      },
+      {
+        "slot": "p2",
+        "subject": "ANGLAIS_LV1"
+      },
+      {
+        "slot": "p3",
+        "subject": "MATHEMATIQUES"
+      },
+      {
+        "slot": "p5",
+        "subject": "EPS",
+        "room": "GYMN FEIREISEN I."
+      },
+      {
+        "slot": "p6",
+        "subject": "EPS",
+        "room": "GYMN FEIREISEN I."
+      },
+      {
+        "slot": "p7",
+        "subject": "HISTOIRE_GEO"
+      }
     ],
     "3": [
-      { "slot": "p1", "subject": "HISTOIRE_GEO" },
-      { "slot": "p2", "subject": "FRANCAIS" },
-      { "slot": "p3", "subject": "ANGLAIS_LV1" },
-      { "slot": "p4", "subject": "MATHEMATIQUES" }
-    ],
+      {
+        "slot": "p1",
+        "subject": "HISTOIRE_GEO"
+      },
+      {
+        "slot": "p2",
+        "subject": "FRANCAIS"
+      },
+      {
+        "slot": "p3",
+        "subject": "ANGLAIS_LV1"
+      },
+      {
+        "slot": "p4",
+        "subject": "MATHEMATIQUES"
+      }
+    ]
+  },
+  "daysEven": {
     "4": [
-      { "slot": "p1", "subject": "ANGLAIS_LV1" },
-      { "slot": "p2", "subject": "MATHEMATIQUES" },
-      { "slot": "p3", "subject": "MATHEMATIQUES" },
-      { "slot": "p5", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p6", "subject": "EPS", "room": "GYMN FEIREISEN I." },
-      { "slot": "p7", "subject": "SNT" },
-      { "slot": "p8", "subject": "SNT" }
+      {
+        "slot": "p1",
+        "subject": "ANGLAIS_LV1"
+      },
+      {
+        "slot": "p2",
+        "subject": "MATHEMATIQUES"
+      },
+      {
+        "slot": "p3",
+        "subject": "MATHEMATIQUES"
+      },
+      {
+        "slot": "p5",
+        "subject": "EPS",
+        "room": "GYMN FEIREISEN I."
+      },
+      {
+        "slot": "p6",
+        "subject": "EPS",
+        "room": "GYMN FEIREISEN I."
+      },
+      {
+        "slot": "p7",
+        "subject": "VIE_DE_CLASSE"
+      },
+      {
+        "slot": "p8",
+        "subject": "SNT"
+      }
     ],
     "5": [
-      { "slot": "p1", "subject": "SNT" },
-      { "slot": "p2", "subject": "SNT" },
-      { "slot": "p3", "subject": "ANGLAIS_LV1" },
-      { "slot": "p5", "subject": "FRANCAIS" },
-      { "slot": "p6", "subject": "FRANCAIS" }
+      {
+        "slot": "p1",
+        "subject": "SNT"
+      },
+      {
+        "slot": "p2",
+        "subject": "SNT"
+      },
+      {
+        "slot": "p3",
+        "subject": "ANGLAIS_LV1"
+      },
+      {
+        "slot": "p5",
+        "subject": "FRANCAIS"
+      },
+      {
+        "slot": "p6",
+        "subject": "PAROLE_ET_VIE"
+      }
+    ]
+  },
+  "daysOdd": {
+    "4": [
+      {
+        "slot": "p1",
+        "subject": "ANGLAIS_LV1"
+      },
+      {
+        "slot": "p2",
+        "subject": "MATHEMATIQUES"
+      },
+      {
+        "slot": "p3",
+        "subject": "MATHEMATIQUES"
+      },
+      {
+        "slot": "p5",
+        "subject": "EPS",
+        "room": "GYMN FEIREISEN I."
+      },
+      {
+        "slot": "p6",
+        "subject": "EPS",
+        "room": "GYMN FEIREISEN I."
+      },
+      {
+        "slot": "p7",
+        "subject": "SNT"
+      },
+      {
+        "slot": "p8",
+        "subject": "SNT"
+      }
+    ],
+    "5": [
+      {
+        "slot": "p1",
+        "subject": "SNT"
+      },
+      {
+        "slot": "p2",
+        "subject": "SNT"
+      },
+      {
+        "slot": "p3",
+        "subject": "ANGLAIS_LV1"
+      },
+      {
+        "slot": "p5",
+        "subject": "FRANCAIS"
+      },
+      {
+        "slot": "p6",
+        "subject": "FRANCAIS"
+      }
     ]
   }
 }
