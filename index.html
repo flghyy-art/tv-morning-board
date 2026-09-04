@@ -51,7 +51,7 @@
     height: 100vh;
     display: grid;
     grid-template-columns: minmax(16rem, 0.62fr) minmax(0, 1.58fr);
-    grid-template-rows: auto minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-rows: auto minmax(0, 1.15fr) minmax(0, 0.85fr);
     grid-template-areas:
       "header header"
       "weather today"
@@ -159,6 +159,21 @@
     align-items: baseline;
     gap: 0.45rem;
     line-height: 0.85;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: 0.9rem;
+    padding: 0.15rem 0.2rem;
+    transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+  }
+  .clock-row.is-bus-soon {
+    background: linear-gradient(135deg, #c45c3e 0%, #b47a28 100%);
+    color: #fffaf4;
+    padding: 0.35rem 0.85rem 0.4rem;
+    box-shadow: 0 0.45rem 1.4rem rgba(196, 92, 62, 0.28);
+  }
+  .clock-row.is-bus-soon #clock-hm,
+  .clock-row.is-bus-soon #clock-sec {
+    color: #fffaf4;
   }
   #clock-hm {
     font-size: 4.15rem;
@@ -277,10 +292,10 @@
     letter-spacing: 0.04em;
   }
   .nowline {
-    margin: 0.15rem 0 0.35rem;
-    font-size: 1.05rem;
+    margin: 0.08rem 0 0.22rem;
+    font-size: 0.98rem;
     color: var(--ink-dim);
-    min-height: 1.3rem;
+    min-height: 1.15rem;
   }
   .nowline b { color: var(--ink); font-weight: 750; }
   .nowline .tag { color: var(--gold); font-weight: 700; letter-spacing: 0.12em; margin-right: 0.45rem; }
@@ -291,7 +306,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.32rem;
+    gap: 0.26rem;
   }
   .period {
     display: grid;
@@ -299,7 +314,7 @@
     gap: 0.7rem;
     align-items: center;
     overflow: hidden;
-    padding: 0.3rem 0.95rem 0.3rem 0.85rem;
+    padding: 0.22rem 0.85rem 0.22rem 0.75rem;
     border-radius: 0.62rem;
     background: rgba(42,36,29,0.05);
     border-left: 0.38rem solid var(--c, var(--ink-mute));
@@ -334,13 +349,13 @@
     gap: 0.26rem;
   }
   .period .when .start {
-    font-size: 1.12rem;
+    font-size: 1.05rem;
     color: var(--ink-dim);
     font-weight: 600;
   }
   .period .when .sep { color: var(--ink-mute); font-weight: 500; }
   .period .when .end {
-    font-size: 1.12rem;
+    font-size: 1.05rem;
     font-weight: 750;
     color: var(--gold);
     line-height: 1;
@@ -355,7 +370,7 @@
     margin-bottom: 0.08rem;
   }
   .period .fr {
-    font-size: 1.5rem;
+    font-size: 1.38rem;
     font-weight: 700;
     letter-spacing: 0.03em;
     line-height: 1.1;
@@ -521,7 +536,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904g";
+  const BUILD = "20260904h";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -798,15 +813,21 @@
     return "还有 " + m + " 分钟";
   }
 
-  function renderBus(nowHm) {
-    const el = document.getElementById("bus-times");
-    if (!el) return;
+  function nextBusMm(nowHm) {
     const now = toMin(nowHm);
     let next = null;
     BUS_T1_7.forEach(function (mm) {
       const t = toMin("07:" + mm);
       if (next == null && now < t) next = mm;
     });
+    return next;
+  }
+
+  function renderBus(nowHm) {
+    const el = document.getElementById("bus-times");
+    if (!el) return;
+    const now = toMin(nowHm);
+    const next = nextBusMm(nowHm);
     el.innerHTML = BUS_T1_7.map(function (mm) {
       const t = toMin("07:" + mm);
       const gone = now >= t;
@@ -821,13 +842,26 @@
 
   function renderClock() {
     const p = parisParts();
-    document.getElementById("clock-hm").textContent = p.hour + ":" + p.minute;
-    document.getElementById("clock-sec").textContent = p.second;
+    const hmEl = document.getElementById("clock-hm");
+    const secEl = document.getElementById("clock-sec");
+    const row = document.querySelector(".clock-row");
+    hmEl.textContent = p.hour + ":" + p.minute;
+    secEl.textContent = p.second;
     const y = p.year, m = Number(p.month), d = Number(p.day);
     document.getElementById("date-main").textContent =
       y + "年" + m + "月" + d + "日  ·  " + ZH_WD[p.dow];
     document.getElementById("date-sub").textContent =
       FR_WD[p.dow] + "  " + d + " " + FR_MO[m - 1] + "  " + y;
+    // Within 15 minutes before the next T1 departure, match the dismiss badge style.
+    if (row) {
+      const next = nextBusMm(p.hhmm);
+      let soon = false;
+      if (next != null) {
+        const left = toMin("07:" + next) - toMin(p.hhmm);
+        soon = left > 0 && left <= 15;
+      }
+      row.classList.toggle("is-bus-soon", soon);
+    }
   }
 
   function blockTitle(it) {
@@ -1102,7 +1136,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904g", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260904h", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
