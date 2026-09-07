@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#7a7468">
+<meta name="theme-color" content="#5f6a60">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -11,21 +11,20 @@
 <title>凯驿 · 6B · 晨间看板</title>
 <style>
   :root {
-    --bg: #7a7468;
-    --bg-2: #6e685c;
-    --panel: #8f887a;
-    --panel-2: #857e70;
-    --ink: #1c1814;
-    --ink-dim: #2e2923;
-    --ink-mute: #3f3932;
-    --gold: #d4a35a;
-    --gold-2: #e0b36e;
-    --line: rgba(20, 16, 12, 0.22);
-    --now: #d4a35a;
-    --danger: #c45c3e;
-    --ok: #6a9a5a;
-    --rain: #5a9aab;
-    --panel-text: #1c1814;
+    --bg: #5f6a60;
+    --bg-2: #556055;
+    --panel: #738074;
+    --panel-2: #6a776b;
+    --ink: #141812;
+    --ink-dim: #252922;
+    --ink-mute: #363b34;
+    --gold: #c4a86a;
+    --gold-2: #d0b57a;
+    --line: rgba(12, 16, 12, 0.24);
+    --now: #c4a86a;
+    --danger: #b05a48;
+    --ok: #7aaa6a;
+    --rain: #5a9aaa;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -43,8 +42,8 @@
   html { font-size: calc(100vmin / 50); }
   body {
     background:
-      radial-gradient(ellipse 70% 50% at 8% -10%, rgba(120, 100, 60, 0.08), transparent 55%),
-      radial-gradient(ellipse 45% 40% at 100% 100%, rgba(70, 90, 80, 0.08), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 8% -10%, rgba(90, 110, 70, 0.10), transparent 55%),
+      radial-gradient(ellipse 45% 40% at 100% 100%, rgba(60, 90, 70, 0.10), transparent 50%),
       var(--bg);
   }
   .board {
@@ -562,7 +561,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260907a";
+  const BUILD = "20260907c";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1490,7 +1489,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260907a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260907c", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
