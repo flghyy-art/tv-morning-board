@@ -15,13 +15,13 @@
     --bg-2: #556055;
     --panel: #738074;
     --panel-2: #6a776b;
-    --ink: #141812;
-    --ink-dim: #252922;
-    --ink-mute: #363b34;
-    --gold: #c4a86a;
-    --gold-2: #d0b57a;
-    --line: rgba(12, 16, 12, 0.24);
-    --now: #c4a86a;
+    --ink: #efe8dc;
+    --ink-dim: #d8d0c2;
+    --ink-mute: #b8b0a2;
+    --gold: #e2c48a;
+    --gold-2: #ecd49a;
+    --line: rgba(255, 245, 230, 0.14);
+    --now: #e2c48a;
     --danger: #b05a48;
     --ok: #7aaa6a;
     --rain: #5a9aaa;
@@ -87,7 +87,7 @@
     margin-right: 1.0rem;
     padding: 0.28rem 0.85rem 0.32rem;
     border-radius: 0.7rem;
-    background: rgba(42, 36, 29, 0.08);
+    background: rgba(255,245,230,0.10);
     border: 1px solid var(--line);
   }
   .bus .bus-leg {
@@ -334,7 +334,7 @@
     overflow: hidden;
     padding: 0.22rem 0.85rem 0.22rem 0.75rem;
     border-radius: 0.62rem;
-    background: rgba(42,36,29,0.05);
+    background: rgba(255,245,230,0.08);
     border-left: 0.38rem solid var(--c, var(--ink-mute));
     flex: 1 1 0;
     min-height: 0;
@@ -466,7 +466,7 @@
     align-items: center;
     padding: 0.28rem 0.55rem;
     border-radius: 0.5rem;
-    background: rgba(42,36,29,0.05);
+    background: rgba(255,245,230,0.08);
     border-left: 0.32rem solid var(--c, var(--ink-mute));
     flex: 1 1 0;
     min-height: 0;
@@ -561,7 +561,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260907c";
+  const BUILD = "20260907d";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1489,7 +1489,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260907c", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260907d", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
