@@ -9,7 +9,8 @@
     "postcode": "74100",
     "year": "2026-2027",
     "sourceMonth": "2026-09",
-    "note": "Monthly EDT Sep 2026. Mon–Wed fixed. Thu/Fri alternate by ISO week parity: even=蓝/双周 (Vie de classe + Parole et vie), odd=红/单周 (SNT double + Français double)."
+    "note": "Monthly EDT Sep 2026 + swap notice 2026-09: Tue 08:58–11:01 Maths (Gaaya), Wed 10:07–11:59 Anglais (Duval). Mon–Wed otherwise fixed; Thu/Fri alternate by ISO parity (even=蓝/双周 Vie+Parole, odd=红/单周 SNT+FR doubles).",
+    "swapNotice": "2026-09 LENDARO: Duval Tue 08:58↔Gaaya Wed 11:05"
   },
   "weekParity": {
     "even": {
@@ -171,7 +172,7 @@
       },
       {
         "slot": "p2",
-        "subject": "ANGLAIS_LV1"
+        "subject": "MATHEMATIQUES"
       },
       {
         "slot": "p3",
@@ -207,7 +208,7 @@
       },
       {
         "slot": "p4",
-        "subject": "MATHEMATIQUES"
+        "subject": "ANGLAIS_LV1"
       }
     ]
   },

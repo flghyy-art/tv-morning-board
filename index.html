@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#b7b0a0">
+<meta name="theme-color" content="#7a7468">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -11,20 +11,21 @@
 <title>凯驿 · 6B · 晨间看板</title>
 <style>
   :root {
-    --bg: #b7b0a0;
-    --bg-2: #aaa393;
-    --panel: #cbc4b4;
-    --panel-2: #c0b8a8;
-    --ink: #241f19;
-    --ink-dim: #4e463e;
-    --ink-mute: #6a6258;
-    --gold: #8f5e1c;
-    --gold-2: #a3722e;
-    --line: rgba(36, 31, 25, 0.16);
-    --now: #a3722e;
-    --danger: #a24c34;
-    --ok: #3f7340;
-    --rain: #2f7084;
+    --bg: #7a7468;
+    --bg-2: #6e685c;
+    --panel: #8f887a;
+    --panel-2: #857e70;
+    --ink: #1c1814;
+    --ink-dim: #2e2923;
+    --ink-mute: #3f3932;
+    --gold: #d4a35a;
+    --gold-2: #e0b36e;
+    --line: rgba(20, 16, 12, 0.22);
+    --now: #d4a35a;
+    --danger: #c45c3e;
+    --ok: #6a9a5a;
+    --rain: #5a9aab;
+    --panel-text: #1c1814;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -42,8 +43,8 @@
   html { font-size: calc(100vmin / 50); }
   body {
     background:
-      radial-gradient(ellipse 70% 50% at 8% -10%, rgba(180, 150, 90, 0.12), transparent 55%),
-      radial-gradient(ellipse 45% 40% at 100% 100%, rgba(120, 150, 130, 0.10), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 8% -10%, rgba(120, 100, 60, 0.08), transparent 55%),
+      radial-gradient(ellipse 45% 40% at 100% 100%, rgba(70, 90, 80, 0.08), transparent 50%),
       var(--bg);
   }
   .board {
@@ -561,7 +562,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260904n";
+  const BUILD = "20260907a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -601,7 +602,8 @@
       "postcode": "74100",
       "year": "2026-2027",
       "sourceMonth": "2026-09",
-      "note": "Monthly EDT Sep 2026. Mon–Wed fixed. Thu/Fri alternate by ISO week parity: even=蓝/双周 (Vie de classe + Parole et vie), odd=红/单周 (SNT double + Français double)."
+      "note": "Monthly EDT Sep 2026 + swap notice 2026-09: Tue 08:58–11:01 Maths (Gaaya), Wed 10:07–11:59 Anglais (Duval). Mon–Wed otherwise fixed; Thu/Fri alternate by ISO parity (even=蓝/双周 Vie+Parole, odd=红/单周 SNT+FR doubles).",
+      "swapNotice": "2026-09 LENDARO: Duval Tue 08:58↔Gaaya Wed 11:05"
     },
     "weekParity": {
       "even": {
@@ -763,7 +765,7 @@
         },
         {
           "slot": "p2",
-          "subject": "ANGLAIS_LV1"
+          "subject": "MATHEMATIQUES"
         },
         {
           "slot": "p3",
@@ -799,7 +801,7 @@
         },
         {
           "slot": "p4",
-          "subject": "MATHEMATIQUES"
+          "subject": "ANGLAIS_LV1"
         }
       ]
     },
@@ -1488,7 +1490,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260904n", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260907a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
