@@ -358,6 +358,7 @@
   .period.is-lunch .zh, .period.is-break .zh { display: none; }
   .period.is-lunch .when .end i, .period.is-break .when .end i { display: none; }
   .period.is-lunch .when .end, .period.is-break .when .end { font-size: 1rem; font-weight: 600; color: var(--ink-mute); }
+  .period.is-extra .fr { font-style: italic; }
   .period .when {
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
@@ -561,7 +562,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260907e";
+  const BUILD = "20260909a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -915,6 +916,34 @@
           "subject": "FRANCAIS"
         }
       ]
+    },
+    "afterSchool": {
+      "from": "2026-09-16",
+      "byDow": {
+        "3": [
+          {
+            "start": "13:30",
+            "end": "14:30",
+            "fr": "Formation Musci",
+            "zh": "音乐",
+            "color": "#4a6b5c"
+          },
+          {
+            "start": "15:30",
+            "end": "17:30",
+            "fr": "Poterie",
+            "zh": "陶艺",
+            "color": "#6b5a4a"
+          },
+          {
+            "start": "17:30",
+            "end": "18:30",
+            "fr": "合唱",
+            "zh": "",
+            "color": "#4a5a6b"
+          }
+        ]
+      }
     }
   };
 
@@ -1183,6 +1212,7 @@
   function blockTitle(it) {
     if (it.type === "lunch") return { fr: it.fr || "PAUSE DÉJEUNER", zh: it.zh || "午休", color: "#6a6058", room: "" };
     if (it.type === "break") return { fr: it.fr || "RÉCRÉATION", zh: it.zh || "课间", color: "#6a6058", room: "" };
+    if (it.type === "extra") return { fr: it.fr || "", zh: it.zh || "", color: it.color || "#4a6b5c", room: "" };
     const s = subj(it.subject);
     return { fr: s.fr, zh: s.zh, color: s.color, room: it.room || "", official: s.official || "" };
   }
@@ -1225,6 +1255,40 @@
       '<div class="lbl">' + esc(label) + '</div>' +
       '<div class="t">' + esc(end) + '</div>' +
       (hint && hint !== end ? '<div class="hint">' + esc(hint) + '</div>' : '');
+  }
+
+
+  function ymdFromParts(p) {
+    return p.year + "-" + p.month + "-" + p.day;
+  }
+
+  function ymdForNextSchoolDay(dow) {
+    const base = parisParts();
+    let add = 1;
+    if (dow === 5) add = 3;
+    else if (dow === 6) add = 2;
+    else if (dow === 0) add = 1;
+    const d = new Date(Date.UTC(Number(base.year), Number(base.month) - 1, Number(base.day)));
+    d.setUTCDate(d.getUTCDate() + add);
+    return String(d.getUTCFullYear()) + "-" + pad2(d.getUTCMonth() + 1) + "-" + pad2(d.getUTCDate());
+  }
+
+  function afterSchoolItems(dayNum, ymd) {
+    const pack = schedule.afterSchool;
+    if (!pack || !pack.byDow) return [];
+    if (pack.from && ymd && ymd < pack.from) return [];
+    const list = pack.byDow[String(dayNum)] || [];
+    return list.map(function (L) {
+      return {
+        type: "extra",
+        start: L.start,
+        end: L.end,
+        fr: L.fr || "",
+        zh: L.zh || "",
+        color: L.color || "#4a6b5c",
+        room: ""
+      };
+    });
   }
 
   function rawDay(dayNum, parity) {
@@ -1291,11 +1355,12 @@
       return;
     }
     const t = toMin(nowHm);
-    const items = rawDay(dow);
+    const items = rawDay(dow).concat(afterSchoolItems(dow, ymdFromParts(parisParts())));
     el.innerHTML = items.map(function (it) {
       const title = blockTitle(it);
       const a = toMin(it.start), b = toMin(it.end);
       let cls = "period";
+      if (it.type === "extra") cls += " is-extra";
       if (t >= b) cls += " is-past";
       else if (t >= a && t < b) cls += " is-now";
       else if (p.next && it.start === p.next.start) cls += " is-next";
@@ -1353,7 +1418,7 @@
     if (kick) kick.textContent = tomorrowLabel(dow);
     const end = lastBell(n, par);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
-    const items = rawDay(n, par);
+    const items = rawDay(n, par).concat(afterSchoolItems(n, ymdForNextSchoolDay(dow)));
     if (!items.length) {
       el.innerHTML = '<div class="tm-empty">无课</div>';
       return;
@@ -1489,7 +1554,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260907e", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260909a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
