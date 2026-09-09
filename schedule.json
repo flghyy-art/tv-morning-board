@@ -323,5 +323,33 @@
         "subject": "FRANCAIS"
       }
     ]
+  },
+  "afterSchool": {
+    "from": "2026-09-16",
+    "byDow": {
+      "3": [
+        {
+          "start": "13:30",
+          "end": "14:30",
+          "fr": "Formation Musci",
+          "zh": "音乐",
+          "color": "#4a6b5c"
+        },
+        {
+          "start": "15:30",
+          "end": "17:30",
+          "fr": "Poterie",
+          "zh": "陶艺",
+          "color": "#6b5a4a"
+        },
+        {
+          "start": "17:30",
+          "end": "18:30",
+          "fr": "合唱",
+          "zh": "",
+          "color": "#4a5a6b"
+        }
+      ]
+    }
   }
 }
