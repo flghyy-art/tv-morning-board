@@ -325,7 +325,7 @@
     ]
   },
   "afterSchool": {
-    "from": "2026-09-16",
+    "from": "2026-09-11",
     "byDow": {
       "3": [
         {
@@ -333,21 +333,34 @@
           "end": "14:30",
           "fr": "Formation Musci",
           "zh": "音乐",
-          "color": "#4a6b5c"
+          "color": "#4a6b5c",
+          "from": "2026-09-16"
         },
         {
           "start": "15:30",
           "end": "17:30",
           "fr": "Poterie",
           "zh": "陶艺",
-          "color": "#6b5a4a"
+          "color": "#6b5a4a",
+          "from": "2026-09-16"
         },
         {
           "start": "17:30",
           "end": "18:30",
           "fr": "合唱",
           "zh": "",
-          "color": "#4a5a6b"
+          "color": "#4a5a6b",
+          "from": "2026-09-16"
+        }
+      ],
+      "5": [
+        {
+          "start": "15:30",
+          "end": "16:30",
+          "fr": "Piano",
+          "zh": "钢琴",
+          "color": "#5a4a6b",
+          "from": "2026-09-11"
         }
       ]
     }
