@@ -662,7 +662,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260910e";
+  const BUILD = "20260910f";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1069,14 +1069,7 @@
               "until": "2026-09-11",
               "when": "周五",
               "who": "凯驿",
-              "text": "法语国家评估：带笔、有线/头戴耳机、阅读书；助学金问卷（不申请也要回）；开学弥撒 17:15（可选）"
-            },
-            {
-              "on": "2026-09-11",
-              "until": "2026-09-12",
-              "when": "周五前",
-              "who": "凯驿",
-              "text": "APEL 大会回执（forms.gle）"
+              "text": "法语国家评估：带笔、有线/头戴耳机、一本阅读书"
             },
             {
               "on": "weekend",
@@ -1090,21 +1083,21 @@
               "until": "2026-09-14",
               "when": "周一",
               "who": "凯驿",
-              "text": "法语贴姓名词典（最好 Robert Collège）+ 美术大本封面（姓名班级学年 Arts plastiques）"
+              "text": "带贴姓名词典（最好 Robert Collège）+ 美术大本封面（姓名班级学年 Arts plastiques）"
             },
             {
               "on": "2026-09-15",
               "until": "2026-09-15",
               "when": "周二",
               "who": "凯驿",
-              "text": "数学 DM1《Les entiers naturels》"
+              "text": "交数学 DM1《Les entiers naturels》"
             },
             {
               "on": "2026-09-17",
               "until": "2026-09-17",
               "when": "周四",
               "who": "凯驿",
-              "text": "数学国家评估（同上带物）+ APEL 大会 18:00 礼堂"
+              "text": "数学国家评估：带笔、有线/头戴耳机、一本阅读书"
             },
             {
               "on": "2026-09-21",
@@ -1119,47 +1112,6 @@
               "when": "周二",
               "who": "凯驿",
               "text": "体育国家评估"
-            },
-            {
-              "on": "2026-09-23",
-              "until": "2026-09-23",
-              "when": "周三",
-              "who": "凯驿",
-              "text": "AS 开始 12:30 体育馆"
-            },
-            {
-              "on": "2026-09-25",
-              "until": "2026-09-25",
-              "when": "周五",
-              "who": "凯驿",
-              "text": "16:30 Annemasse 市政厅广场合唱 Septembre en Or"
-            }
-          ]
-        },
-        {
-          "id": "kaishuo",
-          "titleZh": "凯铄 · Chamarette",
-          "items": [
-            {
-              "on": "soon",
-              "until": "2026-09-20",
-              "when": "尽快",
-              "who": "凯铄",
-              "text": "ED 选食堂饮食类型（不吃饭也要选）"
-            },
-            {
-              "on": "2026-09-16",
-              "until": "2026-10-01",
-              "when": "周三",
-              "who": "凯铄",
-              "text": "陪泳资质如需要：13–14 去泳池（或周五 16:30–17）"
-            },
-            {
-              "on": "2026-09-17",
-              "until": "2026-09-17",
-              "when": "周四 20:00",
-              "who": "凯铄",
-              "text": "APEL 家长会 · 体育馆"
             }
           ]
         }
@@ -2024,7 +1976,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260910e", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260910f", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
