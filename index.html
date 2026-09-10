@@ -278,9 +278,10 @@
   }
   .dismiss {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.45rem 0.85rem;
     margin-top: 0.55rem;
     flex: none;
     width: 100%;
@@ -308,6 +309,28 @@
     font-size: 0.78rem;
     opacity: 0.88;
     letter-spacing: 0.04em;
+  }
+  .dismiss .piano {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-left: 0.35rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid rgba(255,250,244,0.35);
+    font-variant-numeric: tabular-nums;
+  }
+  .dismiss .piano .pl {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    opacity: 0.92;
+    white-space: nowrap;
+  }
+  .dismiss .piano .pt {
+    font-size: 1.85rem;
+    font-weight: 750;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
   }
   .nowline {
     margin: 0.08rem 0 0.22rem;
@@ -639,7 +662,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260910d";
+  const BUILD = "20260910e";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1520,10 +1543,19 @@
       el.innerHTML = '<div class="lbl">下课</div><div class="t">—</div>';
       return;
     }
+    const extras = afterSchoolItems(d, view.ymd);
+    let piano = null;
+    extras.forEach(function (e) {
+      const name = ((e.zh || "") + " " + (e.fr || "")).toLowerCase();
+      if (name.indexOf("钢琴") >= 0 || name.indexOf("piano") >= 0) piano = e;
+    });
     el.innerHTML =
       '<div class="lbl">' + esc(label) + '</div>' +
       '<div class="t">' + esc(end) + '</div>' +
-      (hint ? '<div class="hint">' + esc(hint) + '</div>' : '');
+      (hint ? '<div class="hint">' + esc(hint) + '</div>' : '') +
+      (piano
+        ? ('<div class="piano"><span class="pl">钢琴课</span><span class="pt">' + esc(piano.start) + "</span></div>")
+        : "");
   }
 
 
@@ -1992,7 +2024,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260910d", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260910e", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
