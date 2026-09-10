@@ -639,7 +639,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260910c";
+  const BUILD = "20260910d";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1419,6 +1419,69 @@
     return lessons[lessons.length - 1].end;
   }
 
+  /** School + after-school end for a given day. */
+  function dayEndHm(dow, parity, ymd) {
+    let end = lastBell(dow, parity);
+    const extras = afterSchoolItems(dow, ymd || ymdFromParts(parisParts()));
+    extras.forEach(function (e) {
+      if (!end || toMin(e.end) > toMin(end)) end = e.end;
+    });
+    return end;
+  }
+
+  function ymdAddDays(ymd, add) {
+    const p = ymd.split("-").map(Number);
+    const d = new Date(Date.UTC(p[0], p[1] - 1, p[2]));
+    d.setUTCDate(d.getUTCDate() + add);
+    return String(d.getUTCFullYear()) + "-" + pad2(d.getUTCMonth() + 1) + "-" + pad2(d.getUTCDate());
+  }
+
+  function daysUntilNextSchool(dow) {
+    if (dow === 5) return 3;
+    if (dow === 6) return 2;
+    if (dow === 0) return 1;
+    return 1;
+  }
+
+  /**
+   * After today's last class/activity, the main panel shows the next school day.
+   * Weekend also shows Monday.
+   */
+  function mainDayView(nowHm, dow, parity) {
+    const todayYmd = ymdFromParts(parisParts());
+    const weekend = (dow === 0 || dow === 6);
+    let done = weekend;
+    if (!weekend) {
+      const end = dayEndHm(dow, parity, todayYmd);
+      done = !!(end && toMin(nowHm) >= toMin(end));
+    }
+    if (!done) {
+      return {
+        preview: false,
+        dow: dow,
+        parity: parity,
+        ymd: todayYmd,
+        labelPrefix: "今天"
+      };
+    }
+    const add = daysUntilNextSchool(dow);
+    const focusDow = nextSchoolDay(dow);
+    const focusYmd = ymdAddDays(todayYmd, add);
+    const focusPar = isoWeekParityFromParts({
+      year: focusYmd.slice(0, 4),
+      month: focusYmd.slice(5, 7),
+      day: focusYmd.slice(8, 10)
+    });
+    const prefix = (dow === 5 || weekend) ? "周一" : "明天";
+    return {
+      preview: true,
+      dow: focusDow,
+      parity: focusPar,
+      ymd: focusYmd,
+      labelPrefix: prefix
+    };
+  }
+
   function renderDismiss(nowHm, dow, parity) {
     const el = document.getElementById("dismiss");
     if (!el) return;
@@ -1438,19 +1501,29 @@
         day: pad2(baseDate.getUTCDate())
       });
     }
+    const view = mainDayView(nowHm, dow, parity);
+    // Badge shows the day currently displayed in the main panel
+    d = view.dow;
+    par = view.parity;
+    if (view.preview) {
+      label = view.labelPrefix + "下课";
+      hint = "";
+    } else if (dow === 0 || dow === 6) {
+      label = "周一放学";
+      hint = "周末";
+    } else {
+      label = "今天下课";
+      hint = "";
+    }
     const end = lastBell(d, par);
     if (!end) {
       el.innerHTML = '<div class="lbl">下课</div><div class="t">—</div>';
       return;
     }
-    if (dow >= 1 && dow <= 5 && toMin(nowHm) >= toMin(end)) {
-      label = "已放学";
-      hint = end;
-    }
     el.innerHTML =
       '<div class="lbl">' + esc(label) + '</div>' +
       '<div class="t">' + esc(end) + '</div>' +
-      (hint && hint !== end ? '<div class="hint">' + esc(hint) + '</div>' : '');
+      (hint ? '<div class="hint">' + esc(hint) + '</div>' : '');
   }
 
 
@@ -1509,20 +1582,27 @@
     return out;
   }
 
-  function renderHero(p, nowHm, dow) {
+  function renderHero(p, nowHm, dow, view) {
     const el = document.getElementById("hero");
     if (!el) return;
+    if (!view) view = mainDayView(nowHm, dow, currentParity);
+    if (view.preview) {
+      const classes = rawDay(view.dow, view.parity);
+      if (!classes.length) {
+        el.innerHTML = '<span class="tag">' + esc(view.labelPrefix) + '</span>无课';
+        return;
+      }
+      const first = classes[0];
+      const t = blockTitle(first);
+      el.innerHTML = '<span class="tag">' + esc(view.labelPrefix) + '</span><b>' + esc(t.fr) + '</b> · 首节 ' + esc(first.start);
+      return;
+    }
     if (dow === 0 || dow === 6) {
       el.innerHTML = '<span class="tag">周末</span>休息';
       return;
     }
     const classes = rawDay(dow);
     if (!classes.length) { el.textContent = ""; return; }
-    const last = classes[classes.length - 1];
-    if (toMin(nowHm) >= toMin(last.end)) {
-      el.innerHTML = '<span class="tag">已放学</span>';
-      return;
-    }
     if (p.current && p.current.type === "class") {
       const t = blockTitle(p.current);
       el.innerHTML = '<span class="tag">现在</span><b>' + esc(t.fr) + '</b> · ' +
@@ -1538,31 +1618,34 @@
     el.textContent = "";
   }
 
-  function renderKicker(dow, parity) {
+  function renderKicker(dow, parity, view) {
     const el = document.getElementById("today-kicker");
     if (!el) return;
-    if (dow === 0 || dow === 6) { el.textContent = "周末 · 无课"; return; }
-    const n = rawDay(dow, parity).length;
-    const pl = parityLabel(parity).replace(" · ", "·");
-    el.textContent = "今天 · " + n + " 节课 · " + pl;
+    if (!view) view = mainDayView(parisParts().hhmm, dow, parity);
+    const n = rawDay(view.dow, view.parity).length;
+    const pl = parityLabel(view.parity).replace(" · ", "·");
+    el.textContent = view.labelPrefix + " · " + n + " 节课 · " + pl;
   }
 
-  function renderTimeline(p, nowHm, dow) {
+  function renderTimeline(p, nowHm, dow, view) {
     const el = document.getElementById("timeline");
-    if (dow === 0 || dow === 6) {
-      el.innerHTML = '<div class="empty">周一到周五显示今天的课</div>';
+    if (!view) view = mainDayView(nowHm, dow, currentParity);
+    const items = rawDay(view.dow, view.parity).concat(afterSchoolItems(view.dow, view.ymd));
+    if (!items.length) {
+      el.innerHTML = '<div class="empty">' + (view.preview ? (view.labelPrefix + "无课") : "周一到周五显示今天的课") + "</div>";
       return;
     }
     const t = toMin(nowHm);
-    const items = rawDay(dow).concat(afterSchoolItems(dow, ymdFromParts(parisParts())));
     el.innerHTML = items.map(function (it) {
       const title = blockTitle(it);
       const a = toMin(it.start), b = toMin(it.end);
       let cls = "period";
       if (it.type === "extra") cls += " is-extra";
-      if (t >= b) cls += " is-past";
-      else if (t >= a && t < b) cls += " is-now";
-      else if (p.next && it.start === p.next.start) cls += " is-next";
+      if (!view.preview) {
+        if (t >= b) cls += " is-past";
+        else if (t >= a && t < b) cls += " is-now";
+        else if (p.next && it.start === p.next.start) cls += " is-next";
+      }
       const badge = (cls.indexOf("is-now") >= 0)
         ? '<span class="badge">现在</span>'
         : (cls.indexOf("is-next") >= 0 ? '<span class="badge">下一节</span>' : "");
@@ -1738,12 +1821,37 @@
     const el = document.getElementById("week");
     const kick = document.getElementById("tm-kicker");
     const bellEl = document.getElementById("tm-bell");
-    const n = nextSchoolDay(dow);
-    const par = parityForNextSchoolDay(dow);
-    if (kick) kick.textContent = tomorrowLabel(dow);
-    const end = lastBell(n, par);
+    const view = mainDayView(nowHm, dow, currentParity);
+    // Left panel: next school day after whatever the main panel is showing
+    const baseDow = view.dow;
+    const n = nextSchoolDay(baseDow);
+    const addFromToday = daysUntilNextSchool(dow) + (view.preview ? daysUntilNextSchool(view.dow) : 0);
+    // Simpler: from view.ymd walk to next school day
+    let leftYmd = view.ymd;
+    let leftDow = view.dow;
+    let steps = 0;
+    while (steps < 4) {
+      leftYmd = ymdAddDays(leftYmd, 1);
+      leftDow = (leftDow === 5) ? 1 : (leftDow === 6 || leftDow === 0) ? 1 : leftDow + 1;
+      // fix leftDow from ymd
+      leftDow = dowFromYmd(leftYmd);
+      if (leftDow >= 1 && leftDow <= 5) break;
+      steps++;
+    }
+    const par = isoWeekParityFromParts({
+      year: leftYmd.slice(0, 4),
+      month: leftYmd.slice(5, 7),
+      day: leftYmd.slice(8, 10)
+    });
+    const pl = parityLabel(par).replace(" · ", "·");
+    const leftCount = rawDay(leftDow, par).length;
+    const leftPrefix = (view.preview
+      ? ((leftDow === 1) ? "周一" : ("周" + "日一二三四五六"[leftDow]))
+      : ((dow === 5 || dow === 6 || dow === 0) ? "周一" : "明天"));
+    if (kick) kick.textContent = leftPrefix + " · " + leftCount + " 节课 · " + pl;
+    const end = lastBell(leftDow, par);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
-    const items = rawDay(n, par).concat(afterSchoolItems(n, ymdForNextSchoolDay(dow)));
+    const items = rawDay(leftDow, par).concat(afterSchoolItems(leftDow, leftYmd));
     if (!el) return;
     if (!items.length) {
       el.innerHTML = '<div class="tm-empty">无课</div>';
@@ -1770,11 +1878,14 @@
   function renderSchedule() {
     const p = parisParts();
     currentParity = isoWeekParityFromParts(p);
-    const ph = (p.dow >= 1 && p.dow <= 5) ? phase(p.hhmm, p.dow) : { current: null, next: null, items: [] };
+    const view = mainDayView(p.hhmm, p.dow, currentParity);
+    const ph = (!view.preview && p.dow >= 1 && p.dow <= 5)
+      ? phase(p.hhmm, p.dow)
+      : { current: null, next: null, items: [] };
     renderDismiss(p.hhmm, p.dow, currentParity);
-    renderKicker(p.dow, currentParity);
-    renderHero(ph, p.hhmm, p.dow);
-    renderTimeline(ph, p.hhmm, p.dow);
+    renderKicker(p.dow, currentParity, view);
+    renderHero(ph, p.hhmm, p.dow, view);
+    renderTimeline(ph, p.hhmm, p.dow, view);
     renderWeek(p.hhmm, p.dow);
     renderTodos();
     lastPhase = phaseKey();
@@ -1881,7 +1992,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260910c", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260910d", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
