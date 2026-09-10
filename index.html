@@ -639,7 +639,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260910b";
+  const BUILD = "20260910c";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -995,7 +995,7 @@
       ]
     },
     "afterSchool": {
-      "from": "2026-09-16",
+      "from": "2026-09-11",
       "byDow": {
         "3": [
           {
@@ -1003,21 +1003,34 @@
             "end": "14:30",
             "fr": "Formation Musci",
             "zh": "音乐",
-            "color": "#4a6b5c"
+            "color": "#4a6b5c",
+            "from": "2026-09-16"
           },
           {
             "start": "15:30",
             "end": "17:30",
             "fr": "Poterie",
             "zh": "陶艺",
-            "color": "#6b5a4a"
+            "color": "#6b5a4a",
+            "from": "2026-09-16"
           },
           {
             "start": "17:30",
             "end": "18:30",
             "fr": "合唱",
             "zh": "",
-            "color": "#4a5a6b"
+            "color": "#4a5a6b",
+            "from": "2026-09-16"
+          }
+        ],
+        "5": [
+          {
+            "start": "15:30",
+            "end": "16:30",
+            "fr": "Piano",
+            "zh": "钢琴",
+            "color": "#5a4a6b",
+            "from": "2026-09-11"
           }
         ]
       }
@@ -1459,10 +1472,12 @@
   function afterSchoolItems(dayNum, ymd) {
     const pack = schedule.afterSchool;
     if (!pack || !pack.byDow) return [];
-    if (pack.from && ymd && ymd < pack.from) return [];
     const list = pack.byDow[String(dayNum)] || [];
-    return list.map(function (L) {
-      return {
+    const out = [];
+    list.forEach(function (L) {
+      const from = L.from || pack.from;
+      if (from && ymd && ymd < from) return;
+      out.push({
         type: "extra",
         start: L.start,
         end: L.end,
@@ -1470,8 +1485,9 @@
         zh: L.zh || "",
         color: L.color || "#4a6b5c",
         room: ""
-      };
+      });
     });
+    return out;
   }
 
   function rawDay(dayNum, parity) {
@@ -1865,7 +1881,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260910b", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260910c", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
