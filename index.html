@@ -50,12 +50,12 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: minmax(16rem, 0.62fr) minmax(0, 1.58fr);
-    grid-template-rows: auto minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.48fr);
+    grid-template-rows: auto minmax(0, 0.72fr) minmax(0, 1.28fr);
     grid-template-areas:
       "header header"
       "weather today"
-      "tomorrow today";
+      "todos today";
     padding: 1.8vh 2.2vw 1.4vh;
     gap: 1.35vh 1.8vw;
   }
@@ -155,7 +155,7 @@
   .dot.cache { background: var(--gold); }
   .dot.off { background: var(--danger); }
 
-  .weather, .today, .tomorrow {
+  .weather, .today, .todos {
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 1.1rem;
@@ -425,80 +425,95 @@
     50% { box-shadow: 0 0 1.1rem 0 rgba(180,122,40,0.16); }
   }
 
-  .tomorrow {
-    grid-area: tomorrow;
-    padding: 0.75rem 0.95rem 0.8rem;
+  .todos {
+    grid-area: todos;
+    background: linear-gradient(165deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--line);
+    border-radius: 1.1rem;
+    padding: 0.85rem 1.0rem 0.9rem;
     display: flex;
     flex-direction: column;
     min-height: 0;
     overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
   }
-  .tomorrow-head {
+  .todos-head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: 0.6rem;
     margin-bottom: 0.45rem;
+    flex-shrink: 0;
   }
-  .tomorrow-kicker {
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    color: var(--gold);
+  .todos-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  .todos-sub {
+    font-size: 0.95rem;
     font-weight: 700;
-  }
-  .tomorrow-bell {
-    font-size: 1.15rem;
-    font-weight: 750;
     color: var(--gold);
-    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
   }
-  .tomorrow-list {
+  .tm-compact {
+    flex-shrink: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--ink-dim);
+    padding: 0.28rem 0.45rem;
+    margin-bottom: 0.45rem;
+    border-radius: 0.45rem;
+    background: rgba(18,22,18,0.08);
+    border: 1px solid var(--line);
+  }
+  .tm-compact b { color: var(--gold); font-weight: 800; }
+  .todos-scroll {
     flex: 1;
     min-height: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 0.28rem;
+    overflow: auto;
+    padding-right: 0.2rem;
   }
-  .tm-row {
-    display: grid;
-    grid-template-columns: 5.6rem minmax(0, 1fr);
-    gap: 0.45rem;
-    align-items: center;
-    padding: 0.28rem 0.55rem;
-    border-radius: 0.5rem;
-    background: rgba(18,22,18,0.08);
-    border-left: 0.32rem solid var(--c, var(--ink-mute));
-    flex: 1 1 0;
-    min-height: 0;
+  .todos-group {
+    margin-bottom: 0.55rem;
   }
-  .tm-row .t {
-    font-variant-numeric: tabular-nums;
-    font-size: 0.92rem;
-    color: var(--ink-dim);
-    white-space: nowrap;
-  }
-  .tm-row .t b {
+  .todos-group:last-child { margin-bottom: 0; }
+  .todos-group-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
     color: var(--gold);
-    font-weight: 750;
+    margin: 0.15rem 0 0.28rem;
   }
-  .tm-row .n {
-    font-size: 1.05rem;
+  .todo-row {
+    display: grid;
+    grid-template-columns: 5.4rem minmax(0, 1fr);
+    gap: 0.35rem 0.55rem;
+    padding: 0.32rem 0.2rem;
+    border-bottom: 1px solid rgba(12,16,12,0.12);
+    align-items: start;
+  }
+  .todo-row:last-child { border-bottom: none; }
+  .todo-when {
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--danger);
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+  }
+  .todo-text {
+    font-size: 1.12rem;
     font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: var(--ink);
+    line-height: 1.28;
   }
-  .tm-row .n span {
-    font-size: 0.82rem;
-    font-weight: 600;
+  .todo-row.is-soon .todo-when { color: var(--danger); }
+  .todo-row.is-later .todo-when { color: var(--ink-dim); }
+  .todo-empty {
     color: var(--ink-mute);
-    margin-left: 0.35rem;
-  }
-  .tm-empty {
-    color: var(--ink-mute);
-    font-size: 1.05rem;
-    padding: 0.35rem 0.1rem;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.1rem;
   }
 
   .empty { color: var(--ink-mute); font-size: 1.1rem; padding: 0.4rem 0; }
@@ -552,17 +567,18 @@
     <div class="dismiss" id="dismiss"></div>
   </section>
 
-  <section class="tomorrow" aria-label="明天课表">
-    <div class="tomorrow-head">
-      <div class="tomorrow-kicker" id="tm-kicker">明天 · 课表</div>
-      <div class="tomorrow-bell" id="tm-bell"></div>
+  <section class="todos" aria-label="待办">
+    <div class="todos-head">
+      <div class="todos-title">待办 · À faire</div>
+      <div class="todos-sub" id="todos-count"></div>
     </div>
-    <div class="tomorrow-list" id="week"></div>
+    <div class="tm-compact" id="tm-compact">明天 · —</div>
+    <div class="todos-scroll" id="todos"></div>
   </section>
 </div>
 <script>
 (function () {
-  const BUILD = "20260909a";
+  const BUILD = "20260910a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -944,6 +960,90 @@
           }
         ]
       }
+    },
+    "todos": {
+      "groups": [
+        {
+          "id": "kaiyi",
+          "titleZh": "凯驿 · Saint-François",
+          "titleFr": "Parents / Kaiyi",
+          "items": [
+            {
+              "until": "2026-09-11",
+              "when": "9/11 周五",
+              "text": "法语国家评估：带笔、有线/头戴耳机、阅读书；助学金问卷（不申请也要回）；开学弥撒 17:15（可选）"
+            },
+            {
+              "until": "2026-09-12",
+              "when": "9/12 前",
+              "text": "APEL 大会回执",
+              "url": "https://forms.gle/cPEyueFvWArYQiDx6"
+            },
+            {
+              "until": "2026-09-14",
+              "when": "周末",
+              "text": "复习乘法表（GAAYA）"
+            },
+            {
+              "until": "2026-09-14",
+              "when": "9/14 周一",
+              "text": "法语：贴姓名词典（最好 Robert Collège）+ 美术大本封面（姓名班级学年 Arts plastiques）"
+            },
+            {
+              "until": "2026-09-15",
+              "when": "9/15",
+              "text": "数学 DM1《Les entiers naturels》"
+            },
+            {
+              "until": "2026-09-17",
+              "when": "9/17",
+              "text": "数学国家评估（同上带物）+ APEL 大会 18:00 礼堂"
+            },
+            {
+              "until": "2026-09-21",
+              "when": "9/21",
+              "text": "数学 DS1"
+            },
+            {
+              "until": "2026-09-22",
+              "when": "9/22",
+              "text": "体育国家评估"
+            },
+            {
+              "until": "2026-09-23",
+              "when": "9/23",
+              "text": "AS 开始 12:30 体育馆"
+            },
+            {
+              "until": "2026-09-25",
+              "when": "9/25 16:30",
+              "text": "Annemasse 市政厅广场合唱 Septembre en Or"
+            }
+          ]
+        },
+        {
+          "id": "kaishuo",
+          "titleZh": "凯铄 · Chamarette",
+          "titleFr": "Kaishuo",
+          "items": [
+            {
+              "until": "2026-09-20",
+              "when": "尽快",
+              "text": "ED 选食堂饮食类型（不吃饭也要选）"
+            },
+            {
+              "until": "2026-10-01",
+              "when": "陪泳",
+              "text": "陪泳资质如需要：周三 13–14 或周五 16:30–17 去泳池"
+            },
+            {
+              "until": "2026-09-17",
+              "when": "9/17 20:00",
+              "text": "APEL 家长会 · 体育馆"
+            }
+          ]
+        }
+      ]
     }
   };
 
@@ -1409,28 +1509,77 @@
     return "明天 · " + rawDay(n, par).length + " 节课 · " + pl;
   }
 
-  function renderWeek(nowHm, dow) {
-    const el = document.getElementById("week");
-    const kick = document.getElementById("tm-kicker");
-    const bellEl = document.getElementById("tm-bell");
-    const n = nextSchoolDay(dow);
-    const par = parityForNextSchoolDay(dow);
-    if (kick) kick.textContent = tomorrowLabel(dow);
-    const end = lastBell(n, par);
-    if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
-    const items = rawDay(n, par).concat(afterSchoolItems(n, ymdForNextSchoolDay(dow)));
-    if (!items.length) {
-      el.innerHTML = '<div class="tm-empty">无课</div>';
+
+  function daysUntil(ymd, todayYmd) {
+    if (!ymd || !todayYmd) return 99;
+    const a = ymd.split("-").map(Number);
+    const b = todayYmd.split("-").map(Number);
+    const da = Date.UTC(a[0], a[1] - 1, a[2]);
+    const db = Date.UTC(b[0], b[1] - 1, b[2]);
+    return Math.round((da - db) / 86400000);
+  }
+
+  function activeTodoItems(todayYmd) {
+    const pack = schedule.todos;
+    if (!pack || !pack.groups) return [];
+    const out = [];
+    pack.groups.forEach(function (g) {
+      const items = [];
+      (g.items || []).forEach(function (it) {
+        if (it.until && todayYmd && it.until < todayYmd) return;
+        items.push(it);
+      });
+      if (items.length) out.push({ titleZh: g.titleZh || g.id, items: items });
+    });
+    return out;
+  }
+
+  function renderTodos() {
+    const el = document.getElementById("todos");
+    const countEl = document.getElementById("todos-count");
+    if (!el) return;
+    const todayYmd = ymdFromParts(parisParts());
+    const groups = activeTodoItems(todayYmd);
+    let n = 0;
+    groups.forEach(function (g) { n += g.items.length; });
+    if (countEl) countEl.textContent = n ? (n + " 项") : "";
+    if (!n) {
+      el.innerHTML = '<div class="todo-empty">暂无待办</div>';
       return;
     }
-    el.innerHTML = items.map(function (it) {
-      const title = blockTitle(it);
-      return '<div class="tm-row" style="--c:' + esc(title.color) + '">' +
-        '<div class="t">' + esc(it.start) + '–<b>' + esc(it.end) + "</b></div>" +
-        '<div class="n">' + esc(title.fr) +
-        (title.zh ? "<span>" + esc(title.zh) + "</span>" : "") +
-        "</div></div>";
+    el.innerHTML = groups.map(function (g) {
+      const rows = g.items.map(function (it) {
+        const d = daysUntil(it.until, todayYmd);
+        const soon = d <= 3;
+        const cls = "todo-row " + (soon ? "is-soon" : "is-later");
+        return '<div class="' + cls + '">' +
+          '<div class="todo-when">' + esc(it.when || "") + "</div>" +
+          '<div class="todo-text">' + esc(it.text || "") + "</div>" +
+          "</div>";
+      }).join("");
+      return '<div class="todos-group"><div class="todos-group-title">' + esc(g.titleZh) + "</div>" + rows + "</div>";
     }).join("");
+  }
+
+  function renderWeek(nowHm, dow) {
+    const el = document.getElementById("tm-compact");
+    const n = nextSchoolDay(dow);
+    const par = parityForNextSchoolDay(dow);
+    const end = lastBell(n, par);
+    const items = rawDay(n, par).concat(afterSchoolItems(n, ymdForNextSchoolDay(dow)));
+    if (!el) return;
+    if (!items.length) {
+      el.innerHTML = esc(tomorrowLabel(dow)) + " · 无课";
+      return;
+    }
+    const names = items.slice(0, 4).map(function (it) {
+      const t = blockTitle(it);
+      return t.zh || t.fr;
+    }).filter(Boolean);
+    const more = items.length > 4 ? "…" : "";
+    el.innerHTML = esc(tomorrowLabel(dow)) +
+      (end ? (" · 下课 <b>" + esc(end) + "</b>") : "") +
+      (names.length ? (" · " + esc(names.join("、") + more)) : "");
   }
 
   function phaseKey() {
@@ -1450,6 +1599,7 @@
     renderHero(ph, p.hhmm, p.dow);
     renderTimeline(ph, p.hhmm, p.dow);
     renderWeek(p.hhmm, p.dow);
+    renderTodos();
     lastPhase = phaseKey();
   }
 
@@ -1554,7 +1704,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260909a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260910a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
