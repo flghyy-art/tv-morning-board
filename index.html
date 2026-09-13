@@ -662,7 +662,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260910f";
+  const BUILD = "20260913a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1065,13 +1065,6 @@
           "titleZh": "凯驿 · Saint-François",
           "items": [
             {
-              "on": "2026-09-11",
-              "until": "2026-09-11",
-              "when": "周五",
-              "who": "凯驿",
-              "text": "法语国家评估：带笔、有线/头戴耳机、一本阅读书"
-            },
-            {
               "on": "weekend",
               "until": "2026-09-14",
               "when": "本周末",
@@ -1111,7 +1104,7 @@
               "until": "2026-09-22",
               "when": "周二",
               "who": "凯驿",
-              "text": "体育国家评估"
+              "text": "国家体能评估 EPS 13:00–15:00：带室内运动鞋（baskets d’intérieur）"
             }
           ]
         }
@@ -1976,7 +1969,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260910f", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260913a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
