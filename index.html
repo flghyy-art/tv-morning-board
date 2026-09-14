@@ -662,7 +662,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260913a";
+  const BUILD = "20260914a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1105,6 +1105,21 @@
               "when": "周二",
               "who": "凯驿",
               "text": "国家体能评估 EPS 13:00–15:00：带室内运动鞋（baskets d’intérieur）"
+            }
+          ]
+        },
+        {
+          "id": "kaishuo",
+          "titleZh": "凯铄 · Chamarette",
+          "items": [
+            {
+              "on": "weekly",
+              "dow": 2,
+              "from": "2026-09-22",
+              "until": "2027-07-01",
+              "when": "每周二",
+              "who": "凯铄",
+              "text": "Multisport 16:30–18:00：带无包装点心（goûter sans emballage），16:30–16:45 食用"
             }
           ]
         }
@@ -1754,6 +1769,17 @@
         if (days[0]) { daySet[days[0]].push(it); n++; }
         return;
       }
+      if (on === "weekly") {
+        const wantDow = (it.dow != null) ? Number(it.dow) : -1;
+        days.forEach(function (ymd) {
+          if (wantDow >= 0 && dowFromYmd(ymd) !== wantDow) return;
+          if (it.from && ymd < it.from) return;
+          if (it.until && ymd > it.until) return;
+          daySet[ymd].push(it);
+          n++;
+        });
+        return;
+      }
       if (on && daySet[on]) {
         daySet[on].push(it);
         n++;
@@ -1969,7 +1995,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260913a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260914a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
