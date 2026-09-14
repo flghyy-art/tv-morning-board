@@ -414,6 +414,21 @@
             "text": "国家体能评估 EPS 13:00–15:00：带室内运动鞋（baskets d’intérieur）"
           }
         ]
+      },
+      {
+        "id": "kaishuo",
+        "titleZh": "凯铄 · Chamarette",
+        "items": [
+          {
+            "on": "weekly",
+            "dow": 2,
+            "from": "2026-09-22",
+            "until": "2027-07-01",
+            "when": "每周二",
+            "who": "凯铄",
+            "text": "Multisport 16:30–18:00：带无包装点心（goûter sans emballage），16:30–16:45 食用"
+          }
+        ]
       }
     ]
   }
