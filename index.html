@@ -662,7 +662,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260915a";
+  const BUILD = "20260915b";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1054,9 +1054,9 @@
       "child": "凯铄",
       "childNick": "铄铄",
       "group": "Groupe 1",
-      "start": "13:30",
-      "end": "14:30",
-      "place": "Conservatoire Annemasse",
+      "start": "10:30",
+      "end": "11:00",
+      "place": "Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet, Avenue de l’Europe, 74100 Vétraz-Monthoux",
       "color": "#4a6b5c",
       "sessions": [
         {
@@ -1283,7 +1283,9 @@
           "teacher": "Yohan Monnier",
           "room": "salle 10 BAT A"
         }
-      ]
+      ],
+      "pickup": "老师在音乐学院大厅接学生",
+      "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026"
     },
     "todos": {
       "groups": [
@@ -1786,8 +1788,8 @@
         if (S.date !== ymd) return;
         out.push({
           type: "extra",
-          start: pd.start || "13:30",
-          end: pd.end || "14:30",
+          start: pd.start || "10:30",
+          end: pd.end || "11:00",
           fr: S.fr || "Conservatoire",
           zh: S.zh || "",
           color: pd.color || "#4a6b5c",
@@ -2240,7 +2242,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260915a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260915b", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
