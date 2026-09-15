@@ -428,9 +428,9 @@
     "child": "凯铄",
     "childNick": "铄铄",
     "group": "Groupe 1",
-    "start": "13:30",
-    "end": "14:30",
-    "place": "Conservatoire Annemasse",
+    "start": "10:30",
+    "end": "11:00",
+    "place": "Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet, Avenue de l’Europe, 74100 Vétraz-Monthoux",
     "color": "#4a6b5c",
     "sessions": [
       {
@@ -657,6 +657,8 @@
         "teacher": "Yohan Monnier",
         "room": "salle 10 BAT A"
       }
-    ]
+    ],
+    "pickup": "老师在音乐学院大厅接学生",
+    "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026"
   }
 }
