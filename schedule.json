@@ -329,14 +329,6 @@
     "byDow": {
       "3": [
         {
-          "start": "13:30",
-          "end": "14:30",
-          "fr": "Formation Musci",
-          "zh": "音乐",
-          "color": "#4a6b5c",
-          "from": "2026-09-16"
-        },
-        {
           "start": "15:30",
           "end": "17:30",
           "fr": "Poterie",
@@ -429,6 +421,241 @@
             "text": "Multisport 16:30–18:00：带无包装点心（goûter sans emballage），16:30–16:45 食用"
           }
         ]
+      }
+    ]
+  },
+  "parcoursDecouverte": {
+    "child": "凯铄",
+    "childNick": "铄铄",
+    "group": "Groupe 1",
+    "start": "13:30",
+    "end": "14:30",
+    "place": "Conservatoire Annemasse",
+    "color": "#4a6b5c",
+    "sessions": [
+      {
+        "date": "2026-09-16",
+        "fr": "Contrebasse",
+        "zh": "低音提琴",
+        "teacher": "Diane Carpintero",
+        "room": "salle orchestre BAT A"
+      },
+      {
+        "date": "2026-09-23",
+        "fr": "Contrebasse",
+        "zh": "低音提琴",
+        "teacher": "Diane Carpintero",
+        "room": "salle orchestre BAT A"
+      },
+      {
+        "date": "2026-09-30",
+        "fr": "Percussion",
+        "zh": "打击乐",
+        "teacher": "Jean-Baptiste Solano",
+        "room": "salle 15 BAT B"
+      },
+      {
+        "date": "2026-10-07",
+        "fr": "Percussion",
+        "zh": "打击乐",
+        "teacher": "Jean-Baptiste Solano",
+        "room": "salle 15 BAT B"
+      },
+      {
+        "date": "2026-10-14",
+        "fr": "Violon",
+        "zh": "小提琴",
+        "teacher": "Cristina Cambiaso",
+        "room": "salle 3 BAT A"
+      },
+      {
+        "date": "2026-11-04",
+        "fr": "Violon",
+        "zh": "小提琴",
+        "teacher": "Cristina Cambiaso",
+        "room": "salle 3 BAT A"
+      },
+      {
+        "date": "2026-11-18",
+        "fr": "Violoncelle",
+        "zh": "大提琴",
+        "teacher": "Amandine Paraire",
+        "room": "salle 9 BAT A"
+      },
+      {
+        "date": "2026-11-25",
+        "fr": "Violoncelle",
+        "zh": "大提琴",
+        "teacher": "Amandine Paraire",
+        "room": "salle 9 BAT A"
+      },
+      {
+        "date": "2026-12-02",
+        "fr": "Hautbois",
+        "zh": "双簧管",
+        "teacher": "Hyon-Song Dupuy",
+        "room": "salle 16 BAT B"
+      },
+      {
+        "date": "2026-12-09",
+        "fr": "Hautbois",
+        "zh": "双簧管",
+        "teacher": "Hyon-Song Dupuy",
+        "room": "salle 16 BAT B"
+      },
+      {
+        "date": "2026-12-16",
+        "fr": "Musiques électroniques",
+        "zh": "电子音乐",
+        "teacher": "Sandro Ojeda Garcia",
+        "room": "salle 14 BAT B"
+      },
+      {
+        "date": "2027-01-06",
+        "fr": "Musiques électroniques",
+        "zh": "电子音乐",
+        "teacher": "Sandro Ojeda Garcia",
+        "room": "salle 14 BAT B"
+      },
+      {
+        "date": "2027-01-13",
+        "fr": "Clarinette",
+        "zh": "单簧管",
+        "teacher": "Stéphane Mervin",
+        "room": "salle 17 BAT B"
+      },
+      {
+        "date": "2027-01-20",
+        "fr": "Clarinette",
+        "zh": "单簧管",
+        "teacher": "Stéphane Mervin",
+        "room": "salle 17 BAT B"
+      },
+      {
+        "date": "2027-01-27",
+        "fr": "Tuba",
+        "zh": "大号",
+        "teacher": "Jean-Loup Dartigues",
+        "room": "salle 12 BAT A"
+      },
+      {
+        "date": "2027-02-03",
+        "fr": "Tuba",
+        "zh": "大号",
+        "teacher": "Jean-Loup Dartigues",
+        "room": "salle 12 BAT A"
+      },
+      {
+        "date": "2027-02-10",
+        "fr": "Cor",
+        "zh": "圆号",
+        "teacher": "Pierre Sauve",
+        "room": "salle 19 BAT B"
+      },
+      {
+        "date": "2027-03-03",
+        "fr": "Cor",
+        "zh": "圆号",
+        "teacher": "Pierre Sauve",
+        "room": "salle 19 BAT B"
+      },
+      {
+        "date": "2027-03-10",
+        "fr": "Saxophone",
+        "zh": "萨克斯",
+        "teacher": "Roseline Pertuzert",
+        "room": "salle 5 BAT A"
+      },
+      {
+        "date": "2027-03-17",
+        "fr": "Saxophone",
+        "zh": "萨克斯",
+        "teacher": "Roseline Pertuzert",
+        "room": "salle 5 BAT A"
+      },
+      {
+        "date": "2027-03-24",
+        "fr": "Trombone",
+        "zh": "长号",
+        "teacher": "Tocco Balthazar",
+        "room": "salle 11 BAT A"
+      },
+      {
+        "date": "2027-03-31",
+        "fr": "Trombone",
+        "zh": "长号",
+        "teacher": "Tocco Balthazar",
+        "room": "salle 11 BAT A"
+      },
+      {
+        "date": "2027-04-07",
+        "fr": "Flûte traversière",
+        "zh": "长笛",
+        "teacher": "Céline Barbaray",
+        "room": "salle 6 BAT A"
+      },
+      {
+        "date": "2027-04-28",
+        "fr": "Flûte traversière",
+        "zh": "长笛",
+        "teacher": "Céline Barbaray",
+        "room": "salle 6 BAT A"
+      },
+      {
+        "date": "2027-05-05",
+        "fr": "Alto",
+        "zh": "中提琴",
+        "teacher": "Anne Malherbe",
+        "room": "salle 7 BAT A"
+      },
+      {
+        "date": "2027-05-12",
+        "fr": "Alto",
+        "zh": "中提琴",
+        "teacher": "Anne Malherbe",
+        "room": "salle 7 BAT A"
+      },
+      {
+        "date": "2027-05-19",
+        "fr": "Harpe",
+        "zh": "竖琴",
+        "teacher": "Angeline Sanfourche",
+        "room": "salle 4 BAT A"
+      },
+      {
+        "date": "2027-05-26",
+        "fr": "Harpe",
+        "zh": "竖琴",
+        "teacher": "Angeline Sanfourche",
+        "room": "salle 4 BAT A"
+      },
+      {
+        "date": "2027-06-02",
+        "fr": "Harpe",
+        "zh": "竖琴",
+        "teacher": "Angeline Sanfourche",
+        "room": "salle 4 BAT A"
+      },
+      {
+        "date": "2027-06-09",
+        "fr": "Trompette",
+        "zh": "小号",
+        "teacher": "Yohan Monnier",
+        "room": "salle 10 BAT A"
+      },
+      {
+        "date": "2027-06-16",
+        "fr": "Trompette",
+        "zh": "小号",
+        "teacher": "Yohan Monnier",
+        "room": "salle 10 BAT A"
+      },
+      {
+        "date": "2027-06-23",
+        "fr": "Trompette",
+        "zh": "小号",
+        "teacher": "Yohan Monnier",
+        "room": "salle 10 BAT A"
       }
     ]
   }
