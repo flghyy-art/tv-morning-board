@@ -9,256 +9,256 @@ BEGIN:VEVENT
 UID:parcours-g1-2026-09-16-0@tv-morning-board
 DTSTART;TZID=Europe/Paris:20260916T103000
 DTEND;TZID=Europe/Paris:20260916T110000
-SUMMARY:铄铄 Conservatoire · Contrebasse（低音提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle orchestre BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Diane Carpintero\\n教室：salle orchestre BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Contrebasse（低音提琴）· 教师 Diane Carpintero
+LOCATION:教室 salle orchestre BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Contrebasse（低音提琴）\\n教师：Diane Carpintero\\n教室：salle orchestre BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-09-23-1@tv-morning-board
 DTSTART;TZID=Europe/Paris:20260923T103000
 DTEND;TZID=Europe/Paris:20260923T110000
-SUMMARY:铄铄 Conservatoire · Contrebasse（低音提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle orchestre BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Diane Carpintero\\n教室：salle orchestre BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Contrebasse（低音提琴）· 教师 Diane Carpintero
+LOCATION:教室 salle orchestre BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Contrebasse（低音提琴）\\n教师：Diane Carpintero\\n教室：salle orchestre BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-09-30-2@tv-morning-board
 DTSTART;TZID=Europe/Paris:20260930T103000
 DTEND;TZID=Europe/Paris:20260930T110000
-SUMMARY:铄铄 Conservatoire · Percussion（打击乐）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 15 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Jean-Baptiste Solano\\n教室：salle 15 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Percussion（打击乐）· 教师 Jean-Baptiste Solano
+LOCATION:教室 salle 15 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Percussion（打击乐）\\n教师：Jean-Baptiste Solano\\n教室：salle 15 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-10-07-3@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261007T103000
 DTEND;TZID=Europe/Paris:20261007T110000
-SUMMARY:铄铄 Conservatoire · Percussion（打击乐）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 15 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Jean-Baptiste Solano\\n教室：salle 15 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Percussion（打击乐）· 教师 Jean-Baptiste Solano
+LOCATION:教室 salle 15 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Percussion（打击乐）\\n教师：Jean-Baptiste Solano\\n教室：salle 15 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-10-14-4@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261014T103000
 DTEND;TZID=Europe/Paris:20261014T110000
-SUMMARY:铄铄 Conservatoire · Violon（小提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 3 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Cristina Cambiaso\\n教室：salle 3 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Violon（小提琴）· 教师 Cristina Cambiaso
+LOCATION:教室 salle 3 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Violon（小提琴）\\n教师：Cristina Cambiaso\\n教室：salle 3 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-11-04-5@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261104T103000
 DTEND;TZID=Europe/Paris:20261104T110000
-SUMMARY:铄铄 Conservatoire · Violon（小提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 3 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Cristina Cambiaso\\n教室：salle 3 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Violon（小提琴）· 教师 Cristina Cambiaso
+LOCATION:教室 salle 3 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Violon（小提琴）\\n教师：Cristina Cambiaso\\n教室：salle 3 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-11-18-6@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261118T103000
 DTEND;TZID=Europe/Paris:20261118T110000
-SUMMARY:铄铄 Conservatoire · Violoncelle（大提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 9 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Amandine Paraire\\n教室：salle 9 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Violoncelle（大提琴）· 教师 Amandine Paraire
+LOCATION:教室 salle 9 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Violoncelle（大提琴）\\n教师：Amandine Paraire\\n教室：salle 9 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-11-25-7@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261125T103000
 DTEND;TZID=Europe/Paris:20261125T110000
-SUMMARY:铄铄 Conservatoire · Violoncelle（大提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 9 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Amandine Paraire\\n教室：salle 9 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Violoncelle（大提琴）· 教师 Amandine Paraire
+LOCATION:教室 salle 9 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Violoncelle（大提琴）\\n教师：Amandine Paraire\\n教室：salle 9 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-12-02-8@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261202T103000
 DTEND;TZID=Europe/Paris:20261202T110000
-SUMMARY:铄铄 Conservatoire · Hautbois（双簧管）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 16 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Hyon-Song Dupuy\\n教室：salle 16 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Hautbois（双簧管）· 教师 Hyon-Song Dupuy
+LOCATION:教室 salle 16 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Hautbois（双簧管）\\n教师：Hyon-Song Dupuy\\n教室：salle 16 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-12-09-9@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261209T103000
 DTEND;TZID=Europe/Paris:20261209T110000
-SUMMARY:铄铄 Conservatoire · Hautbois（双簧管）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 16 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Hyon-Song Dupuy\\n教室：salle 16 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Hautbois（双簧管）· 教师 Hyon-Song Dupuy
+LOCATION:教室 salle 16 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Hautbois（双簧管）\\n教师：Hyon-Song Dupuy\\n教室：salle 16 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2026-12-16-10@tv-morning-board
 DTSTART;TZID=Europe/Paris:20261216T103000
 DTEND;TZID=Europe/Paris:20261216T110000
-SUMMARY:铄铄 Conservatoire · Musiques électroniques（电子音乐）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 14 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Sandro Ojeda Garcia\\n教室：salle 14 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Musiques électroniques（电子音乐）· 教师 Sandro Ojeda Garcia
+LOCATION:教室 salle 14 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Musiques électroniques（电子音乐）\\n教师：Sandro Ojeda Garcia\\n教室：salle 14 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-01-06-11@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270106T103000
 DTEND;TZID=Europe/Paris:20270106T110000
-SUMMARY:铄铄 Conservatoire · Musiques électroniques（电子音乐）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 14 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Sandro Ojeda Garcia\\n教室：salle 14 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Musiques électroniques（电子音乐）· 教师 Sandro Ojeda Garcia
+LOCATION:教室 salle 14 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Musiques électroniques（电子音乐）\\n教师：Sandro Ojeda Garcia\\n教室：salle 14 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-01-13-12@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270113T103000
 DTEND;TZID=Europe/Paris:20270113T110000
-SUMMARY:铄铄 Conservatoire · Clarinette（单簧管）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 17 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Stéphane Mervin\\n教室：salle 17 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Clarinette（单簧管）· 教师 Stéphane Mervin
+LOCATION:教室 salle 17 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Clarinette（单簧管）\\n教师：Stéphane Mervin\\n教室：salle 17 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-01-20-13@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270120T103000
 DTEND;TZID=Europe/Paris:20270120T110000
-SUMMARY:铄铄 Conservatoire · Clarinette（单簧管）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 17 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Stéphane Mervin\\n教室：salle 17 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Clarinette（单簧管）· 教师 Stéphane Mervin
+LOCATION:教室 salle 17 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Clarinette（单簧管）\\n教师：Stéphane Mervin\\n教室：salle 17 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-01-27-14@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270127T103000
 DTEND;TZID=Europe/Paris:20270127T110000
-SUMMARY:铄铄 Conservatoire · Tuba（大号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 12 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Jean-Loup Dartigues\\n教室：salle 12 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Tuba（大号）· 教师 Jean-Loup Dartigues
+LOCATION:教室 salle 12 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Tuba（大号）\\n教师：Jean-Loup Dartigues\\n教室：salle 12 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-02-03-15@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270203T103000
 DTEND;TZID=Europe/Paris:20270203T110000
-SUMMARY:铄铄 Conservatoire · Tuba（大号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 12 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Jean-Loup Dartigues\\n教室：salle 12 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Tuba（大号）· 教师 Jean-Loup Dartigues
+LOCATION:教室 salle 12 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Tuba（大号）\\n教师：Jean-Loup Dartigues\\n教室：salle 12 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-02-10-16@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270210T103000
 DTEND;TZID=Europe/Paris:20270210T110000
-SUMMARY:铄铄 Conservatoire · Cor（圆号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 19 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Pierre Sauve\\n教室：salle 19 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Cor（圆号）· 教师 Pierre Sauve
+LOCATION:教室 salle 19 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Cor（圆号）\\n教师：Pierre Sauve\\n教室：salle 19 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-03-03-17@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270303T103000
 DTEND;TZID=Europe/Paris:20270303T110000
-SUMMARY:铄铄 Conservatoire · Cor（圆号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 19 BAT B
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Pierre Sauve\\n教室：salle 19 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Cor（圆号）· 教师 Pierre Sauve
+LOCATION:教室 salle 19 BAT B · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Cor（圆号）\\n教师：Pierre Sauve\\n教室：salle 19 BAT B\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-03-10-18@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270310T103000
 DTEND;TZID=Europe/Paris:20270310T110000
-SUMMARY:铄铄 Conservatoire · Saxophone（萨克斯）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 5 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Roseline Pertuzert\\n教室：salle 5 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Saxophone（萨克斯）· 教师 Roseline Pertuzert
+LOCATION:教室 salle 5 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Saxophone（萨克斯）\\n教师：Roseline Pertuzert\\n教室：salle 5 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-03-17-19@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270317T103000
 DTEND;TZID=Europe/Paris:20270317T110000
-SUMMARY:铄铄 Conservatoire · Saxophone（萨克斯）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 5 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Roseline Pertuzert\\n教室：salle 5 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Saxophone（萨克斯）· 教师 Roseline Pertuzert
+LOCATION:教室 salle 5 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Saxophone（萨克斯）\\n教师：Roseline Pertuzert\\n教室：salle 5 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-03-24-20@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270324T103000
 DTEND;TZID=Europe/Paris:20270324T110000
-SUMMARY:铄铄 Conservatoire · Trombone（长号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 11 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Tocco Balthazar\\n教室：salle 11 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Trombone（长号）· 教师 Tocco Balthazar
+LOCATION:教室 salle 11 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Trombone（长号）\\n教师：Tocco Balthazar\\n教室：salle 11 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-03-31-21@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270331T103000
 DTEND;TZID=Europe/Paris:20270331T110000
-SUMMARY:铄铄 Conservatoire · Trombone（长号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 11 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Tocco Balthazar\\n教室：salle 11 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Trombone（长号）· 教师 Tocco Balthazar
+LOCATION:教室 salle 11 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Trombone（长号）\\n教师：Tocco Balthazar\\n教室：salle 11 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-04-07-22@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270407T103000
 DTEND;TZID=Europe/Paris:20270407T110000
-SUMMARY:铄铄 Conservatoire · Flûte traversière（长笛）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 6 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Céline Barbaray\\n教室：salle 6 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Flûte traversière（长笛）· 教师 Céline Barbaray
+LOCATION:教室 salle 6 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Flûte traversière（长笛）\\n教师：Céline Barbaray\\n教室：salle 6 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-04-28-23@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270428T103000
 DTEND;TZID=Europe/Paris:20270428T110000
-SUMMARY:铄铄 Conservatoire · Flûte traversière（长笛）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 6 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Céline Barbaray\\n教室：salle 6 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Flûte traversière（长笛）· 教师 Céline Barbaray
+LOCATION:教室 salle 6 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Flûte traversière（长笛）\\n教师：Céline Barbaray\\n教室：salle 6 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-05-05-24@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270505T103000
 DTEND;TZID=Europe/Paris:20270505T110000
-SUMMARY:铄铄 Conservatoire · Alto（中提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 7 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Anne Malherbe\\n教室：salle 7 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Alto（中提琴）· 教师 Anne Malherbe
+LOCATION:教室 salle 7 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Alto（中提琴）\\n教师：Anne Malherbe\\n教室：salle 7 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-05-12-25@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270512T103000
 DTEND;TZID=Europe/Paris:20270512T110000
-SUMMARY:铄铄 Conservatoire · Alto（中提琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 7 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Anne Malherbe\\n教室：salle 7 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Alto（中提琴）· 教师 Anne Malherbe
+LOCATION:教室 salle 7 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Alto（中提琴）\\n教师：Anne Malherbe\\n教室：salle 7 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-05-19-26@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270519T103000
 DTEND;TZID=Europe/Paris:20270519T110000
-SUMMARY:铄铄 Conservatoire · Harpe（竖琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 4 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Harpe（竖琴）· 教师 Angeline Sanfourche
+LOCATION:教室 salle 4 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Harpe（竖琴）\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-05-26-27@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270526T103000
 DTEND;TZID=Europe/Paris:20270526T110000
-SUMMARY:铄铄 Conservatoire · Harpe（竖琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 4 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Harpe（竖琴）· 教师 Angeline Sanfourche
+LOCATION:教室 salle 4 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Harpe（竖琴）\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-06-02-28@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270602T103000
 DTEND;TZID=Europe/Paris:20270602T110000
-SUMMARY:铄铄 Conservatoire · Harpe（竖琴）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 4 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Harpe（竖琴）· 教师 Angeline Sanfourche
+LOCATION:教室 salle 4 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Harpe（竖琴）\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-06-09-29@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270609T103000
 DTEND;TZID=Europe/Paris:20270609T110000
-SUMMARY:铄铄 Conservatoire · Trompette（小号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 10 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Yohan Monnier\\n教室：salle 10 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Trompette（小号）· 教师 Yohan Monnier
+LOCATION:教室 salle 10 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Trompette（小号）\\n教师：Yohan Monnier\\n教室：salle 10 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-06-16-30@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270616T103000
 DTEND;TZID=Europe/Paris:20270616T110000
-SUMMARY:铄铄 Conservatoire · Trompette（小号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 10 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Yohan Monnier\\n教室：salle 10 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Trompette（小号）· 教师 Yohan Monnier
+LOCATION:教室 salle 10 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Trompette（小号）\\n教师：Yohan Monnier\\n教室：salle 10 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 BEGIN:VEVENT
 UID:parcours-g1-2027-06-23-31@tv-morning-board
 DTSTART;TZID=Europe/Paris:20270623T103000
 DTEND;TZID=Europe/Paris:20270623T110000
-SUMMARY:铄铄 Conservatoire · Trompette（小号）
-LOCATION:Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux · salle 10 BAT A
-DESCRIPTION:Parcours découverte Groupe 1\\n10h30–11h\\n教师：Yohan Monnier\\n教室：salle 10 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+SUMMARY:铄铄 · Trompette（小号）· 教师 Yohan Monnier
+LOCATION:教室 salle 10 BAT A · Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
+DESCRIPTION:Parcours découverte Groupe 1\\n时间：10h30–11h\\n乐器：Trompette（小号）\\n教师：Yohan Monnier\\n教室：salle 10 BAT A\\n接送：老师在音乐学院大厅接学生\\n地点：Conservatoire Annemasse (relocalisé) · parking P+R Jean-Monnet\, Avenue de l’Europe\, 74100 Vétraz-Monthoux
 END:VEVENT
 END:VCALENDAR
