@@ -382,6 +382,34 @@
   .period.is-lunch .when .end i, .period.is-break .when .end i { display: none; }
   .period.is-lunch .when .end, .period.is-break .when .end { font-size: 1rem; font-weight: 600; color: var(--ink-mute); }
   .period.is-extra .fr { font-style: italic; }
+  .parcours-block {
+    flex: 0 0 auto;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px dashed rgba(12,16,12,0.22);
+  }
+  .parcours-head {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin: 0.1rem 0 0.28rem;
+  }
+  .parcours-head b {
+    color: var(--danger);
+    font-weight: 850;
+    margin-right: 0.25rem;
+  }
+  .tm-parcours-head {
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin: 0.35rem 0 0.2rem;
+    padding-top: 0.3rem;
+    border-top: 1px dashed rgba(12,16,12,0.22);
+  }
+  .tm-parcours-head b { color: var(--danger); }
   .period .when {
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
@@ -662,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260915d";
+  const BUILD = "20260915e";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1630,6 +1658,17 @@
     if (it.type === "lunch") return { fr: it.fr || "PAUSE DÉJEUNER", zh: it.zh || "午休", color: "#6a6058", room: "" };
     if (it.type === "break") return { fr: it.fr || "RÉCRÉATION", zh: it.zh || "课间", color: "#6a6058", room: "" };
     if (it.type === "extra") return { fr: it.fr || "", zh: it.zh || "", color: it.color || "#4a6b5c", room: it.room || "" };
+    if (it.type === "parcours") {
+      const roomBits = [];
+      if (it.teacher) roomBits.push("教师 " + it.teacher);
+      if (it.room) roomBits.push(it.room);
+      return {
+        fr: it.fr || "",
+        zh: it.zh || "",
+        color: it.color || "#4a6b5c",
+        room: roomBits.join(" · ")
+      };
+    }
     const s = subj(it.subject);
     return { fr: s.fr, zh: s.zh, color: s.color, room: it.room || "", official: s.official || "" };
   }
@@ -1643,8 +1682,8 @@
   /** School + after-school end for a given day. */
   function dayEndHm(dow, parity, ymd) {
     let end = lastBell(dow, parity);
-    const extras = afterSchoolItems(dow, ymd || ymdFromParts(parisParts()));
-    extras.forEach(function (e) {
+    const y = ymd || ymdFromParts(parisParts());
+    afterSchoolItems(dow, y).concat(parcoursItems(y)).forEach(function (e) {
       if (!end || toMin(e.end) > toMin(end)) end = e.end;
     });
     return end;
@@ -1791,24 +1830,29 @@
         });
       });
     }
+    return out;
+  }
+
+  /** 铄铄 Conservatoire Parcours — separate from school/after-school list. */
+  function parcoursItems(ymd) {
     const pd = schedule.parcoursDecouverte;
-    if (pd && pd.sessions && ymd) {
-      pd.sessions.forEach(function (S) {
-        if (S.date !== ymd) return;
-        out.push({
-          type: "extra",
-          start: pd.start || "10:30",
-          end: pd.end || "11:00",
-          fr: S.fr || "Conservatoire",
-          zh: S.zh || "",
-          color: pd.color || "#4a6b5c",
-          room: (S.teacher ? ("教师 " + S.teacher + " · ") : "") + (S.room || ""),
-          teacher: S.teacher || ""
-        });
+    const out = [];
+    if (!pd || !pd.sessions || !ymd) return out;
+    const nick = pd.childNick || pd.child || "铄铄";
+    pd.sessions.forEach(function (S) {
+      if (S.date !== ymd) return;
+      out.push({
+        type: "parcours",
+        start: pd.start || "10:30",
+        end: pd.end || "11:00",
+        fr: S.fr || "Conservatoire",
+        zh: S.zh || "",
+        color: pd.color || "#4a6b5c",
+        room: S.room || "",
+        teacher: S.teacher || "",
+        who: nick
       });
-      // sort by start
-      out.sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
-    }
+    });
     return out;
   }
 
@@ -1876,36 +1920,46 @@
     el.textContent = view.labelPrefix + " · " + n + " 节课 · " + pl;
   }
 
+  function periodRowHtml(it, nowHm, view, p) {
+    const title = blockTitle(it);
+    const a = toMin(it.start), b = toMin(it.end);
+    const t = toMin(nowHm);
+    let cls = "period";
+    if (it.type === "extra" || it.type === "parcours") cls += " is-extra";
+    if (!view.preview) {
+      if (t >= b) cls += " is-past";
+      else if (t >= a && t < b) cls += " is-now";
+      else if (p && p.next && it.start === p.next.start) cls += " is-next";
+    }
+    const badge = (cls.indexOf("is-now") >= 0)
+      ? '<span class="badge">现在</span>'
+      : (cls.indexOf("is-next") >= 0 ? '<span class="badge">下一节</span>' : "");
+    const room = title.room ? '<div class="room">' + esc(title.room) + "</div>" : badge;
+    const zhInline = title.zh ? '<span class="zh">' + esc(title.zh) + "</span>" : "";
+    return '<div class="' + cls + '" style="--c:' + esc(title.color) + '">' +
+      '<div class="when"><span class="start">' + esc(it.start) + '</span><span class="sep">–</span><span class="end">' + esc(it.end) + "</span></div>" +
+      '<div class="fr">' + esc(title.fr) + zhInline + "</div>" +
+      (title.room || badge ? room : "<div></div>") +
+      "</div>";
+  }
+
   function renderTimeline(p, nowHm, dow, view) {
     const el = document.getElementById("timeline");
     if (!view) view = mainDayView(nowHm, dow, currentParity);
-    const items = rawDay(view.dow, view.parity).concat(afterSchoolItems(view.dow, view.ymd));
-    if (!items.length) {
+    const school = rawDay(view.dow, view.parity).concat(afterSchoolItems(view.dow, view.ymd));
+    const parcours = parcoursItems(view.ymd);
+    if (!school.length && !parcours.length) {
       el.innerHTML = '<div class="empty">' + (view.preview ? (view.labelPrefix + "无课") : "周一到周五显示今天的课") + "</div>";
       return;
     }
-    const t = toMin(nowHm);
-    el.innerHTML = items.map(function (it) {
-      const title = blockTitle(it);
-      const a = toMin(it.start), b = toMin(it.end);
-      let cls = "period";
-      if (it.type === "extra") cls += " is-extra";
-      if (!view.preview) {
-        if (t >= b) cls += " is-past";
-        else if (t >= a && t < b) cls += " is-now";
-        else if (p.next && it.start === p.next.start) cls += " is-next";
-      }
-      const badge = (cls.indexOf("is-now") >= 0)
-        ? '<span class="badge">现在</span>'
-        : (cls.indexOf("is-next") >= 0 ? '<span class="badge">下一节</span>' : "");
-      const room = title.room ? '<div class="room">' + esc(title.room) + "</div>" : badge;
-      const zhInline = title.zh ? '<span class="zh">' + esc(title.zh) + "</span>" : "";
-      return '<div class="' + cls + '" style="--c:' + esc(title.color) + '">' +
-        '<div class="when"><span class="start">' + esc(it.start) + '</span><span class="sep">–</span><span class="end">' + esc(it.end) + "</span></div>" +
-        '<div class="fr">' + esc(title.fr) + zhInline + "</div>" +
-        (title.room || badge ? room : "<div></div>") +
+    let html = school.map(function (it) { return periodRowHtml(it, nowHm, view, p); }).join("");
+    if (parcours.length) {
+      const who = parcours[0].who || "铄铄";
+      html += '<div class="parcours-block"><div class="parcours-head"><b>' + esc(who) + "</b>乐器体验 · Conservatoire</div>" +
+        parcours.map(function (it) { return periodRowHtml(it, nowHm, view, p); }).join("") +
         "</div>";
-    }).join("");
+    }
+    el.innerHTML = html;
   }
 
   function nextSchoolDay(dow) {
@@ -2112,19 +2166,27 @@
     const end = lastBell(leftDow, par);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
     const items = rawDay(leftDow, par).concat(afterSchoolItems(leftDow, leftYmd));
+    const parcours = parcoursItems(leftYmd);
     if (!el) return;
-    if (!items.length) {
+    if (!items.length && !parcours.length) {
       el.innerHTML = '<div class="tm-empty">无课</div>';
       return;
     }
-    el.innerHTML = items.map(function (it) {
+    function tmRow(it) {
       const title = blockTitle(it);
       return '<div class="tm-row" style="--c:' + esc(title.color) + '">' +
         '<div class="t">' + esc(it.start) + '–<b>' + esc(it.end) + "</b></div>" +
         '<div class="n">' + esc(title.fr) +
         (title.zh ? "<span>" + esc(title.zh) + "</span>" : "") +
         "</div></div>";
-    }).join("");
+    }
+    let html = items.map(tmRow).join("");
+    if (parcours.length) {
+      const who = parcours[0].who || "铄铄";
+      html += '<div class="tm-parcours-head"><b>' + esc(who) + "</b>乐器体验</div>" +
+        parcours.map(tmRow).join("");
+    }
+    el.innerHTML = html;
   }
 
   function phaseKey() {
@@ -2252,7 +2314,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260915d", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260915e", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
