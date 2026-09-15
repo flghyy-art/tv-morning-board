@@ -1,0 +1,264 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//tv-morning-board//parcours-decouverte//ZH
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:铄铄 Conservatoire Groupe 1
+X-WR-TIMEZONE:Europe/Paris
+BEGIN:VEVENT
+UID:parcours-g1-2026-09-16-0@tv-morning-board
+DTSTART;TZID=Europe/Paris:20260916T133000
+DTEND;TZID=Europe/Paris:20260916T143000
+SUMMARY:铄铄 Conservatoire · Contrebasse（低音提琴）
+LOCATION:Conservatoire Annemasse · salle orchestre BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Diane Carpintero\\n教室：salle orchestre BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-09-23-1@tv-morning-board
+DTSTART;TZID=Europe/Paris:20260923T133000
+DTEND;TZID=Europe/Paris:20260923T143000
+SUMMARY:铄铄 Conservatoire · Contrebasse（低音提琴）
+LOCATION:Conservatoire Annemasse · salle orchestre BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Diane Carpintero\\n教室：salle orchestre BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-09-30-2@tv-morning-board
+DTSTART;TZID=Europe/Paris:20260930T133000
+DTEND;TZID=Europe/Paris:20260930T143000
+SUMMARY:铄铄 Conservatoire · Percussion（打击乐）
+LOCATION:Conservatoire Annemasse · salle 15 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Jean-Baptiste Solano\\n教室：salle 15 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-10-07-3@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261007T133000
+DTEND;TZID=Europe/Paris:20261007T143000
+SUMMARY:铄铄 Conservatoire · Percussion（打击乐）
+LOCATION:Conservatoire Annemasse · salle 15 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Jean-Baptiste Solano\\n教室：salle 15 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-10-14-4@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261014T133000
+DTEND;TZID=Europe/Paris:20261014T143000
+SUMMARY:铄铄 Conservatoire · Violon（小提琴）
+LOCATION:Conservatoire Annemasse · salle 3 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Cristina Cambiaso\\n教室：salle 3 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-11-04-5@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261104T133000
+DTEND;TZID=Europe/Paris:20261104T143000
+SUMMARY:铄铄 Conservatoire · Violon（小提琴）
+LOCATION:Conservatoire Annemasse · salle 3 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Cristina Cambiaso\\n教室：salle 3 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-11-18-6@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261118T133000
+DTEND;TZID=Europe/Paris:20261118T143000
+SUMMARY:铄铄 Conservatoire · Violoncelle（大提琴）
+LOCATION:Conservatoire Annemasse · salle 9 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Amandine Paraire\\n教室：salle 9 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-11-25-7@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261125T133000
+DTEND;TZID=Europe/Paris:20261125T143000
+SUMMARY:铄铄 Conservatoire · Violoncelle（大提琴）
+LOCATION:Conservatoire Annemasse · salle 9 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Amandine Paraire\\n教室：salle 9 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-12-02-8@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261202T133000
+DTEND;TZID=Europe/Paris:20261202T143000
+SUMMARY:铄铄 Conservatoire · Hautbois（双簧管）
+LOCATION:Conservatoire Annemasse · salle 16 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Hyon-Song Dupuy\\n教室：salle 16 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-12-09-9@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261209T133000
+DTEND;TZID=Europe/Paris:20261209T143000
+SUMMARY:铄铄 Conservatoire · Hautbois（双簧管）
+LOCATION:Conservatoire Annemasse · salle 16 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Hyon-Song Dupuy\\n教室：salle 16 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2026-12-16-10@tv-morning-board
+DTSTART;TZID=Europe/Paris:20261216T133000
+DTEND;TZID=Europe/Paris:20261216T143000
+SUMMARY:铄铄 Conservatoire · Musiques électroniques（电子音乐）
+LOCATION:Conservatoire Annemasse · salle 14 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Sandro Ojeda Garcia\\n教室：salle 14 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-01-06-11@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270106T133000
+DTEND;TZID=Europe/Paris:20270106T143000
+SUMMARY:铄铄 Conservatoire · Musiques électroniques（电子音乐）
+LOCATION:Conservatoire Annemasse · salle 14 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Sandro Ojeda Garcia\\n教室：salle 14 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-01-13-12@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270113T133000
+DTEND;TZID=Europe/Paris:20270113T143000
+SUMMARY:铄铄 Conservatoire · Clarinette（单簧管）
+LOCATION:Conservatoire Annemasse · salle 17 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Stéphane Mervin\\n教室：salle 17 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-01-20-13@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270120T133000
+DTEND;TZID=Europe/Paris:20270120T143000
+SUMMARY:铄铄 Conservatoire · Clarinette（单簧管）
+LOCATION:Conservatoire Annemasse · salle 17 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Stéphane Mervin\\n教室：salle 17 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-01-27-14@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270127T133000
+DTEND;TZID=Europe/Paris:20270127T143000
+SUMMARY:铄铄 Conservatoire · Tuba（大号）
+LOCATION:Conservatoire Annemasse · salle 12 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Jean-Loup Dartigues\\n教室：salle 12 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-02-03-15@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270203T133000
+DTEND;TZID=Europe/Paris:20270203T143000
+SUMMARY:铄铄 Conservatoire · Tuba（大号）
+LOCATION:Conservatoire Annemasse · salle 12 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Jean-Loup Dartigues\\n教室：salle 12 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-02-10-16@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270210T133000
+DTEND;TZID=Europe/Paris:20270210T143000
+SUMMARY:铄铄 Conservatoire · Cor（圆号）
+LOCATION:Conservatoire Annemasse · salle 19 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Pierre Sauve\\n教室：salle 19 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-03-03-17@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270303T133000
+DTEND;TZID=Europe/Paris:20270303T143000
+SUMMARY:铄铄 Conservatoire · Cor（圆号）
+LOCATION:Conservatoire Annemasse · salle 19 BAT B
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Pierre Sauve\\n教室：salle 19 BAT B
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-03-10-18@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270310T133000
+DTEND;TZID=Europe/Paris:20270310T143000
+SUMMARY:铄铄 Conservatoire · Saxophone（萨克斯）
+LOCATION:Conservatoire Annemasse · salle 5 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Roseline Pertuzert\\n教室：salle 5 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-03-17-19@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270317T133000
+DTEND;TZID=Europe/Paris:20270317T143000
+SUMMARY:铄铄 Conservatoire · Saxophone（萨克斯）
+LOCATION:Conservatoire Annemasse · salle 5 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Roseline Pertuzert\\n教室：salle 5 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-03-24-20@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270324T133000
+DTEND;TZID=Europe/Paris:20270324T143000
+SUMMARY:铄铄 Conservatoire · Trombone（长号）
+LOCATION:Conservatoire Annemasse · salle 11 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Tocco Balthazar\\n教室：salle 11 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-03-31-21@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270331T133000
+DTEND;TZID=Europe/Paris:20270331T143000
+SUMMARY:铄铄 Conservatoire · Trombone（长号）
+LOCATION:Conservatoire Annemasse · salle 11 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Tocco Balthazar\\n教室：salle 11 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-04-07-22@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270407T133000
+DTEND;TZID=Europe/Paris:20270407T143000
+SUMMARY:铄铄 Conservatoire · Flûte traversière（长笛）
+LOCATION:Conservatoire Annemasse · salle 6 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Céline Barbaray\\n教室：salle 6 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-04-28-23@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270428T133000
+DTEND;TZID=Europe/Paris:20270428T143000
+SUMMARY:铄铄 Conservatoire · Flûte traversière（长笛）
+LOCATION:Conservatoire Annemasse · salle 6 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Céline Barbaray\\n教室：salle 6 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-05-05-24@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270505T133000
+DTEND;TZID=Europe/Paris:20270505T143000
+SUMMARY:铄铄 Conservatoire · Alto（中提琴）
+LOCATION:Conservatoire Annemasse · salle 7 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Anne Malherbe\\n教室：salle 7 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-05-12-25@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270512T133000
+DTEND;TZID=Europe/Paris:20270512T143000
+SUMMARY:铄铄 Conservatoire · Alto（中提琴）
+LOCATION:Conservatoire Annemasse · salle 7 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Anne Malherbe\\n教室：salle 7 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-05-19-26@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270519T133000
+DTEND;TZID=Europe/Paris:20270519T143000
+SUMMARY:铄铄 Conservatoire · Harpe（竖琴）
+LOCATION:Conservatoire Annemasse · salle 4 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-05-26-27@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270526T133000
+DTEND;TZID=Europe/Paris:20270526T143000
+SUMMARY:铄铄 Conservatoire · Harpe（竖琴）
+LOCATION:Conservatoire Annemasse · salle 4 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-06-02-28@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270602T133000
+DTEND;TZID=Europe/Paris:20270602T143000
+SUMMARY:铄铄 Conservatoire · Harpe（竖琴）
+LOCATION:Conservatoire Annemasse · salle 4 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Angeline Sanfourche\\n教室：salle 4 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-06-09-29@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270609T133000
+DTEND;TZID=Europe/Paris:20270609T143000
+SUMMARY:铄铄 Conservatoire · Trompette（小号）
+LOCATION:Conservatoire Annemasse · salle 10 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Yohan Monnier\\n教室：salle 10 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-06-16-30@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270616T133000
+DTEND;TZID=Europe/Paris:20270616T143000
+SUMMARY:铄铄 Conservatoire · Trompette（小号）
+LOCATION:Conservatoire Annemasse · salle 10 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Yohan Monnier\\n教室：salle 10 BAT A
+END:VEVENT
+BEGIN:VEVENT
+UID:parcours-g1-2027-06-23-31@tv-morning-board
+DTSTART;TZID=Europe/Paris:20270623T133000
+DTEND;TZID=Europe/Paris:20270623T143000
+SUMMARY:铄铄 Conservatoire · Trompette（小号）
+LOCATION:Conservatoire Annemasse · salle 10 BAT A
+DESCRIPTION:Parcours découverte Groupe 1\\n教师：Yohan Monnier\\n教室：salle 10 BAT A
+END:VEVENT
+END:VCALENDAR
