@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260915e";
+  const BUILD = "20260916a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1050,6 +1050,24 @@
       "byDow": {
         "3": [
           {
+            "start": "09:00",
+            "end": "10:00",
+            "fr": "Tennis",
+            "zh": "网球",
+            "color": "#3d6b5a",
+            "from": "2026-09-16",
+            "who": "铄铄"
+          },
+          {
+            "start": "10:30",
+            "end": "11:00",
+            "fr": "Formation Musical",
+            "zh": "音乐启蒙",
+            "color": "#4a6b5c",
+            "from": "2026-09-16",
+            "who": "铄铄"
+          },
+          {
             "start": "13:30",
             "end": "14:30",
             "fr": "Formation Musci",
@@ -1322,7 +1340,8 @@
         }
       ],
       "pickup": "老师在音乐学院大厅接学生",
-      "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026"
+      "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026",
+      "aliasFr": "Formation Musical"
     },
     "todos": {
       "groups": [
@@ -1683,7 +1702,7 @@
   function dayEndHm(dow, parity, ymd) {
     let end = lastBell(dow, parity);
     const y = ymd || ymdFromParts(parisParts());
-    afterSchoolItems(dow, y).concat(parcoursItems(y)).forEach(function (e) {
+    afterSchoolItems(dow, y).concat(kaishuoBlockItems(dow, y)).forEach(function (e) {
       if (!end || toMin(e.end) > toMin(end)) end = e.end;
     });
     return end;
@@ -1811,12 +1830,17 @@
     return String(d.getUTCFullYear()) + "-" + pad2(d.getUTCMonth() + 1) + "-" + pad2(d.getUTCDate());
   }
 
+  function isKaishuoWho(who) {
+    return who === "铄铄" || who === "凯铄";
+  }
+
   function afterSchoolItems(dayNum, ymd) {
     const pack = schedule.afterSchool;
     const out = [];
     if (pack && pack.byDow) {
       const list = pack.byDow[String(dayNum)] || [];
       list.forEach(function (L) {
+        if (isKaishuoWho(L.who)) return; // 铄铄块单独渲染
         const from = L.from || pack.from;
         if (from && ymd && ymd < from) return;
         out.push({
@@ -1826,14 +1850,14 @@
           fr: L.fr || "",
           zh: L.zh || "",
           color: L.color || "#4a6b5c",
-          room: ""
+          room: "",
+          who: L.who || ""
         });
       });
     }
     return out;
   }
 
-  /** 铄铄 Conservatoire Parcours — separate from school/after-school list. */
   function parcoursItems(ymd) {
     const pd = schedule.parcoursDecouverte;
     const out = [];
@@ -1853,6 +1877,53 @@
         who: nick
       });
     });
+    return out;
+  }
+
+  /** 铄铄周三课外：网球 + Formation Musical（有细表时带上乐器/教师/教室） */
+  function kaishuoBlockItems(dayNum, ymd) {
+    const pack = schedule.afterSchool;
+    const out = [];
+    if (pack && pack.byDow) {
+      (pack.byDow[String(dayNum)] || []).forEach(function (L) {
+        if (!isKaishuoWho(L.who)) return;
+        const from = L.from || pack.from;
+        if (from && ymd && ymd < from) return;
+        out.push({
+          type: "extra",
+          start: L.start,
+          end: L.end,
+          fr: L.fr || "",
+          zh: L.zh || "",
+          color: L.color || "#4a6b5c",
+          room: "",
+          who: L.who || "铄铄"
+        });
+      });
+    }
+    const parcours = parcoursItems(ymd);
+    if (parcours.length) {
+      // 用乐器细表替换同日 10:30 Formation Musical
+      const filtered = out.filter(function (it) {
+        return !(it.start === "10:30" && /Formation\s*Music/i.test(it.fr || ""));
+      });
+      parcours.forEach(function (P) {
+        filtered.push({
+          type: "parcours",
+          start: P.start,
+          end: P.end,
+          fr: "Formation Musical · " + (P.fr || ""),
+          zh: P.zh || "音乐启蒙",
+          color: P.color,
+          room: P.room || "",
+          teacher: P.teacher || "",
+          who: P.who || "铄铄"
+        });
+      });
+      filtered.sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
+      return filtered;
+    }
+    out.sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
     return out;
   }
 
@@ -1947,16 +2018,16 @@
     const el = document.getElementById("timeline");
     if (!view) view = mainDayView(nowHm, dow, currentParity);
     const school = rawDay(view.dow, view.parity).concat(afterSchoolItems(view.dow, view.ymd));
-    const parcours = parcoursItems(view.ymd);
-    if (!school.length && !parcours.length) {
+    const kaishuo = kaishuoBlockItems(view.dow, view.ymd);
+    if (!school.length && !kaishuo.length) {
       el.innerHTML = '<div class="empty">' + (view.preview ? (view.labelPrefix + "无课") : "周一到周五显示今天的课") + "</div>";
       return;
     }
     let html = school.map(function (it) { return periodRowHtml(it, nowHm, view, p); }).join("");
-    if (parcours.length) {
-      const who = parcours[0].who || "铄铄";
-      html += '<div class="parcours-block"><div class="parcours-head"><b>' + esc(who) + "</b>乐器体验 · Conservatoire</div>" +
-        parcours.map(function (it) { return periodRowHtml(it, nowHm, view, p); }).join("") +
+    if (kaishuo.length) {
+      const who = kaishuo[0].who || "铄铄";
+      html += '<div class="parcours-block"><div class="parcours-head"><b>' + esc(who) + "</b>课外</div>" +
+        kaishuo.map(function (it) { return periodRowHtml(it, nowHm, view, p); }).join("") +
         "</div>";
     }
     el.innerHTML = html;
@@ -2166,9 +2237,9 @@
     const end = lastBell(leftDow, par);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
     const items = rawDay(leftDow, par).concat(afterSchoolItems(leftDow, leftYmd));
-    const parcours = parcoursItems(leftYmd);
+    const kaishuo = kaishuoBlockItems(leftDow, leftYmd);
     if (!el) return;
-    if (!items.length && !parcours.length) {
+    if (!items.length && !kaishuo.length) {
       el.innerHTML = '<div class="tm-empty">无课</div>';
       return;
     }
@@ -2181,10 +2252,10 @@
         "</div></div>";
     }
     let html = items.map(tmRow).join("");
-    if (parcours.length) {
-      const who = parcours[0].who || "铄铄";
-      html += '<div class="tm-parcours-head"><b>' + esc(who) + "</b>乐器体验</div>" +
-        parcours.map(tmRow).join("");
+    if (kaishuo.length) {
+      const who = kaishuo[0].who || "铄铄";
+      html += '<div class="tm-parcours-head"><b>' + esc(who) + "</b>课外</div>" +
+        kaishuo.map(tmRow).join("");
     }
     el.innerHTML = html;
   }
@@ -2314,7 +2385,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260915e", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260916a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
