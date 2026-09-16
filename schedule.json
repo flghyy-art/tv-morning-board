@@ -329,6 +329,24 @@
     "byDow": {
       "3": [
         {
+          "start": "09:00",
+          "end": "10:00",
+          "fr": "Tennis",
+          "zh": "网球",
+          "color": "#3d6b5a",
+          "from": "2026-09-16",
+          "who": "铄铄"
+        },
+        {
+          "start": "10:30",
+          "end": "11:00",
+          "fr": "Formation Musical",
+          "zh": "音乐启蒙",
+          "color": "#4a6b5c",
+          "from": "2026-09-16",
+          "who": "铄铄"
+        },
+        {
           "start": "13:30",
           "end": "14:30",
           "fr": "Formation Musci",
@@ -668,6 +686,7 @@
       }
     ],
     "pickup": "老师在音乐学院大厅接学生",
-    "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026"
+    "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026",
+    "aliasFr": "Formation Musical"
   }
 }
