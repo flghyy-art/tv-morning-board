@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260917a";
+  const BUILD = "20260918a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1096,7 +1096,7 @@
         "5": [
           {
             "start": "15:30",
-            "end": "16:30",
+            "end": "16:00",
             "fr": "Piano",
             "zh": "钢琴",
             "color": "#5a4a6b",
@@ -2371,7 +2371,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260917a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260918a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
