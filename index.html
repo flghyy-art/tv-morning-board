@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260918c";
+  const BUILD = "20260921a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1368,7 +1368,7 @@
               "until": "2026-09-23",
               "when": "周三",
               "who": "凯驿",
-              "text": "AS 首次集合（体育馆，12:30 起）：带运动服（tenue de sport）"
+              "text": "AS 12:30–13:50（体育馆）：带运动服（tenue de sport）"
             },
             {
               "on": "2026-09-24",
@@ -2385,7 +2385,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260918c", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20260921a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
