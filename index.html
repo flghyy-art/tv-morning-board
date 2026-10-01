@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20260926a";
+  const BUILD = "20261001a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1376,6 +1376,62 @@
               "when": "周二下午",
               "who": "凯驿",
               "text": "13:00–15:00 Test Savoir nager（占 EPS）：带泳裤/泳衣 + 泳帽 + 毛巾；当天不用带羽毛球器材（两小时都是游泳测试）"
+            },
+            {
+              "on": "2026-10-01",
+              "until": "2026-10-01",
+              "when": "周四",
+              "who": "凯驿",
+              "text": "数学（GAAYA）：背熟 6 条整除规则（« les 6 critères de divisibilité »）；带数学 classeur，按顺序整理：programme/attendus → Séquence 1「Les entiers naturels」（每张正反面放透明袋）→ 课堂附录方格纸（各放透明袋）→ DM1 → DS1"
+            },
+            {
+              "on": "2026-10-02",
+              "until": "2026-10-02",
+              "when": "周五",
+              "who": "凯驿",
+              "text": "法语测验（DANDEL）：verbe en un et deux éléments + infinitif；复习 15/09–24/09 的课堂笔记，会重做 15/09–28/09 已订正的练习，看 29、30 日问题的订正"
+            },
+            {
+              "on": "soon",
+              "until": "2026-10-09",
+              "when": "尽快",
+              "who": "凯驿",
+              "text": "准备好书《L'Odyssée d'Homère》（Annie Collognat 选译，Classiques et contemporains，Magnard），准备开始阅读（DANDEL）"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "美术（PEIFFER）：按要求完成名字标签（étiquette prénom）；带小本 vocabulaire et histoire de l'art"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "史地（MUGNIER）：背地图、课文和定义（apprendre la carte, la leçon et les définitions）"
+            },
+            {
+              "on": "2026-10-06",
+              "until": "2026-10-06",
+              "when": "周二",
+              "who": "凯驿",
+              "text": "史地：带 EMC 的 classeur"
+            },
+            {
+              "on": "2026-10-07",
+              "until": "2026-10-07",
+              "when": "周三",
+              "who": "凯驿",
+              "text": "史地测验：地理小测（地图、课文、定义）"
+            },
+            {
+              "on": "2026-10-08",
+              "until": "2026-10-08",
+              "when": "周四",
+              "who": "凯驿",
+              "text": "Cross du Juvénat（全校越野跑，必须参加）：6ème 9:00–11:00 跑，16:00–17:00 颁奖，留校到 17:00，8:00–9:00 照常上课；带运动服（当天不必穿 EPS T 恤）、保暖衣服和一整套换洗衣服。下雨改 10/15 周四"
             }
           ]
         },
@@ -2385,7 +2441,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20260923a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261001a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
