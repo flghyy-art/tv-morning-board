@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20261002b";
+  const BUILD = "20261002c";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1390,6 +1390,20 @@
               "text": "13:00–15:00 Test Savoir nager（占 EPS）：带泳裤/泳衣 + 泳帽 + 毛巾；当天不用带羽毛球器材（两小时都是游泳测试）"
             },
             {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "数学（GAAYA）：交 DM2（La division euclidienne，算作 contrôle）"
+            },
+            {
+              "on": "2026-10-14",
+              "until": "2026-10-14",
+              "when": "周三",
+              "who": "凯驿",
+              "text": "法语（DANDEL）：《L'Odyssée》要读完，带书来上课"
+            },
+            {
               "on": "weekly",
               "dow": 4,
               "from": "2026-10-08",
@@ -1430,10 +1444,10 @@
             },
             {
               "on": "soon",
-              "until": "2026-10-09",
-              "when": "尽快",
+              "until": "2026-10-13",
+              "when": "10/14 前",
               "who": "凯驿",
-              "text": "准备好书《L'Odyssée d'Homère》（Annie Collognat 选译，Classiques et contemporains，Magnard），准备开始阅读（DANDEL）"
+              "text": "持续阅读：10/14 周三前读完整本《L'Odyssée d'Homère》（Annie Collognat 选译，Classiques et contemporains，Magnard）（DANDEL）"
             },
             {
               "on": "2026-10-05",
@@ -2478,7 +2492,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20261002b", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261002c", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
