@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20261002a";
+  const BUILD = "20261002b";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1048,6 +1048,18 @@
     "afterSchool": {
       "from": "2026-09-11",
       "byDow": {
+        "2": [
+          {
+            "start": "12:00",
+            "end": "13:00",
+            "fr": "Atelier BD PMF 74",
+            "zh": "漫画工作坊（二战/边境史）",
+            "color": "#5a6b4a",
+            "from": "2026-10-06",
+            "who": "凯驿",
+            "room": "Salle info Paquebot"
+          }
+        ],
         "3": [
           {
             "start": "09:00",
@@ -1387,18 +1399,20 @@
               "text": "EPS 田径在室外（到 11/20）：穿适合天气的运动服，带保暖外套或雨衣"
             },
             {
+              "on": "weekly",
+              "dow": 5,
+              "from": "2026-10-09",
+              "until": "2027-07-01",
+              "when": "每周五",
+              "who": "凯驿",
+              "text": "AS 羽毛球（午休，具体时间待定）"
+            },
+            {
               "on": "2026-10-05",
               "until": "2026-10-05",
               "when": "周一",
               "who": "凯驿",
               "text": "数学（GAAYA）：带新的硬壳 classeur（厚 7.5 cm），数学讲义按之前的顺序移进去"
-            },
-            {
-              "on": "2026-10-05",
-              "until": "2026-10-09",
-              "when": "本周",
-              "who": "凯驿",
-              "text": "AS 午休：羽毛球 + 乒乓球从本周开始可参加（具体日期时间待定）"
             },
             {
               "on": "2026-10-01",
@@ -1929,7 +1943,7 @@
           fr: L.fr || "",
           zh: L.zh || "",
           color: L.color || "#4a6b5c",
-          room: "",
+          room: L.room || "",
           who: L.who || ""
         });
       });
@@ -2096,7 +2110,7 @@
   function renderTimeline(p, nowHm, dow, view) {
     const el = document.getElementById("timeline");
     if (!view) view = mainDayView(nowHm, dow, currentParity);
-    const school = rawDay(view.dow, view.parity).concat(afterSchoolItems(view.dow, view.ymd));
+    const school = rawDay(view.dow, view.parity).concat(afterSchoolItems(view.dow, view.ymd)).sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
     const kaishuo = kaishuoBlockItems(view.dow, view.ymd);
     if (!school.length && !kaishuo.length) {
       el.innerHTML = '<div class="empty">' + (view.preview ? (view.labelPrefix + "无课") : "周一到周五显示今天的课") + "</div>";
@@ -2315,7 +2329,7 @@
     if (kick) kick.textContent = leftPrefix + " · " + leftCount + " 节课 · " + pl;
     const end = lastBell(leftDow, par);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
-    const items = rawDay(leftDow, par).concat(afterSchoolItems(leftDow, leftYmd));
+    const items = rawDay(leftDow, par).concat(afterSchoolItems(leftDow, leftYmd)).sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
     const kaishuo = kaishuoBlockItems(leftDow, leftYmd);
     if (!el) return;
     if (!items.length && !kaishuo.length) {
@@ -2464,7 +2478,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20261002a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261002b", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
