@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20261001a";
+  const BUILD = "20261002a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1376,6 +1376,29 @@
               "when": "周二下午",
               "who": "凯驿",
               "text": "13:00–15:00 Test Savoir nager（占 EPS）：带泳裤/泳衣 + 泳帽 + 毛巾；当天不用带羽毛球器材（两小时都是游泳测试）"
+            },
+            {
+              "on": "weekly",
+              "dow": 4,
+              "from": "2026-10-08",
+              "until": "2026-11-19",
+              "when": "每周四",
+              "who": "凯驿",
+              "text": "EPS 田径在室外（到 11/20）：穿适合天气的运动服，带保暖外套或雨衣"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "数学（GAAYA）：带新的硬壳 classeur（厚 7.5 cm），数学讲义按之前的顺序移进去"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-09",
+              "when": "本周",
+              "who": "凯驿",
+              "text": "AS 午休：羽毛球 + 乒乓球从本周开始可参加（具体日期时间待定）"
             },
             {
               "on": "2026-10-01",
@@ -2441,7 +2464,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20261001a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261002a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
