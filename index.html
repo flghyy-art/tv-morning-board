@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20261006a";
+  const BUILD = "20261009a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1512,6 +1512,20 @@
               "when": "周一",
               "who": "凯铄",
               "text": "交回已签字的 cahier NEO（必须当天交，否则无法正常参加课堂活动）；同时交回 pochette de liaison 里已签字的 évaluations nationales 成绩单"
+            },
+            {
+              "on": "2026-10-14",
+              "until": "2026-10-14",
+              "when": "周三",
+              "who": "凯铄",
+              "text": "明天越野跑：今晚准备好野餐午饭和 2 个别针（固定号码布）"
+            },
+            {
+              "on": "2026-10-15",
+              "until": "2026-10-15",
+              "when": "周四",
+              "who": "凯铄",
+              "text": "越野跑（Verchères 体育场，Ville-la-Grand）：12:45 出发，约 16:15 回校；带野餐午饭（11:45 在学校吃）、2 个别针，穿适合天气的跑步衣服"
             }
           ]
         }
@@ -2492,7 +2506,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20261006a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261009a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
