@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20261009a";
+  const BUILD = "20261013a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1388,6 +1388,13 @@
               "when": "周二下午",
               "who": "凯驿",
               "text": "13:00–15:00 Test Savoir nager（占 EPS）：带泳裤/泳衣 + 泳帽 + 毛巾；当天不用带羽毛球器材（两小时都是游泳测试）"
+            },
+            {
+              "on": "soon",
+              "until": "2026-11-01",
+              "when": "假期",
+              "who": "凯驿",
+              "text": "假期作业 · 数学（GAAYA，全班都要做）：在 chingmath.fr/6e/nombres-decimaux 上练习小数，无截止日期"
             },
             {
               "on": "2026-10-05",
@@ -2506,7 +2513,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20261009a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261013a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
