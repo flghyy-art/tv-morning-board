@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20261013a";
+  const BUILD = "20261014a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1045,7 +1045,9 @@
         }
       ]
     },
+    "dayOverrides": {"2026-10-15": {"dismiss": "17:00", "note": "越野跑 + 颁奖"}},
     "afterSchool": {
+      "byDate": {"2026-10-15": [{"start": "09:00", "end": "11:00", "fr": "Cross du Juvénat", "zh": "越野跑", "color": "#8a5a3a", "who": "凯驿"}, {"start": "16:00", "end": "17:00", "fr": "Remise des récompenses", "zh": "越野跑颁奖", "color": "#8a5a3a", "who": "凯驿"}]},
       "from": "2026-09-11",
       "byDow": {
         "2": [
@@ -1730,7 +1732,7 @@
   // After today's last bell: next 3 return trips, first at least +20 minutes.
   // e.g. dismiss 14:50 → earliest 15:10 → 15:11 15:26 15:41
   function returnTripsAfterDismiss(dow) {
-    const end = lastBell(dow, currentParity);
+    const end = lastBell(dow, currentParity, ymdFromParts(parisParts()));
     if (!end) return { hour: null, trips: [] };
     const earliest = toMin(end) + 20;
     const trips = allReturnTrips().filter(function (tr) { return tr.min >= earliest; }).slice(0, 3);
@@ -1820,7 +1822,9 @@
     return { fr: s.fr, zh: s.zh, color: s.color, room: it.room || "", official: s.official || "" };
   }
 
-  function lastBell(dow, parity) {
+  function lastBell(dow, parity, ymd) {
+    const ov = ymd && schedule.dayOverrides && schedule.dayOverrides[ymd];
+    if (ov && ov.dismiss) return ov.dismiss;
     const lessons = dayLessons(dow, parity);
     if (!lessons.length) return null;
     return lessons[lessons.length - 1].end;
@@ -1828,8 +1832,8 @@
 
   /** School + after-school end for a given day. */
   function dayEndHm(dow, parity, ymd) {
-    let end = lastBell(dow, parity);
     const y = ymd || ymdFromParts(parisParts());
+    let end = lastBell(dow, parity, y);
     afterSchoolItems(dow, y).concat(kaishuoBlockItems(dow, y)).forEach(function (e) {
       if (!end || toMin(e.end) > toMin(end)) end = e.end;
     });
@@ -1922,7 +1926,7 @@
       label = "今天下课";
       hint = "";
     }
-    const end = lastBell(d, par);
+    const end = lastBell(d, par, view.ymd);
     if (!end) {
       el.innerHTML = '<div class="lbl">下课</div><div class="t">—</div>';
       return;
@@ -1981,6 +1985,10 @@
           room: L.room || "",
           who: L.who || ""
         });
+      });
+      ((pack.byDate || {})[ymd] || []).forEach(function (L) {
+        if (isKaishuoWho(L.who)) return;
+        out.push({ type: "extra", start: L.start, end: L.end, fr: L.fr || "", zh: L.zh || "", color: L.color || "#4a6b5c", room: L.room || "", who: L.who || "" });
       });
     }
     return out;
@@ -2362,7 +2370,7 @@
       ? ((leftDow === 1) ? "周一" : ("周" + "日一二三四五六"[leftDow]))
       : ((dow === 5 || dow === 6 || dow === 0) ? "周一" : "明天"));
     if (kick) kick.textContent = leftPrefix + " · " + leftCount + " 节课 · " + pl;
-    const end = lastBell(leftDow, par);
+    const end = lastBell(leftDow, par, leftYmd);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
     const items = rawDay(leftDow, par).concat(afterSchoolItems(leftDow, leftYmd)).sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
     const kaishuo = kaishuoBlockItems(leftDow, leftYmd);
@@ -2513,7 +2521,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20261013a", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261014a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
