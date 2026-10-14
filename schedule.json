@@ -394,6 +394,26 @@
           "from": "2026-09-11"
         }
       ]
+    },
+    "byDate": {
+      "2026-10-15": [
+        {
+          "start": "09:00",
+          "end": "11:00",
+          "fr": "Cross du Juvénat",
+          "zh": "越野跑",
+          "color": "#8a5a3a",
+          "who": "凯驿"
+        },
+        {
+          "start": "16:00",
+          "end": "17:00",
+          "fr": "Remise des récompenses",
+          "zh": "越野跑颁奖",
+          "color": "#8a5a3a",
+          "who": "凯驿"
+        }
+      ]
     }
   },
   "todos": {
@@ -816,5 +836,11 @@
     "pickup": "老师在音乐学院大厅接学生",
     "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026",
     "aliasFr": "Formation Musical"
+  },
+  "dayOverrides": {
+    "2026-10-15": {
+      "dismiss": "17:00",
+      "note": "越野跑 + 颁奖"
+    }
   }
 }
