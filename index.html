@@ -690,7 +690,7 @@
 </div>
 <script>
 (function () {
-  const BUILD = "20261014b";
+  const BUILD = "20261027a";
   const TZ = "Europe/Paris";
   const WEATHER_URL =
     "https://api.open-meteo.com/v1/forecast" +
@@ -1045,9 +1045,7 @@
         }
       ]
     },
-    "dayOverrides": {"2026-10-15": {"dismiss": "17:00", "note": "越野跑 + 颁奖"}},
     "afterSchool": {
-      "byDate": {"2026-10-15": [{"start": "09:00", "end": "11:00", "fr": "Cross du Juvénat", "zh": "越野跑", "color": "#8a5a3a", "who": "凯驿"}, {"start": "16:00", "end": "17:00", "fr": "Remise des récompenses", "zh": "越野跑颁奖", "color": "#8a5a3a", "who": "凯驿"}]},
       "from": "2026-09-11",
       "byDow": {
         "2": [
@@ -1115,7 +1113,10 @@
             "zh": "羽毛球",
             "color": "#3d6b5a",
             "from": "2026-10-16",
-            "who": "凯驿"
+            "who": "凯驿",
+            "skipDates": [
+              "2026-11-13"
+            ]
           },
           {
             "start": "15:30",
@@ -1126,7 +1127,238 @@
             "from": "2026-09-11"
           }
         ]
+      },
+      "byDate": {
+        "2026-10-15": [
+          {
+            "start": "09:00",
+            "end": "11:00",
+            "fr": "Cross du Juvénat",
+            "zh": "越野跑",
+            "color": "#8a5a3a",
+            "who": "凯驿"
+          },
+          {
+            "start": "16:00",
+            "end": "17:00",
+            "fr": "Remise des récompenses",
+            "zh": "越野跑颁奖",
+            "color": "#8a5a3a",
+            "who": "凯驿"
+          }
+        ]
       }
+    },
+    "todos": {
+      "groups": [
+        {
+          "id": "kaiyi",
+          "titleZh": "凯驿 · Saint-François",
+          "items": [
+            {
+              "on": "2026-09-23",
+              "until": "2026-09-23",
+              "when": "周三",
+              "who": "凯驿",
+              "text": "AS 12:30–13:50（体育馆）：带运动服（tenue de sport）"
+            },
+            {
+              "on": "2026-09-24",
+              "until": "2026-09-24",
+              "when": "周四下午",
+              "who": "凯驿",
+              "text": "15:00–16:50 Gonnellaz 课取消：有出门卡可提前离校，否则 étude"
+            },
+            {
+              "on": "2026-09-25",
+              "until": "2026-09-25",
+              "when": "周五上午",
+              "who": "凯驿",
+              "text": "7:59–9:52 第一节 EMI（CDI，Mme LEMAÎTRE）：带 porte-vues d’EMI"
+            },
+            {
+              "on": "2026-09-29",
+              "until": "2026-09-29",
+              "when": "周二下午",
+              "who": "凯驿",
+              "text": "13:00–15:00 Test Savoir nager（占 EPS）：带泳裤/泳衣 + 泳帽 + 毛巾；当天不用带羽毛球器材（两小时都是游泳测试）"
+            },
+            {
+              "on": "soon",
+              "until": "2026-11-01",
+              "when": "假期",
+              "who": "凯驿",
+              "text": "假期作业 · 数学（GAAYA，全班都要做）：在 chingmath.fr/6e/nombres-decimaux 上练习小数，无截止日期"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "数学（GAAYA）：交 DM2（La division euclidienne，算作 contrôle）"
+            },
+            {
+              "on": "2026-10-14",
+              "until": "2026-10-14",
+              "when": "周三",
+              "who": "凯驿",
+              "text": "法语（DANDEL）：《L'Odyssée》要读完，带书来上课"
+            },
+            {
+              "on": "weekly",
+              "dow": 4,
+              "from": "2026-10-08",
+              "until": "2026-11-19",
+              "when": "每周四",
+              "who": "凯驿",
+              "text": "EPS 田径在室外（到 11/20）：穿适合天气的运动服，带保暖外套或雨衣"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "数学（GAAYA）：带新的硬壳 classeur（厚 7.5 cm），数学讲义按之前的顺序移进去"
+            },
+            {
+              "on": "2026-10-01",
+              "until": "2026-10-01",
+              "when": "周四",
+              "who": "凯驿",
+              "text": "数学（GAAYA）：背熟 6 条整除规则（« les 6 critères de divisibilité »）；带数学 classeur，按顺序整理：programme/attendus → Séquence 1「Les entiers naturels」（每张正反面放透明袋）→ 课堂附录方格纸（各放透明袋）→ DM1 → DS1"
+            },
+            {
+              "on": "2026-10-02",
+              "until": "2026-10-02",
+              "when": "周五",
+              "who": "凯驿",
+              "text": "法语测验（DANDEL）：verbe en un et deux éléments + infinitif；复习 15/09–24/09 的课堂笔记，会重做 15/09–28/09 已订正的练习，看 29、30 日问题的订正"
+            },
+            {
+              "on": "soon",
+              "until": "2026-10-13",
+              "when": "10/14 前",
+              "who": "凯驿",
+              "text": "持续阅读：10/14 周三前读完整本《L'Odyssée d'Homère》（Annie Collognat 选译，Classiques et contemporains，Magnard）（DANDEL）"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "美术（PEIFFER）：按要求完成名字标签（étiquette prénom）；带小本 vocabulaire et histoire de l'art"
+            },
+            {
+              "on": "2026-10-05",
+              "until": "2026-10-05",
+              "when": "周一",
+              "who": "凯驿",
+              "text": "史地（MUGNIER）：背地图、课文和定义（apprendre la carte, la leçon et les définitions）"
+            },
+            {
+              "on": "2026-10-06",
+              "until": "2026-10-06",
+              "when": "周二",
+              "who": "凯驿",
+              "text": "史地：带 EMC 的 classeur"
+            },
+            {
+              "on": "2026-10-07",
+              "until": "2026-10-07",
+              "when": "周三",
+              "who": "凯驿",
+              "text": "史地测验：地理小测（地图、课文、定义）"
+            },
+            {
+              "on": "2026-10-15",
+              "until": "2026-10-15",
+              "when": "周四",
+              "who": "凯驿",
+              "text": "Cross du Juvénat（因天气从 10/8 推迟到今天，必须参加）：6ème 9:00–11:00 跑，16:00–17:00 颁奖，留校到 17:00；带运动服（不必穿 EPS T 恤）、保暖衣服和一整套换洗衣服。如果入选省级越野赛（每组前 10 名），晚上把 convocation 带回家给家长签字，10/16 周五交回"
+            },
+            {
+              "on": "2026-11-12",
+              "until": "2026-11-12",
+              "when": "周四",
+              "who": "凯驿",
+              "text": "停课两天（11/12–13）：老师培训，学校不提供看护；周四不在食堂吃午饭"
+            },
+            {
+              "on": "2026-11-13",
+              "until": "2026-11-13",
+              "when": "周五",
+              "who": "凯驿",
+              "text": "继续停课：AS 羽毛球取消；15:30 钢琴照常"
+            }
+          ]
+        },
+        {
+          "id": "kaishuo",
+          "titleZh": "凯铄 · Chamarette",
+          "items": [
+            {
+              "on": "weekly",
+              "dow": 2,
+              "from": "2026-09-22",
+              "until": "2027-07-01",
+              "when": "每周二",
+              "who": "凯铄",
+              "text": "Multisport 16:30–18:00：带无包装点心（goûter sans emballage），16:30–16:45 食用"
+            },
+            {
+              "on": "2026-09-25",
+              "until": "2026-09-25",
+              "when": "周五 16:30",
+              "who": "凯铄",
+              "text": "APEL Goûter du monde（体育馆）：带一份甜或咸小食（gâteau / goûter salé ou sucré）；饮料不用带"
+            },
+            {
+              "on": "2026-09-28",
+              "until": "2026-09-28",
+              "when": "周一",
+              "who": "凯铄",
+              "text": "交回已签字的 cahier NEO（必须当天交，否则无法正常参加课堂活动）；同时交回 pochette de liaison 里已签字的 évaluations nationales 成绩单"
+            },
+            {
+              "on": "2026-10-14",
+              "until": "2026-10-14",
+              "when": "周三",
+              "who": "凯铄",
+              "text": "明天越野跑：今晚准备好野餐午饭和 2 个别针（固定号码布）"
+            },
+            {
+              "on": "2026-10-15",
+              "until": "2026-10-15",
+              "when": "周四",
+              "who": "凯铄",
+              "text": "越野跑（Verchères 体育场，Ville-la-Grand）：12:45 出发，约 16:15 回校；带野餐午饭（11:45 在学校吃）、2 个别针，穿适合天气的跑步衣服"
+            },
+            {
+              "on": "soon",
+              "until": "2026-11-01",
+              "when": "假期",
+              "who": "凯铄",
+              "text": "假期练习单（背诗《Octobre》、数到 30、加 1 加 2 等）：每张第一页家长签字，11/2 交回"
+            },
+            {
+              "on": "2026-11-02",
+              "until": "2026-11-02",
+              "when": "周一",
+              "who": "凯铄",
+              "text": "交回假期练习单（每张第一页已由家长签字）"
+            },
+            {
+              "on": "weekly",
+              "dow": 1,
+              "from": "2026-11-02",
+              "until": "2027-07-01",
+              "when": "每周一",
+              "who": "凯铄",
+              "text": "乒乓球课（和 Alexy 一起）：带运动服"
+            }
+          ]
+        }
+      ]
     },
     "parcoursDecouverte": {
       "child": "凯铄",
@@ -1366,181 +1598,21 @@
       "note": "Groupe 1 · mercredi 10h30–11h · début 16/09/2026",
       "aliasFr": "Formation Musical"
     },
-    "todos": {
-      "groups": [
-        {
-          "id": "kaiyi",
-          "titleZh": "凯驿 · Saint-François",
-          "items": [
-            {
-              "on": "2026-09-23",
-              "until": "2026-09-23",
-              "when": "周三",
-              "who": "凯驿",
-              "text": "AS 12:30–13:50（体育馆）：带运动服（tenue de sport）"
-            },
-            {
-              "on": "2026-09-24",
-              "until": "2026-09-24",
-              "when": "周四下午",
-              "who": "凯驿",
-              "text": "15:00–16:50 Gonnellaz 课取消：有出门卡可提前离校，否则 étude"
-            },
-            {
-              "on": "2026-09-25",
-              "until": "2026-09-25",
-              "when": "周五上午",
-              "who": "凯驿",
-              "text": "7:59–9:52 第一节 EMI（CDI，Mme LEMAÎTRE）：带 porte-vues d’EMI"
-            },
-            {
-              "on": "2026-09-29",
-              "until": "2026-09-29",
-              "when": "周二下午",
-              "who": "凯驿",
-              "text": "13:00–15:00 Test Savoir nager（占 EPS）：带泳裤/泳衣 + 泳帽 + 毛巾；当天不用带羽毛球器材（两小时都是游泳测试）"
-            },
-            {
-              "on": "soon",
-              "until": "2026-11-01",
-              "when": "假期",
-              "who": "凯驿",
-              "text": "假期作业 · 数学（GAAYA，全班都要做）：在 chingmath.fr/6e/nombres-decimaux 上练习小数，无截止日期"
-            },
-            {
-              "on": "2026-10-05",
-              "until": "2026-10-05",
-              "when": "周一",
-              "who": "凯驿",
-              "text": "数学（GAAYA）：交 DM2（La division euclidienne，算作 contrôle）"
-            },
-            {
-              "on": "2026-10-14",
-              "until": "2026-10-14",
-              "when": "周三",
-              "who": "凯驿",
-              "text": "法语（DANDEL）：《L'Odyssée》要读完，带书来上课"
-            },
-            {
-              "on": "weekly",
-              "dow": 4,
-              "from": "2026-10-08",
-              "until": "2026-11-19",
-              "when": "每周四",
-              "who": "凯驿",
-              "text": "EPS 田径在室外（到 11/20）：穿适合天气的运动服，带保暖外套或雨衣"
-            },
-            {
-              "on": "2026-10-05",
-              "until": "2026-10-05",
-              "when": "周一",
-              "who": "凯驿",
-              "text": "数学（GAAYA）：带新的硬壳 classeur（厚 7.5 cm），数学讲义按之前的顺序移进去"
-            },
-            {
-              "on": "2026-10-01",
-              "until": "2026-10-01",
-              "when": "周四",
-              "who": "凯驿",
-              "text": "数学（GAAYA）：背熟 6 条整除规则（« les 6 critères de divisibilité »）；带数学 classeur，按顺序整理：programme/attendus → Séquence 1「Les entiers naturels」（每张正反面放透明袋）→ 课堂附录方格纸（各放透明袋）→ DM1 → DS1"
-            },
-            {
-              "on": "2026-10-02",
-              "until": "2026-10-02",
-              "when": "周五",
-              "who": "凯驿",
-              "text": "法语测验（DANDEL）：verbe en un et deux éléments + infinitif；复习 15/09–24/09 的课堂笔记，会重做 15/09–28/09 已订正的练习，看 29、30 日问题的订正"
-            },
-            {
-              "on": "soon",
-              "until": "2026-10-13",
-              "when": "10/14 前",
-              "who": "凯驿",
-              "text": "持续阅读：10/14 周三前读完整本《L'Odyssée d'Homère》（Annie Collognat 选译，Classiques et contemporains，Magnard）（DANDEL）"
-            },
-            {
-              "on": "2026-10-05",
-              "until": "2026-10-05",
-              "when": "周一",
-              "who": "凯驿",
-              "text": "美术（PEIFFER）：按要求完成名字标签（étiquette prénom）；带小本 vocabulaire et histoire de l'art"
-            },
-            {
-              "on": "2026-10-05",
-              "until": "2026-10-05",
-              "when": "周一",
-              "who": "凯驿",
-              "text": "史地（MUGNIER）：背地图、课文和定义（apprendre la carte, la leçon et les définitions）"
-            },
-            {
-              "on": "2026-10-06",
-              "until": "2026-10-06",
-              "when": "周二",
-              "who": "凯驿",
-              "text": "史地：带 EMC 的 classeur"
-            },
-            {
-              "on": "2026-10-07",
-              "until": "2026-10-07",
-              "when": "周三",
-              "who": "凯驿",
-              "text": "史地测验：地理小测（地图、课文、定义）"
-            },
-            {
-              "on": "2026-10-15",
-              "until": "2026-10-15",
-              "when": "周四",
-              "who": "凯驿",
-              "text": "Cross du Juvénat（因天气从 10/8 推迟到今天，必须参加）：6ème 9:00–11:00 跑，16:00–17:00 颁奖，留校到 17:00；带运动服（不必穿 EPS T 恤）、保暖衣服和一整套换洗衣服。如果入选省级越野赛（每组前 10 名），晚上把 convocation 带回家给家长签字，10/16 周五交回"
-            }
-          ]
-        },
-        {
-          "id": "kaishuo",
-          "titleZh": "凯铄 · Chamarette",
-          "items": [
-            {
-              "on": "weekly",
-              "dow": 2,
-              "from": "2026-09-22",
-              "until": "2027-07-01",
-              "when": "每周二",
-              "who": "凯铄",
-              "text": "Multisport 16:30–18:00：带无包装点心（goûter sans emballage），16:30–16:45 食用"
-            },
-            {
-              "on": "2026-09-25",
-              "until": "2026-09-25",
-              "when": "周五 16:30",
-              "who": "凯铄",
-              "text": "APEL Goûter du monde（体育馆）：带一份甜或咸小食（gâteau / goûter salé ou sucré）；饮料不用带"
-            },
-            {
-              "on": "2026-09-28",
-              "until": "2026-09-28",
-              "when": "周一",
-              "who": "凯铄",
-              "text": "交回已签字的 cahier NEO（必须当天交，否则无法正常参加课堂活动）；同时交回 pochette de liaison 里已签字的 évaluations nationales 成绩单"
-            },
-            {
-              "on": "2026-10-14",
-              "until": "2026-10-14",
-              "when": "周三",
-              "who": "凯铄",
-              "text": "明天越野跑：今晚准备好野餐午饭和 2 个别针（固定号码布）"
-            },
-            {
-              "on": "2026-10-15",
-              "until": "2026-10-15",
-              "when": "周四",
-              "who": "凯铄",
-              "text": "越野跑（Verchères 体育场，Ville-la-Grand）：12:45 出发，约 16:15 回校；带野餐午饭（11:45 在学校吃）、2 个别针，穿适合天气的跑步衣服"
-            }
-          ]
-        }
-      ]
+    "dayOverrides": {
+      "2026-10-15": {
+        "dismiss": "17:00",
+        "note": "越野跑 + 颁奖"
+      },
+      "2026-11-12": {
+        "closed": true,
+        "note": "停课：老师培训（Journées pédagogiques），学校不提供看护；不在食堂吃午饭"
+      },
+      "2026-11-13": {
+        "closed": true,
+        "note": "停课：老师培训（Journées pédagogiques），学校不提供看护；AS 羽毛球取消，钢琴照常"
+      }
     }
-  };
+  };;
   let schedule = FALLBACK_SCHEDULE;
   let lastPhase = "";
 
@@ -1624,7 +1696,21 @@
     return (schedule.days && schedule.days[key]) || [];
   }
 
-  function dayLessons(dayNum, parity) {
+  function closedInfo(dayNum, ymd) {
+    const ov = schedule.dayOverrides;
+    if (!ov) return null;
+    if (!ymd) {
+      const p = parisParts();
+      const t = ymdFromParts(p);
+      if (dowFromYmd(t) !== dayNum) return null;
+      ymd = t;
+    }
+    const o = ov[ymd];
+    return (o && o.closed) ? o : null;
+  }
+
+  function dayLessons(dayNum, parity, ymd) {
+    if (closedInfo(dayNum, ymd)) return [];
     if (!parity) parity = currentParity || isoWeekParityFromParts(parisParts());
     const slots = slotMap();
     const raw = dayRaw(dayNum, parity);
@@ -1824,8 +1910,9 @@
 
   function lastBell(dow, parity, ymd) {
     const ov = ymd && schedule.dayOverrides && schedule.dayOverrides[ymd];
+    if (ov && ov.closed) return null;
     if (ov && ov.dismiss) return ov.dismiss;
-    const lessons = dayLessons(dow, parity);
+    const lessons = dayLessons(dow, parity, ymd);
     if (!lessons.length) return null;
     return lessons[lessons.length - 1].end;
   }
@@ -1975,6 +2062,7 @@
         if (isKaishuoWho(L.who)) return; // 铄铄块单独渲染
         const from = L.from || pack.from;
         if (from && ymd && ymd < from) return;
+        if (L.skipDates && ymd && L.skipDates.indexOf(ymd) >= 0) return;
         out.push({
           type: "extra",
           start: L.start,
@@ -2063,7 +2151,8 @@
     return out;
   }
 
-  function rawDay(dayNum, parity) {
+  function rawDay(dayNum, parity, ymd) {
+    if (closedInfo(dayNum, ymd)) return [];
     if (!parity) parity = currentParity || isoWeekParityFromParts(parisParts());
     const slots = slotMap();
     const raw = dayRaw(dayNum, parity);
@@ -2087,7 +2176,7 @@
     if (!el) return;
     if (!view) view = mainDayView(nowHm, dow, currentParity);
     if (view.preview) {
-      const classes = rawDay(view.dow, view.parity);
+      const classes = rawDay(view.dow, view.parity, view.ymd);
       if (!classes.length) {
         el.innerHTML = '<span class="tag">' + esc(view.labelPrefix) + '</span>无课';
         return;
@@ -2122,7 +2211,7 @@
     const el = document.getElementById("today-kicker");
     if (!el) return;
     if (!view) view = mainDayView(parisParts().hhmm, dow, parity);
-    const n = rawDay(view.dow, view.parity).length;
+    const n = rawDay(view.dow, view.parity, view.ymd).length;
     const pl = parityLabel(view.parity).replace(" · ", "·");
     el.textContent = view.labelPrefix + " · " + n + " 节课 · " + pl;
   }
@@ -2153,13 +2242,17 @@
   function renderTimeline(p, nowHm, dow, view) {
     const el = document.getElementById("timeline");
     if (!view) view = mainDayView(nowHm, dow, currentParity);
-    const school = rawDay(view.dow, view.parity).concat(afterSchoolItems(view.dow, view.ymd)).sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
+    const school = rawDay(view.dow, view.parity, view.ymd).concat(afterSchoolItems(view.dow, view.ymd)).sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
     const kaishuo = kaishuoBlockItems(view.dow, view.ymd);
     if (!school.length && !kaishuo.length) {
+      const cl = closedInfo(view.dow, view.ymd);
+      if (cl) { el.innerHTML = '<div class="empty">' + esc(cl.note || "停课") + "</div>"; return; }
       el.innerHTML = '<div class="empty">' + (view.preview ? (view.labelPrefix + "无课") : "周一到周五显示今天的课") + "</div>";
       return;
     }
-    let html = school.map(function (it) { return periodRowHtml(it, nowHm, view, p); }).join("");
+    const closed = closedInfo(view.dow, view.ymd);
+    let html = (closed ? '<div class="empty">' + esc(closed.note || "停课") + "</div>" : "") +
+      school.map(function (it) { return periodRowHtml(it, nowHm, view, p); }).join("");
     if (kaishuo.length) {
       const who = kaishuo[0].who || "铄铄";
       html += '<div class="parcours-block"><div class="parcours-head"><b>' + esc(who) + "</b>课外</div>" +
@@ -2365,14 +2458,14 @@
       day: leftYmd.slice(8, 10)
     });
     const pl = parityLabel(par).replace(" · ", "·");
-    const leftCount = rawDay(leftDow, par).length;
+    const leftCount = rawDay(leftDow, par, leftYmd).length;
     const leftPrefix = (view.preview
       ? ((leftDow === 1) ? "周一" : ("周" + "日一二三四五六"[leftDow]))
       : ((dow === 5 || dow === 6 || dow === 0) ? "周一" : "明天"));
     if (kick) kick.textContent = leftPrefix + " · " + leftCount + " 节课 · " + pl;
     const end = lastBell(leftDow, par, leftYmd);
     if (bellEl) bellEl.textContent = end ? ("下课 " + end) : "";
-    const items = rawDay(leftDow, par).concat(afterSchoolItems(leftDow, leftYmd)).sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
+    const items = rawDay(leftDow, par, leftYmd).concat(afterSchoolItems(leftDow, leftYmd)).sort(function (a, b) { return toMin(a.start) - toMin(b.start); });
     const kaishuo = kaishuoBlockItems(leftDow, leftYmd);
     if (!el) return;
     if (!items.length && !kaishuo.length) {
@@ -2521,7 +2614,7 @@
 
   async function loadSchedule() {
     try {
-      const r = await fetch("schedule.json?v=20261014b", { cache: "no-store" });
+      const r = await fetch("schedule.json?v=20261027a", { cache: "no-store" });
       if (r.ok) {
         const data = await r.json();
         if (data && data.days) return data;
